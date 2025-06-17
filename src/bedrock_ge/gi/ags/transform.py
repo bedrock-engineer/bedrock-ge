@@ -3,7 +3,7 @@
 from typing import Dict
 
 import pandas as pd
-import pandera as pa
+import pandera.pandas as pa
 from pandera.typing import DataFrame
 from pyproj import CRS
 

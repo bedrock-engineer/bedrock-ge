@@ -280,7 +280,7 @@ def _(create_lon_lat_height_table, crs, locations):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Here we create a DataFrame for the In-Situ data of all locations. To relate to locations and the project we add foreign keys.""")
+    mo.md(r"""Here we create a DataFrame for the In-Situ data of all locations. To relate the in-situ data to locations and the project, we add foreign keys.""")
     return
 
 
@@ -306,15 +306,16 @@ def _(insitu):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""In-situ data is also spatial data. It has a location, a depth and a height. We can also turn it into spatial data using Bedrock's `calculate_in_situ_gis_geometry` """)
+    mo.md(r"""In-situ data is also spatial data. It has a location, a depth and a height. We can also turn it into spatial data using Bedrock's `calculate_in_situ_gis_geometry`""")
     return
 
 
 @app.cell
 def _(calculate_in_situ_gis_geometry, crs, insitu, locations):
     insitu_geo = calculate_in_situ_gis_geometry(insitu, locations, crs)
+    insitu_geo.index
     return (insitu_geo,)
 
 
@@ -363,10 +364,11 @@ def _():
     import folium
     import mapclassify
     from shapely.geometry import Point, LineString
-    from bedrock_ge.gi.gis_geometry import calculate_wgs84_coordinates, calculate_in_situ_gis_geometry, calculate_gis_geometry, calculate_location_gis_geometry, create_lon_lat_height_table
+    from bedrock_ge.gi.gis_geometry import calculate_in_situ_gis_geometry, calculate_gis_geometry, calculate_location_gis_geometry, create_lon_lat_height_table
     from bedrock_ge.gi.write import write_gi_db_to_gpkg
     from bedrock_ge.gi.validate import check_brgi_database
     from pyproj import CRS
+    from typing import Dict, Tuple, Union
     return (
         CRS,
         Path,
@@ -379,7 +381,6 @@ def _():
         pygef,
         write_gi_db_to_gpkg,
     )
-
 
 if __name__ == "__main__":
     app.run()
