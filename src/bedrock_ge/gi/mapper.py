@@ -24,6 +24,50 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
     table, validates them against their respective schemas, and constructs the final
     BedrockGIDatabase object.
 
+    Examples:
+        ```python
+        from pyproj import CRS
+        from bedrock_ge.gi.mapping_models import BedrockGIMapping
+
+        brgi_db_mapping = BedrockGIMapping(
+            ProjectTableMapping={
+                "data": {
+                    "project_name: "Test Project",
+                    "project_description": "Project description. Add more data about the project here if you please."
+                }
+                "project_id": "project-1",
+                "horizontal_crs": CRS("EPSG:2193"),
+                "vertical_crs": CRS("EPSG:7839"),
+            },
+            LocationTableMapping={
+                "data": location_df,
+                "location_id_column": "LocationID",
+                "easting_column": "Easting",
+                "northing_column": "Northing",
+                "ground_level_elevation_column": "GroundLevel",
+                "depth_to_base_column": "FinalDepth",
+            },
+            InSituTestTableMapping=[
+                {
+                    "table_name": "Geol",
+                    "data": geology_df,
+                    "location_id_column": "LocationID",
+                    "depth_to_top_column": "from",
+                    "depth_to_base_column": "to",
+                },
+                {
+                    "table_name": "SPT",
+                    "data": spt_df,
+                    "location_id_column": "LocationID",
+                    "depth_to_top"column": "from",
+                }
+            ],
+            SampleTableMapping=None,
+            LabTestTableMapping=[],
+            OtherTable=[],
+        )
+        ```
+
     Args:
         brgi_db_mapping (BedrockGIDatabaseMapping): The mapping object containing GI
             data and metadata for mapping to Bedrock's schema.
