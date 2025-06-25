@@ -235,12 +235,19 @@ def brgi_db_to_dfs(
     return dict_of_dfs | insitu_dfs | lab_dfs | other_dfs
 
 
-def convert_dtypes_object_to_string(df: pd.DataFrame, in_place=True) -> pd.DataFrame:
-    """Converts object dtypes to string dtypes in a given DataFrame.
+def convert_object_col_content_to_string(
+    df: pd.DataFrame, in_place: bool = True
+) -> pd.DataFrame:
+    """Converts the data in columns with the object dtype to strings.
 
-    The difference between this function and the pd.Dataframe.convert_dtypes() method is
-    that this function forces conversion of object dtypes to string dtypes, whereas the
-    method leaves the dtype and object in case a column contains multiple types.
+    The real reason that this is necessary is that pandas and marimo are a little finicky about strings:
+    1. The built-in pd.Dataframe.convert_dtypes() method doesn't convert the dtype of
+      columns that contain multiple types in that same column to string.
+    2. marimo cannot handle pd.DataFrames with nullable strings (and other nullable pandas dtypes)
+      very well, see https://github.com/marimo-team/marimo/issues/5445.
+
+    Therefore, this function converts all the data in columns with the object dtype to strings,
+    and then back to the object dtype.
 
     Args:
         df: The DataFrame to modify.
@@ -254,10 +261,11 @@ def convert_dtypes_object_to_string(df: pd.DataFrame, in_place=True) -> pd.DataF
         df = df.copy()
     object_cols = df.select_dtypes(include=["object"]).columns
     df[object_cols] = df[object_cols].astype("string")
+    df[object_cols] = df[object_cols].astype("object")
     return df
 
 
 def geodf_to_df(geodf: gpd.GeoDataFrame) -> pd.DataFrame:
     """Convenience function to convert GeoDataFrames to DataFrames for nicer display in notebook environments like marimo."""
     df = pd.DataFrame(geodf.copy())
-    return df.assign(geometry=df.geometry.astype("string"))
+    return df.assign(geometry=df.geometry.astype(str))
