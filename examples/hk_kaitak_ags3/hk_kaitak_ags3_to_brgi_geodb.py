@@ -1,18 +1,17 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "bedrock-ge==0.2.4",
-#     "chardet==5.2.0",
-#     "folium==0.19.5",
-#     "geopandas==1.0.1",
-#     "mapclassify==2.8.1",
+#     "bedrock-ge==0.3.0
+#     "folium==0.20.0",
+#     "geopandas==1.1.0",
+#     "mapclassify==2.9.0",
 #     "marimo",
-#     "matplotlib==3.10.1",
+#     "matplotlib==3.10.3",
 #     "numpy==2.3.1",
-#     "pandas==2.2.3",
+#     "pandas==2.3.0",
 #     "pyproj==3.7.1",
-#     "requests==2.32.3",
-#     "shapely==2.1.0",
+#     "requests==2.32.4",
+#     "shapely==2.1.1",
 # ]
 # ///
 
@@ -20,7 +19,7 @@ import marimo
 
 __generated_with = "0.14.7"
 app = marimo.App(
-    app_title="Kai Tak, HK AGS 3 data to bedrock_ge.gi geodatabase",
+    app_title="Kai Tak, HK AGS 3 data to a Bedrock GI Geospatial Database",
 )
 
 
@@ -47,8 +46,8 @@ def _():
     from shapely import Point, wkt
 
     from bedrock_ge.gi.ags import ags_to_brgi_db_mapping
-    from bedrock_ge.gi.db_operations import merge_databases
-    from bedrock_ge.gi.geospatial import create_brgi_geospatial_database
+    from bedrock_ge.gi.db_operations import merge_dbs
+    from bedrock_ge.gi.geospatial import create_brgi_geodb
     from bedrock_ge.gi.io_utils import geodf_to_df
     from bedrock_ge.gi.mapper import map_to_brgi_db
     from bedrock_ge.gi.write import write_brgi_db_to_file
@@ -60,12 +59,12 @@ def _():
         CRS,
         Point,
         ags_to_brgi_db_mapping,
-        create_brgi_geospatial_database,
+        create_brgi_geodb,
         geodf_to_df,
         gpd,
         io,
         map_to_brgi_db,
-        merge_databases,
+        merge_dbs,
         mo,
         platform,
         requests,
@@ -174,14 +173,7 @@ def _(mo):
 
 
 @app.cell
-def _(
-    CRS,
-    ags_to_brgi_db_mapping,
-    map_to_brgi_db,
-    merge_databases,
-    zip,
-    zipfile,
-):
+def _(CRS, ags_to_brgi_db_mapping, map_to_brgi_db, merge_dbs, zip, zipfile):
     projected_crs = CRS("EPSG:2326")
     vertrical_crs = CRS("EPSG:5738")
 
@@ -205,7 +197,7 @@ def _(
                         )
                     )
 
-    brgi_db = merge_databases(ags3_file_brgi_dbs)
+    brgi_db = merge_dbs(ags3_file_brgi_dbs)
     return (brgi_db,)
 
 
@@ -253,8 +245,8 @@ def _(mo):
 
 
 @app.cell
-def _(brgi_db, create_brgi_geospatial_database):
-    brgi_geodb = create_brgi_geospatial_database(brgi_db)
+def _(brgi_db, create_brgi_geodb):
+    brgi_geodb = create_brgi_geodb(brgi_db)
     return (brgi_geodb,)
 
 
@@ -397,7 +389,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(brgi_geodb, mo, platform, write_brgi_db_to_file):
     output = None
     if platform.system() != "Emscripten":

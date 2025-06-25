@@ -14,8 +14,8 @@ from bedrock_ge.gi.schemas import (
 from bedrock_ge.gi.validate import check_foreign_key
 
 
-def merge_databases(
-    brgi_databases: Iterable[BedrockGIDatabase],
+def merge_dbs(
+    brgi_dbs: Iterable[BedrockGIDatabase],
 ) -> BedrockGIDatabase:
     """Merges the incoming Bedrock GI database into the target Bedrock GI database.
 
@@ -25,12 +25,12 @@ def merge_databases(
     concatenated dictionary.
 
     Args:
-        brgi_databases (Iterable[BedrockGIDatabase]): The Bedrock GI databases containing the data to be merged.
+        brgi_dbs: The Bedrock GI databases containing the data to be merged.
 
     Returns:
         BedrockGIDatabase: Merged Bedrock GI database.
     """
-    dbs = list(brgi_databases)
+    dbs = list(brgi_dbs)
 
     if not dbs:
         raise ValueError("Cannot merge an empty list of Bedrock GI databases.")
