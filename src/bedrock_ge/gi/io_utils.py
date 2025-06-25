@@ -236,6 +236,20 @@ def brgi_db_to_dfs(
 
 
 def convert_dtypes_object_to_string(df: pd.DataFrame, in_place=True) -> pd.DataFrame:
+    """Converts object dtypes to string dtypes in a given DataFrame.
+
+    The difference between this function and the pd.Dataframe.convert_dtypes() method is
+    that this function forces conversion of object dtypes to string dtypes, whereas the
+    method leaves the dtype and object in case a column contains multiple types.
+
+    Args:
+        df: The DataFrame to modify.
+        in_place: Whether to modify the DataFrame in-place (default) or return a new DataFrame.
+
+    Returns:
+        pd.DataFrame: The modified DataFrame with object dtypes converted to string dtypes.
+
+    """
     if not in_place:
         df = df.copy()
     object_cols = df.select_dtypes(include=["object"]).columns
