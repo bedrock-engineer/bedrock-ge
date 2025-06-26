@@ -1,14 +1,12 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "bedrock-ge==0.3.1
+#     "bedrock-ge==0.3.1",
 #     "folium==0.20.0",
 #     "geopandas==1.1.0",
 #     "mapclassify==2.9.0",
 #     "marimo",
 #     "matplotlib==3.10.3",
-#     "numpy==2.3.1",
-#     "pandas==2.3.0",
 #     "pyproj==3.7.1",
 #     "requests==2.32.4",
 #     "shapely==2.1.1",
@@ -31,19 +29,14 @@ def _():
     import platform
     import sys
     import zipfile
-    from pathlib import Path
 
     import folium
     import geopandas as gpd
     import mapclassify
     import marimo as mo
     import matplotlib
-    import numpy as np
-    import pandas as pd
-    import requests
-    from pyproj import CRS, Transformer
-    from pyproj.crs.crs import CompoundCRS
-    from shapely import Point, wkt
+    from pyproj import CRS
+    from shapely import Point
 
     from bedrock_ge.gi.ags import ags_to_brgi_db_mapping
     from bedrock_ge.gi.db_operations import merge_dbs
@@ -52,7 +45,8 @@ def _():
     from bedrock_ge.gi.mapper import map_to_brgi_db
     from bedrock_ge.gi.write import write_brgi_db_to_file
 
-    print(platform.system())
+    platform_system = platform.system()
+    print(platform_system)
     print(sys.version)
     # print(sys.executable)
     return (
@@ -67,7 +61,7 @@ def _():
         merge_dbs,
         mo,
         platform,
-        requests,
+        platform_system,
         write_brgi_db_to_file,
         zipfile,
     )
@@ -122,13 +116,20 @@ def _(mo):
 
 
 @app.cell
-def _(io, requests):
+async def _(io, platform_system):
     # Read ZIP from disk after downloading manually
     # zip = Path.home() / "Downloads" / "kaitak_ags3.zip"
 
     # Request ZIP from GitHub
     raw_githubusercontent_url = "https://raw.githubusercontent.com/bedrock-engineer/bedrock-ge/main/examples/hk_kaitak_ags3/kaitak_ags3.zip"
-    zip = io.BytesIO(requests.get(raw_githubusercontent_url).content)
+    # When running this marimo notebook in WebAssembly (WASM, a.k.a. Emscripten), use pyodide to request the data
+    if platform_system == "Emscripten":
+        from pyodide.http import pyfetch
+        response = await pyfetch(raw_githubusercontent_url)
+        zip = io.BytesIO(await response.bytes())
+    else:
+        import requests
+        zip = io.BytesIO(requests.get(raw_githubusercontent_url).content)
     return (zip,)
 
 
