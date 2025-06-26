@@ -57,9 +57,8 @@ def _(mo):
 
 @app.cell
 def _(requests):
-    raw_githubusercontent_url = "https://raw.githubusercontent.com/bedrock-engineer/bedrock-ge/refs/heads/silvertown-tunnel-ags4-data/examples/uk_silvertown_tunnel_ags4/20110770%20-%202021-02-16%201308%20-%20Final%20-%206.ags"
-    # raw_githubusercontent_url = "https://raw.githubusercontent.com/bedrock-engineer/bedrock-ge/raw/refs/heads/silvertown-tunnel-ags4-data/examples/uk_silvertown_tunnel_ags4/20110770-2021-02-16_1308-Final-6.ags"
-    ags_bytes = requests.get(raw_githubusercontent_url).content
+    # raw_githubusercontent_url = "https://raw.githubusercontent.com/bedrock-engineer/bedrock-ge/refs/heads/main/examples/uk_silvertown_tunnel_ags4/20110770-2021-02-16_1308-Final-6.ags"
+    # ags_bytes = requests.get(raw_githubusercontent_url).content
 
     # Preferribly, the data can be directly used from the BGS webservice, but maybe this will not be possible in the marimo playground?
     bgs_url = "https://webservices.bgs.ac.uk/accessions/download/162465?fileName=20110770%20-%202021-02-16%201308%20-%20Final%20-%206.ags"
