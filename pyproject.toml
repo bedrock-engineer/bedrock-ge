@@ -1,6 +1,6 @@
 [project]
 name = "bedrock-ge"
-version = "0.3.0"
+version = "0.3.1"
 description = "Bedrock's Python library for geotechnical engineering."
 authors = [
     {name = "Bedrock", email = "info@bedrock.engineer"}
