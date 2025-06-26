@@ -7,6 +7,7 @@
 #     "mapclassify==2.9.0",
 #     "marimo",
 #     "matplotlib==3.10.3",
+#     "pyarrow==20.0.0",
 #     "pyproj==3.7.1",
 #     "requests==2.32.4",
 #     "shapely==2.1.1",
@@ -125,10 +126,12 @@ async def _(io, platform_system):
     # When running this marimo notebook in WebAssembly (WASM, a.k.a. Emscripten), use pyodide to request the data
     if platform_system == "Emscripten":
         from pyodide.http import pyfetch
+
         response = await pyfetch(raw_githubusercontent_url)
         zip = io.BytesIO(await response.bytes())
     else:
         import requests
+
         zip = io.BytesIO(requests.get(raw_githubusercontent_url).content)
     return (zip,)
 
