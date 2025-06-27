@@ -14,6 +14,14 @@ Update the version number in:
 - [`/src/bedrock/__init__.py`](/src/bedrock_ge/__init__.py)
 - Inline script dependencies of marimo notebooks in [`examples`](/examples/)
 
+## 2. Update `uv.lock`
+
+The version of `bedrock-ge` in the `uv.lock` file needs to be updated such that tests can run properly. Therefore run:
+
+```bash
+uv sync --all-groups --upgrade
+```
+
 ## 3. PR `dev` → `main`
 
 Open a pull request (PR) from `dev` to `main`.

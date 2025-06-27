@@ -1,6 +1,6 @@
 [project]
 name = "bedrock-ge"
-version = "0.2.4"
+version = "0.3.1"
 description = "Bedrock's Python library for geotechnical engineering."
 authors = [
     {name = "Bedrock", email = "info@bedrock.engineer"}
@@ -9,6 +9,7 @@ license = {text = "Apache Software License (Apache 2.0)"}
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "chardet>=5.2.0",
     "geopandas~=1.0",
     "openpyxl~=3.0",
     "pandera>=0.23.0",
@@ -55,7 +56,6 @@ classifiers = [
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: GIS",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",

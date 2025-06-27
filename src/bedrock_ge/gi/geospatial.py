@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import geopandas as gpd
 import numpy as np
 import pandas as pd
@@ -17,7 +15,7 @@ from bedrock_ge.gi.schemas import (
 )
 
 
-def create_brgi_geospatial_database(
+def create_brgi_geodb(
     brgi_db: BedrockGIDatabase,
 ) -> BedrockGIGeospatialDatabase:
     """Creates a Bedrock GI geospatial database from a Bedrock GI database.

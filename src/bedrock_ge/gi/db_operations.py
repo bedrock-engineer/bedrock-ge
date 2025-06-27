@@ -1,10 +1,8 @@
-from __future__ import annotations
-
 from collections.abc import Iterable
 
 import pandas as pd
 
-from bedrock_ge.gi.io_utils import convert_dtypes_object_to_string
+from bedrock_ge.gi.io_utils import convert_object_col_content_to_string
 from bedrock_ge.gi.schemas import (
     BedrockGIDatabase,
     InSituTestSchema,
@@ -16,8 +14,8 @@ from bedrock_ge.gi.schemas import (
 from bedrock_ge.gi.validate import check_foreign_key
 
 
-def merge_databases(
-    brgi_databases: Iterable[BedrockGIDatabase],
+def merge_dbs(
+    brgi_dbs: Iterable[BedrockGIDatabase],
 ) -> BedrockGIDatabase:
     """Merges the incoming Bedrock GI database into the target Bedrock GI database.
 
@@ -27,12 +25,12 @@ def merge_databases(
     concatenated dictionary.
 
     Args:
-        brgi_databases (Iterable[BedrockGIDatabase]): The Bedrock GI databases containing the data to be merged.
+        brgi_dbs: The Bedrock GI databases containing the data to be merged.
 
     Returns:
         BedrockGIDatabase: Merged Bedrock GI database.
     """
-    dbs = list(brgi_databases)
+    dbs = list(brgi_dbs)
 
     if not dbs:
         raise ValueError("Cannot merge an empty list of Bedrock GI databases.")
@@ -42,13 +40,13 @@ def merge_databases(
     project_dataframes = _filter_dataframes([db.Project for db in dbs])
     merged_project = pd.concat(project_dataframes, ignore_index=True)
     merged_project = merged_project.drop_duplicates().reset_index(drop=True)
-    merged_project = convert_dtypes_object_to_string(merged_project.convert_dtypes())
+    merged_project = convert_object_col_content_to_string(merged_project)
     ProjectSchema.validate(merged_project)
 
     location_dataframes = _filter_dataframes([db.Location for db in dbs])
     merged_location = pd.concat(location_dataframes, ignore_index=True)
     merged_location = merged_location.drop_duplicates().reset_index(drop=True)
-    merged_location = convert_dtypes_object_to_string(merged_location.convert_dtypes())
+    merged_location = convert_object_col_content_to_string(merged_location)
     LocationSchema.validate(merged_location)
     check_foreign_key("project_uid", merged_project, merged_location)
 
@@ -69,7 +67,7 @@ def merge_databases(
         )
         insitu_df = pd.concat(insitu_dataframes, ignore_index=True)
         insitu_df = insitu_df.drop_duplicates().reset_index(drop=True)
-        insitu_df = convert_dtypes_object_to_string(insitu_df.convert_dtypes())
+        insitu_df = convert_object_col_content_to_string(insitu_df)
         InSituTestSchema.validate(insitu_df)
         check_foreign_key("project_uid", merged_project, insitu_df)
         check_foreign_key("location_uid", merged_location, insitu_df)
@@ -80,7 +78,7 @@ def merge_databases(
     if sample_dfs:
         merged_sample = pd.concat(sample_dfs, ignore_index=True)
         merged_sample = merged_sample.drop_duplicates().reset_index(drop=True)
-        merged_sample = convert_dtypes_object_to_string(merged_sample.convert_dtypes())
+        merged_sample = convert_object_col_content_to_string(merged_sample)
         SampleSchema.validate(merged_sample)
         check_foreign_key("project_uid", merged_project, merged_sample)
 
@@ -89,7 +87,7 @@ def merge_databases(
         lab_dataframes = _filter_dataframes([db.LabTests.get(table_name) for db in dbs])
         lab_df = pd.concat(lab_dataframes, ignore_index=True)
         lab_df = lab_df.drop_duplicates().reset_index(drop=True)
-        lab_df = convert_dtypes_object_to_string(lab_df.convert_dtypes())
+        lab_df = convert_object_col_content_to_string(lab_df)
         LabTestSchema.validate(lab_df)
         check_foreign_key("project_uid", merged_project, lab_df)
         check_foreign_key("sample_uid", merged_sample, lab_df)
@@ -100,7 +98,7 @@ def merge_databases(
         other_dataframes = _filter_dataframes([db.Other.get(table_name) for db in dbs])
         other_df = pd.concat(other_dataframes, ignore_index=True)
         other_df = other_df.drop_duplicates().reset_index(drop=True)
-        other_df = convert_dtypes_object_to_string(other_df.convert_dtypes())
+        other_df = convert_object_col_content_to_string(other_df)
         check_foreign_key("project_uid", merged_project, other_df)
         merged_other[table_name] = other_df
 

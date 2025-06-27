@@ -7,7 +7,7 @@ from bedrock_ge.gi.schemas import (
 )
 
 
-def check_brgi_geospatial_database(
+def check_brgi_geodb(
     brgi_geodb: BedrockGIGeospatialDatabase,
 ):
     """Validates the structure and relationships of a 'Bedrock Ground Investigation' (BrGI) geospatial database.
@@ -37,19 +37,19 @@ def check_brgi_geospatial_database(
             Sample=sample_geodf,
             LabTests={"LLPL": llpl_df},
         )
-        check_brgi_geospatial_database(brgi_db)
+        check_brgi_geodb(brgi_db)
         ```
     """
     # TODO: implement this
     return True
 
 
-def check_brgi_database(
+def check_brgi_db(
     brgi_db: BedrockGIDatabase,
 ):
     """Validates the structure and relationships of a 'Bedrock Ground Investigation' (BrGI) database.
 
-    This function performs the same validation as `check_brgi_geospatial_database`, but uses schemas
+    This function performs the same validation as `check_brgi_geodb`, but uses schemas
     that don't require geospatial geometry. It validates the following tables:
     - Project (never has geospatial geometry)
     - Location (without geospatial geometry)
@@ -72,7 +72,7 @@ def check_brgi_database(
             Sample=sample_df,
             LabTests={"LLPL": llpl_df},
         )
-        check_brgi_database(brgi_db)
+        check_brgi_db(brgi_db)
         ```
     """
     # TODO: implement this

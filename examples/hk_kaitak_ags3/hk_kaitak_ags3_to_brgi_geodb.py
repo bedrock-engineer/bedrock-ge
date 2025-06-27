@@ -1,29 +1,28 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "bedrock-ge==0.2.4",
-#     "chardet==5.2.0",
-#     "folium==0.19.5",
-#     "geopandas==1.0.1",
-#     "mapclassify==2.8.1",
+#     "bedrock-ge==0.3.1",
+#     "folium==0.20.0",
+#     "geopandas==1.1.0",
+#     "mapclassify==2.9.0",
 #     "marimo",
-#     "matplotlib==3.10.1",
-#     "pandas==2.2.3",
+#     "matplotlib==3.10.3",
+#     "pyarrow==20.0.0",
 #     "pyproj==3.7.1",
-#     "requests==2.32.3",
-#     "shapely==2.1.0",
+#     "requests==2.32.4",
+#     "shapely==2.1.1",
 # ]
 # ///
 
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.14.7"
 app = marimo.App(
-    app_title="Kai Tak, HK AGS 3 data to bedrock_ge.gi geodatabase",
+    app_title="Kai Tak, HK AGS 3 data to a Bedrock GI Geospatial Database",
 )
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     # %pip install bedrock-ge geopandas folium mapclassify marimo --quiet
 
@@ -31,43 +30,39 @@ def _():
     import platform
     import sys
     import zipfile
-    from pathlib import Path
 
     import folium
     import geopandas as gpd
     import mapclassify
     import marimo as mo
     import matplotlib
-    import numpy as np
-    import pandas as pd
-    import requests
-    from pyproj import CRS, Transformer
-    from pyproj.crs.crs import CompoundCRS
-    from shapely import Point, wkt
+    from pyproj import CRS
+    from shapely import Point
 
     from bedrock_ge.gi.ags import ags_to_brgi_db_mapping
-    from bedrock_ge.gi.db_operations import merge_databases
-    from bedrock_ge.gi.geospatial import create_brgi_geospatial_database
+    from bedrock_ge.gi.db_operations import merge_dbs
+    from bedrock_ge.gi.geospatial import create_brgi_geodb
     from bedrock_ge.gi.io_utils import geodf_to_df
     from bedrock_ge.gi.mapper import map_to_brgi_db
     from bedrock_ge.gi.write import write_brgi_db_to_file
 
-    print(platform.system())
+    platform_system = platform.system()
+    print(platform_system)
     print(sys.version)
     # print(sys.executable)
     return (
         CRS,
         Point,
         ags_to_brgi_db_mapping,
-        create_brgi_geospatial_database,
+        create_brgi_geodb,
         geodf_to_df,
         gpd,
         io,
         map_to_brgi_db,
-        merge_databases,
+        merge_dbs,
         mo,
         platform,
-        requests,
+        platform_system,
         write_brgi_db_to_file,
         zipfile,
     )
@@ -122,13 +117,22 @@ def _(mo):
 
 
 @app.cell
-def _(io, requests):
+async def _(io, platform_system):
     # Read ZIP from disk after downloading manually
     # zip = Path.home() / "Downloads" / "kaitak_ags3.zip"
 
     # Request ZIP from GitHub
     raw_githubusercontent_url = "https://raw.githubusercontent.com/bedrock-engineer/bedrock-ge/main/examples/hk_kaitak_ags3/kaitak_ags3.zip"
-    zip = io.BytesIO(requests.get(raw_githubusercontent_url).content)
+    # When running this marimo notebook in WebAssembly (WASM, a.k.a. Emscripten), use pyodide to request the data
+    if platform_system == "Emscripten":
+        from pyodide.http import pyfetch
+
+        response = await pyfetch(raw_githubusercontent_url)
+        zip = io.BytesIO(await response.bytes())
+    else:
+        import requests
+
+        zip = io.BytesIO(requests.get(raw_githubusercontent_url).content)
     return (zip,)
 
 
@@ -173,14 +177,7 @@ def _(mo):
 
 
 @app.cell
-def _(
-    CRS,
-    ags_to_brgi_db_mapping,
-    map_to_brgi_db,
-    merge_databases,
-    zip,
-    zipfile,
-):
+def _(CRS, ags_to_brgi_db_mapping, map_to_brgi_db, merge_dbs, zip, zipfile):
     projected_crs = CRS("EPSG:2326")
     vertrical_crs = CRS("EPSG:5738")
 
@@ -204,7 +201,7 @@ def _(
                         )
                     )
 
-    brgi_db = merge_databases(ags3_file_brgi_dbs)
+    brgi_db = merge_dbs(ags3_file_brgi_dbs)
     return (brgi_db,)
 
 
@@ -252,8 +249,8 @@ def _(mo):
 
 
 @app.cell
-def _(brgi_db, create_brgi_geospatial_database):
-    brgi_geodb = create_brgi_geospatial_database(brgi_db)
+def _(brgi_db, create_brgi_geodb):
+    brgi_geodb = create_brgi_geodb(brgi_db)
     return (brgi_geodb,)
 
 
@@ -271,23 +268,37 @@ def _(mo):
 
     After creating the Bedrock GI 3D  Database `brgi_geodb` - which is a dictionary of [`geopandas.GeoDataFrame`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame)s - you can explore the Kai Tak Ground Investigation data on an interactive map by applying the [`geopandas.GeoDataFrame.explore()`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explore.html#geopandas.GeoDataFrame.explore) method to the different tables in the `brgi_geodb`.
 
-    Do note that this works best on the tables with `POINT` GIS geometry such as `LonLatHeight` or `InSitu_ISPT`. Tables with vertical `LINESTRING` GIS geometry, such as `Location`, `InSitu_GEOL` or `InSitu_WETH`, display very small on the `geodf.explore()` `leaflet`-based interactive map, and don't show at all on the `matplotlib`-based `geodf.plot()`.
+    Do note that this works best on the tables with `POINT` GIS geometry such as `LonLatHeight` or `ISPT` (SPT data). Tables with vertical `LINESTRING` GIS geometry, such as `Location`, `GEOL` (Stratum descriptions) or `WETH` (Weathering grades), display very small on the `leaflet`-based interactive map created with `geodf.explore()`, and don't show at all on the `matplotlib`-based map created with `geodf.plot()`.
+
+    Therefore, a convenience function is defined below to just plot the first coordinate of a `LINESTRING`, which makes the data more visible. The data displayed below is the `GEOL` table (Stratum descriptions):
     """
     )
     return
 
 
-@app.cell
-def _(Point, brgi_geodb):
-    geodf = brgi_geodb.InSituTests["GEOL"]
-    geodf["geometry"] = geodf["geometry"].apply(lambda geom: Point(geom.coords[0]))
-    geodf.explore()
-    return (geodf,)
+@app.cell(hide_code=True)
+def _(Point, brgi_geodb, gpd, mo):
+    def gi_exploration_map(geodf):
+        if "geometry" not in geodf.columns:
+            output = mo.md(
+                "No interactive map with the data selected in the table above can be shown, because the data you're exploring doesn't have a 'geometry' column."
+            ).callout("warn")
+        else:
+            fltrd_geodf = gpd.GeoDataFrame(geodf.copy())
+            fltrd_geodf["geometry"] = fltrd_geodf["geometry"].apply(
+                lambda geom: Point(geom.coords[0])
+            )
+            output = fltrd_geodf.explore()
+        return output
+
+    geol_geodf = brgi_geodb.InSituTests["GEOL"]
+    gi_exploration_map(geol_geodf)
+    return geol_geodf, gi_exploration_map
 
 
-@app.cell
-def _(geodf, geodf_to_df):
-    geodf_to_df(geodf)
+@app.cell(hide_code=True)
+def _(geodf_to_df, geol_geodf):
+    geodf_to_df(geol_geodf)
     return
 
 
@@ -297,59 +308,448 @@ def _(mo):
         r"""
     With marimo's built-in data exploration tables and dataframes, it's also really easy to filter and visualize the GI data.
 
-    For example, in the `InSitu_ISPT` table (SPT data) you could apply a filter to the `ISPT_NVAL` (SPT N-value) of e.g. 1 - 10. When you then select those rows and then scroll to the map below, you'll see all the locations where soft soils were encountered.
+    For example, in the `ISPT` table (SPT data) you could apply a filter to the `ISPT_NVAL` column (SPT N-value) of e.g. 1 - 10. When you then select those rows and then scroll to the map below, you'll see all the locations where soft soils were encountered.
     """
     )
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(brgi_geodb, mo):
     explore_brgi_table = mo.ui.dropdown(brgi_geodb.InSituTests, value="ISPT")
-    mo.md(f"Select the GI table you want to explore: {explore_brgi_table}")
+    mo.md(f"Select the In-Situ Test results you want to explore: {explore_brgi_table}")
     return (explore_brgi_table,)
 
 
 @app.cell(hide_code=True)
-def _(explore_brgi_table, mo):
-    filtered_table = mo.ui.table(explore_brgi_table.value)
+def _(explore_brgi_table, geodf_to_df, mo):
+    spt_1_10 = [
+        1,
+        2,
+        13,
+        28,
+        29,
+        30,
+        47,
+        48,
+        50,
+        52,
+        68,
+        69,
+        96,
+        101,
+        116,
+        117,
+        118,
+        119,
+        120,
+        123,
+        139,
+        140,
+        141,
+        142,
+        162,
+        163,
+        164,
+        166,
+        168,
+        173,
+        184,
+        185,
+        189,
+        191,
+        198,
+        199,
+        213,
+        214,
+        215,
+        244,
+        245,
+        251,
+        259,
+        261,
+        275,
+        277,
+        279,
+        281,
+        295,
+        299,
+        331,
+        333,
+        334,
+        335,
+        350,
+        375,
+        393,
+        396,
+        407,
+        409,
+        411,
+        413,
+        414,
+        415,
+        416,
+        419,
+        420,
+        421,
+        444,
+        446,
+        454,
+        455,
+        456,
+        458,
+        459,
+        461,
+        479,
+        481,
+        495,
+        496,
+        499,
+        515,
+        517,
+        519,
+        530,
+        531,
+        534,
+        546,
+        547,
+        548,
+        578,
+        610,
+        725,
+        726,
+        814,
+        832,
+        833,
+        834,
+        835,
+        849,
+        850,
+        851,
+        881,
+        895,
+        896,
+        947,
+        957,
+        990,
+        993,
+        1035,
+        1052,
+        1066,
+        1067,
+        1068,
+        1069,
+        1090,
+        1091,
+        1093,
+        1131,
+        1132,
+        1163,
+        1181,
+        1182,
+        1183,
+        1184,
+        1193,
+        1194,
+        1195,
+        1197,
+        1199,
+        1222,
+        1251,
+        1267,
+        1285,
+        1286,
+        1287,
+        1302,
+        1319,
+        1491,
+        1679,
+        1727,
+        1731,
+        1782,
+        1787,
+        1811,
+        1814,
+        1870,
+        1898,
+        1899,
+        1900,
+        1919,
+        1921,
+        1923,
+        1944,
+        1948,
+        1949,
+        1950,
+        1955,
+        1957,
+        1961,
+        1962,
+        1967,
+        1973,
+        1980,
+        1988,
+        1989,
+        2014,
+        2029,
+        2030,
+        2035,
+        2036,
+        2037,
+        2046,
+        2060,
+        2066,
+        2072,
+        2078,
+        2098,
+        2115,
+        2116,
+        2125,
+        2126,
+        2127,
+        2128,
+        2145,
+        2150,
+        2152,
+        2159,
+        2160,
+        2161,
+        2164,
+        2174,
+        2175,
+        2186,
+        2188,
+        2191,
+        2194,
+        2195,
+        2196,
+        2198,
+        2204,
+        2205,
+        2206,
+        2207,
+        2208,
+        2212,
+        2233,
+        2240,
+        2241,
+        2242,
+        2244,
+        2251,
+        2252,
+        2254,
+        2255,
+        2256,
+        2258,
+        2266,
+        2267,
+        2268,
+        2269,
+        2270,
+        2286,
+        2287,
+        2288,
+        2297,
+        2299,
+        2300,
+        2302,
+        2303,
+        2307,
+        2314,
+        2315,
+        2317,
+        2336,
+        2337,
+        2338,
+        2339,
+        2340,
+        2341,
+        2343,
+        2349,
+        2350,
+        2351,
+        2352,
+        2374,
+        2375,
+        2380,
+        2394,
+        2397,
+        2404,
+        2406,
+        2417,
+        2421,
+        2422,
+        2434,
+        2457,
+        2479,
+        2480,
+        2482,
+        2493,
+        2504,
+        2505,
+        2523,
+        2525,
+        2526,
+        2535,
+        2537,
+        2548,
+        2552,
+        2565,
+        2567,
+        2582,
+        2584,
+        2601,
+        2602,
+        2622,
+        2626,
+        2636,
+        2638,
+        2639,
+        2648,
+        2649,
+        2664,
+        2666,
+        2667,
+        2677,
+        2679,
+        2701,
+        2717,
+        2718,
+        2719,
+        2720,
+        2723,
+        2742,
+        2744,
+        2745,
+        2746,
+        2747,
+        2750,
+        2754,
+        2755,
+        2761,
+        2766,
+        2769,
+        2785,
+        2786,
+        2787,
+        2802,
+        2807,
+        2825,
+        2826,
+        2844,
+        2848,
+        2874,
+        2875,
+        2909,
+        2921,
+        2935,
+        2936,
+        2937,
+        2964,
+        2965,
+        2966,
+        2967,
+        2969,
+        2977,
+        2978,
+        2996,
+        3010,
+        3011,
+        3012,
+        3016,
+        3043,
+        3045,
+        3087,
+        3088,
+        3091,
+        3094,
+        3107,
+        3108,
+        3110,
+        3112,
+        3120,
+        3121,
+        3122,
+        3136,
+        3137,
+        3138,
+        3139,
+        3140,
+        3156,
+        3157,
+        3158,
+        3161,
+        3173,
+        3175,
+        3177,
+        3178,
+        3188,
+        3192,
+        3203,
+        3204,
+        3205,
+        3206,
+        3207,
+        3221,
+        3222,
+        3245,
+        3246,
+        3247,
+        3248,
+        3249,
+        3272,
+        3286,
+        3287,
+        3288,
+        3299,
+        3300,
+        3373,
+        3374,
+        3377,
+        3378,
+        3390,
+        3391,
+        3413,
+        3414,
+        3415,
+        3416,
+        3417,
+        3418,
+        3421,
+        3422,
+        3450,
+        3451,
+        3452,
+        3464,
+        3486,
+        3487,
+        3489,
+        3490,
+        3493,
+        3494,
+        3524,
+        3533,
+    ]
+    filtered_table = mo.ui.table(
+        geodf_to_df(explore_brgi_table.value), initial_selection=spt_1_10
+    )
     filtered_table
     return (filtered_table,)
 
 
-@app.cell
-def _(filtered_df, filtered_table):
-    print(f"filtered_table.value type: {type(filtered_table.value)}")
-    print(f"filtered_df.value type: {type(filtered_df.value)}")
-    return
-
-
 @app.cell(hide_code=True)
-def _(Point, filtered_table, gpd, mo):
-    def gi_exploration_map(filtered_brgi_table):
-        if "location_uid" not in filtered_brgi_table.value.columns:
-            output = mo.md(
-                "No interactive map with the data selected in the table above can be shown, because the you're exploring isn't linked to the `LonLatHeight` table with a `location_uid` column, i.e. doesn't have `location_uid` as a foreign key."
-            ).callout("warn")
-        else:
-            fltrd_geodf = gpd.GeoDataFrame(filtered_brgi_table.value.copy())
-            fltrd_geodf["geometry"] = fltrd_geodf["geometry"].apply(
-                lambda geom: Point(geom.coords[0])
-            )
-            output = fltrd_geodf.explore()
-        return output
-
-    gi_exploration_map(filtered_table)
-    return (gi_exploration_map,)
+def _(explore_brgi_table, filtered_table, gi_exploration_map):
+    gi_exploration_map(explore_brgi_table.value.loc[filtered_table.value.index])
+    return
 
 
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
-    Something else you might be interested in, is where the weathering grade of the soil or rock is low. Weathering grades range from `I` (Fresh Rock) to `VI` (Residual Soil). All rock with a weathering grade of `III` (Moderately Decomposed) or better is still considered competent rock.
+    Something else you might be interested in, is where the weathering grade of the soil or rock is low. Weathering grades range from `I` (Fresh Rock) to `VI` (Residual Soil). All rock with a weathering grade of `III` (Moderately Decomposed) or better is considered competent rock.
 
-    The weathering grades can be found in the `WETH_GRAD` column in the `InSitu_WETH` table (Weathering data). Therefore, to find all competent rock, we need to filter out all the rows that contain a `V`, which you can do in the widget below.
+    The weathering grades can be found in the `WETH_GRAD` column in the `WETH` table (Weathering grades). Therefore, to find all competent rock, we need to filter out all the rows that contain a `V`, which you can do in the widget below.
 
     That widget also shows the Python code that creates the filter:
 
@@ -369,16 +769,16 @@ def _(brgi_geodb, mo):
     return (explore_brgi_df,)
 
 
-@app.cell
-def _(explore_brgi_df, mo):
-    filtered_df = mo.ui.dataframe(explore_brgi_df.value)
+@app.cell(hide_code=True)
+def _(explore_brgi_df, geodf_to_df, mo):
+    filtered_df = mo.ui.dataframe(geodf_to_df(explore_brgi_df.value))
     filtered_df
     return (filtered_df,)
 
 
-@app.cell
-def _(filtered_df, gi_exploration_map):
-    gi_exploration_map(filtered_df)
+@app.cell(hide_code=True)
+def _(explore_brgi_df, filtered_df, gi_exploration_map):
+    gi_exploration_map(explore_brgi_df.value.loc[filtered_df.value.index])
     return
 
 
@@ -391,7 +791,7 @@ def _(mo):
     Finally, lets write, i.e. persist `brgi_geodb` - a Python dictionary of `geopandas.GeoDataFrames` - to an actual  database file, so we can share our GI data with others.
     For example, to reuse it in other notebooks, create dashboards, access the GI data in QGIS or ArcGIS, and more...
 
-    A GeoPackage is an OGC-standardized extension of SQLite (a relational database in a single file, .sqlite or .db) that allows you to store any type of GIS data (both raster as well as vector data) in a single file that has the .gpkg extension. Therefore, many (open-source) GIS software packages support GeoPackage!
+    A GeoPackage is an OGC-standardized extension of SQLite (a relational database in a single file, .sqlite or .db) that allows you to store any type of GIS data (both raster as well as vector data) in a single file that has the .gpkg extension. Therefore, QGSI, ArcGIS and many other (open-source) GIS software packages support GeoPackage!
 
     > [What about Shapefile and GeoJSON?](#what-about-shapefile-and-geojson)
     """
@@ -399,7 +799,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(brgi_geodb, mo, platform, write_brgi_db_to_file):
     output = None
     if platform.system() != "Emscripten":
