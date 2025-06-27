@@ -20,11 +20,13 @@ def _():
     from bedrock_ge.gi.write import write_brgi_db_to_file
     from bedrock_ge.gi.io_utils import geodf_to_df
     from pyproj import CRS
+    from pathlib import Path
     return (
         BedrockGIMapping,
         CRS,
         InSituTestTableMapping,
         LocationTableMapping,
+        Path,
         ProjectTableMapping,
         create_brgi_geodb,
         map_to_brgi_db,
@@ -59,7 +61,20 @@ def _(mo):
         if (file.is_file() and file.suffix.lower() == ".csv")
     ]
     gi_csvs
-    return gi_csvs, nb_dir
+    return (nb_dir,)
+
+
+@app.cell
+def _(Path):
+    csv_files = {
+        "cpt_collar": Path("WH_cpt_collar.csv"),
+        "spt_all": Path("WH_SPT_all.csv"),
+        "collar_all": Path("WH_collar_all.csv"),
+        "geol_all": Path("WH_Geol_all.csv"),
+        "cpt_alluvial": Path("WH_cpt_Alluvial.csv"),
+        "survey_all": Path("WH_survey_all.csv")
+    }
+    return (csv_files,)
 
 
 @app.cell(hide_code=True)
@@ -69,21 +84,27 @@ def _(mo):
 
 
 @app.cell
-def _(gi_csvs, nb_dir, pd):
-    bh_inclination_df = pd.read_csv(nb_dir / gi_csvs[5])
+def _(csv_files, nb_dir, pd):
+    bh_inclination_df = pd.read_csv(nb_dir / csv_files["survey_all"])
     bh_inclination_df["Inclination"].unique()
     return
 
 
 @app.cell
-def _(gi_csvs, nb_dir, pd):
-    bh_location_df = pd.read_csv(nb_dir / gi_csvs[0])
-    cpt_data_df = pd.read_csv(nb_dir / gi_csvs[1])
-    cpt_location_df = pd.read_csv(nb_dir / gi_csvs[2])
-    geol_df = pd.read_csv(nb_dir / gi_csvs[3])
-    spt_df = pd.read_csv(nb_dir / gi_csvs[4])
+def _(csv_files, nb_dir, pd):
+    bh_location_df = pd.read_csv(nb_dir / csv_files["collar_all"])
+    cpt_data_df = pd.read_csv(nb_dir / csv_files["cpt_alluvial"])
+    cpt_location_df = pd.read_csv(nb_dir / csv_files["cpt_collar"] )
+    geol_df = pd.read_csv(nb_dir / csv_files["geol_all"])
+    spt_df = pd.read_csv(nb_dir / csv_files["spt_all"])
     spt_df
     return bh_location_df, geol_df, spt_df
+
+
+@app.cell
+def _(bh_location_df):
+    bh_location_df.columns
+    return
 
 
 @app.cell
