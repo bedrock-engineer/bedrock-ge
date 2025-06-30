@@ -1,24 +1,22 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "bedrock-ge==0.2.3",
-#     "chardet==5.2.0",
-#     "folium==0.19.5",
-#     "geopandas==1.0.1",
-#     "mapclassify==2.8.1",
+#     "bedrock-ge==0.3.1",
+#     "folium==0.20.0",
+#     "geopandas==1.1.0",
+#     "mapclassify==2.9.0",
 #     "marimo",
 #     "matplotlib==3.10.1",
-#     "pandas==2.2.3",
 #     "pyproj==3.7.1",
 #     "requests==2.32.3",
-#     "shapely==2.1.0",
+#     "shapely==2.1.1",
 #     "pygef"==0.11.1"
 # ]
 # ///
 
 import marimo
 
-__generated_with = "0.13.11"
+__generated_with = "0.14.7"
 app = marimo.App(width="medium")
 
 
@@ -28,18 +26,23 @@ def _(mo):
         """
     # GEF Data for A2 Tunnel Maastricht
 
-    This notebook demonstrates how to 
+    This notebook demonstrates how to
 
-    1. Read in Ground Investigation (GI) data from [GEF files]() using [pygef](https://cemsbv.github.io/pygef/)
-    1. Use `bedrock-ge` to convert that data into a standardized GI database using `bedrock-ge`
+    1. Read in Ground Investigation (GI) data from [GEF files]() using the [pygef](https://cemsbv.github.io/pygef/) library.
+    1. Use `bedrock-ge` to convert that data into a standardized GI database.
     1. Transform the GI data into 3D spatial features with proper coordinates and geometry ([OGC Simple Feature](https://en.wikipedia.org/wiki/Simple_Features))
-    1. Explore and analyze the GI data using interactive filtering with Pandas DataFrames and interactive visualization on a map with GeoPandas.
-    1. Export the processed GI database to a GeoPackage file for use in other software, like QGIS.
+    1. Explore and analyze the GI data using interactive filtering with Pandas DataFrames and interactive visualization on a map using GeoPandas.
+    1. Export the processed GI database to a GeoPackage file for use in GIS software.
 
     <details>
         <summary>What are GEF files?</summary>
         <p>
-            <abbr>Geotechnical Exchange Format (GEF)</abbr> is a standardized, text-based format designed to facilitate the reliable exchange and archiving of geotechnical investigation data, particularly CPT results, across different organizations and software platforms. GEF can also be used for other types of soil tests and borehole data. It is widely used in the Netherlands in ground investigration.
+            <abbr>Geotechnical Exchange Format (GEF)</abbr> is a standardized,
+            text-based format designed to facilitate the reliable exchange and archiving
+            of geotechnical investigation data, particularly CPT results, across
+            different organizations and software platforms. GEF can also be used for
+            other types of soil tests and borehole data. It is widely used in the
+            Netherlands in ground investigation.
         </p>
     </details>
 
@@ -52,15 +55,15 @@ def _(mo):
 
     ## Context
 
-    The Koning Willem-Alexander Tunnel is a double-deck tunnel for motorized traffic in the Dutch city of Maastricht. The tunnel has a length of 2.5 kilometers (lower tunnel tubes) and 2.3 kilometers (upper tunnel tubes).
+    The Koning Willem-Alexander Tunnel is a double-deck tunnel for motorized traffic in the city Maastricht, the Netherlands. The tunnel has a length of 2.5 kilometers (lower tunnel tubes) and 2.3 kilometers (upper tunnel tubes).
 
     The tunnel has moved the old A2 highway underground. This highway previously formed a barrier for the city and slowed traffic.
 
     ### Geology
 
-    The uppermost layer consists of topsoil, clay, and loam, with a thickness of about 2 to 4 meters. These soft Holocene deposits are attributed to the Boxtel Formation, laid down by the Meuse River, as the tunnel is situated in a former river arm.
+    The uppermost layer consists of topsoil, clay, and loam, with a thickness of about 2 to 4 meters. These soft Holocene deposits are attributed to the Boxtel Formation, laid down by the Meuse River. The tunnel is situated in a former river arm.
 
-    Beneath the surface layer lies an approximately 8-meter-thick gravel deposit. This gravel acts as a significant aquifer and was a key factor in the groundwater management strategies required for the tunnel construction.
+    Beneath the surface layer lies an approximately 8-m thick gravel deposit. This gravel acts as a significant aquifer and was a key factor in the groundwater management strategies required for the tunnel construction.
 
     Below the gravel lies a fissured limestone layer belonging to the Maastricht Formation (mergel). This layer is a very weak, porous, sandy, shallow marine limestone, often weathered, and includes chalk and calcarenite components.
 
@@ -81,7 +84,7 @@ def _(mo):
 
     ## Ground Investigation Data
 
-    The GI data was downloaded from [Dinoloket](https://www.dinoloket.nl/ondergrondgegevens), a platform where you can view and request data and models from TNO and BRO about the subsurface of the Netherlands.
+    The GI data was downloaded from [Dinoloket](https://www.dinoloket.nl/ondergrondgegevens), a platform where you can view and request data and models from the Dutch Geological Survey and Basisregistratie Ondergrond about the subsurface of the Netherlands.
     """
     )
     return
@@ -133,13 +136,13 @@ def _(mo):
         r"""
     ## Converting multiple GEF files to a relational database
 
-    Rather than dealing with a folder of files, we would like to combine all files into a single database with spatial information. This is where Bedrock comes in.
+    Rather than dealing with a folder of files in a format that very few software can handle, we would like to combine all of these files into a single database with spatial information. This is where `bedrock-ge` comes in.
 
     ### Relational Databases
 
     A [relational database](https://observablehq.com/blog/databases-101-basics-data-analysts#what-are-relational-databases) is a database with multiple tables that are linked to each other with relations. This type of database is ideal for storing GI data, given its [hierarchical structure](https://bedrock.engineer/docs/#hierarchical-nature-of-gi-data).
 
-    In Python it's convenient to represent a relational database as a dictionary of DataFrame's.
+    In Python it's convenient to represent a relational database as a dictionary of DataFrames.
 
     ### Coordinated Reference System (CRS)
 
@@ -150,18 +153,12 @@ def _(mo):
 
 
 @app.cell
-def _(boreholes):
+def _(CRS, boreholes):
     code = {bore.delivered_location.srs_name for bore in boreholes}.pop()
     orig_epsg_code = code.split("EPSG::")[-1]
-    orig_crs = f"EPSG:{orig_epsg_code}"
+    orig_crs = CRS(f"EPSG:{orig_epsg_code}")
     orig_crs
-    return
-
-
-@app.cell
-def _():
-    crs = "EPSG:7415"
-    return (crs,)
+    return (orig_crs,)
 
 
 @app.cell(hide_code=True)
@@ -170,16 +167,22 @@ def _(mo):
         r"""
     The data is in EPSG:28992, which is the [Rijksdriehoekscoördinaten (NL)](https://nl.wikipedia.org/wiki/Rijksdriehoeksco%C3%B6rdinaten) system, also called "Amersfoort / RD New". This reference system does not include elevation.
 
-    To represent GI data spatially in 3D geometry we need a CRS with elevation. That's why we will use
-    EPSG:7415 Amersfoort / RD New + NAP height.
+    To represent GI data spatially in 3D geometry we need a CRS **with elevation**. That's why we will use
+    EPSG:5709 NAP height as the vertical CS.
     """
     )
     return
 
 
 @app.cell
-def _():
-    wgs = "EPSG:4326"
+def _(CRS):
+    vertical_crs = CRS("EPSG:5709")
+    return (vertical_crs,)
+
+
+@app.cell
+def _(CRS):
+    wgs = CRS("EPSG:4326")
     return
 
 
@@ -190,31 +193,13 @@ def _():
 
 
 @app.cell
-def _(CRS, crs, pd, project_uid):
+def _(orig_crs, pd, project_uid, vertical_crs):
     project = pd.DataFrame({
         "project_uid": [project_uid], # primary key
-        "crs_wkt": CRS(crs).to_wkt()
+        "horizontal_crs_wkt": orig_crs.to_wkt(),
+        "vertical_crs_wkt": vertical_crs.to_wkt(),
     })
     return (project,)
-
-
-@app.cell
-def _(insitu_geo, locations, project):
-    brgi_db = {"Project": project, "Location": locations.drop(columns=["data"]), "InSitu_GEOL": insitu_geo }
-    return (brgi_db,)
-
-
-@app.function
-def process_data(bore):
-    df = bore.data.to_pandas().dropna(axis=1, how='all').rename(columns=
-    {
-        'upperBoundary': 'depth_to_top',
-        'lowerBoundary': 'depth_to_base',
-        'upperBoundaryOffset': 'elevation_at_top',
-        'lowerBoundaryOffset': 'elevation_at_base'
-    })
-
-    return df
 
 
 @app.cell(hide_code=True)
@@ -251,9 +236,56 @@ def _(boreholes, pd, project_uid):
 
 
 @app.cell
-def _(calculate_location_gis_geometry, crs, locations_df):
-    locations = calculate_location_gis_geometry(locations_df, crs=crs)
-    return (locations,)
+def _(mo):
+    mo.md(r"""Here we create a DataFrame for the In-Situ data of all locations. To relate the in-situ data to locations and the project, we add foreign keys.""")
+    return
+
+
+@app.cell
+def _(locations_df, pd):
+    insitu = pd.DataFrame([
+        {
+            **layer,
+            "location_uid": location["location_uid"], # foreignkey
+            "project_uid": location["project_uid"], # foreignkey
+        }
+        # Outer loop: iterate through each location
+        for location in locations_df.to_dict('records')
+        # Inner loop: iterate through each layer in the location's data dataframe
+        for layer in location["data"].to_dict('records')
+    ])
+    insitu
+    return (insitu,)
+
+
+@app.cell
+def _(BedrockGIDatabase, insitu, locations_df, project):
+    brgi_db = BedrockGIDatabase(
+            Project=project,
+            Location=locations_df.drop(columns=["data"]),
+            InSituTests={"interpretation":insitu},
+        )
+    brgi_db
+    return (brgi_db,)
+
+
+@app.cell
+def _(brgi_db, create_brgi_geodb):
+    brgi_geodb = create_brgi_geodb(brgi_db)
+    return (brgi_geodb,)
+
+
+@app.function
+def process_data(bore):
+    df = bore.data.to_pandas().dropna(axis=1, how='all').rename(columns=
+    {
+        'upperBoundary': 'depth_to_top',
+        'lowerBoundary': 'depth_to_base',
+        'upperBoundaryOffset': 'elevation_at_top',
+        'lowerBoundaryOffset': 'elevation_at_base'
+    })
+
+    return df
 
 
 @app.cell(hide_code=True)
@@ -264,64 +296,18 @@ def _(mo):
 
     Rather than multiple tables (DataFrames) and soil profiles, we would like see an overview of what this ground investigation covers. It's **spatial** data after all, let's view it in a spatial context.
 
-    ### Web Mapping Caveats
+    `create_brgi_geodb` creates a `LonLatHeight` table which contains the GI locations at ground level in WGS84 - World Geodetic System 1984 - EPSG:4326 coordinates (Longitude, Latitude, Ellipsoidal Height).
 
-    Web-mapping tools are rarely capable of handling geometry in non-WGS84 coordinates. Additionally, vertical lines are not visible when looking at a map from straight above. That's why use `create_lon_lat_height_table` to create points in the WGS84 CRS so we can view the locations of the boreholes.
+
+    The reason for creating the `LonLatHeight` table is that vertical lines in projected Coordinate Reference Systems (CRS) are often not rendered nicely by default in all web-mapping software. Vertical lines are often not visible when looking at a map from above, and not all web-mapping software is capable of handling geometry in non-WGS84, i.e. (Lon, Lat) coordinates.
     """
     )
     return
 
 
 @app.cell
-def _(create_lon_lat_height_table, crs, locations):
-    create_lon_lat_height_table(locations, crs).explore(marker_kwds={"radius":5})
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(r"""Here we create a DataFrame for the In-Situ data of all locations. To relate the in-situ data to locations and the project, we add foreign keys.""")
-    return
-
-
-@app.cell
-def _(locations, pd):
-    insitu = pd.DataFrame([
-        {
-            **layer,
-            "location_uid": location["location_uid"], # foreignkey
-            "project_uid": location["project_uid"], # foreignkey
-        }
-        # Outer loop: iterate through each location
-        for location in locations.to_dict('records')
-        # Inner loop: iterate through each layer in the location's data dataframe
-        for layer in location["data"].to_dict('records')
-    ])
-    return (insitu,)
-
-
-@app.cell
-def _(insitu):
-    insitu
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""In-situ data is also spatial data. It has a location, a depth and a height. We can also turn it into spatial data using Bedrock's `calculate_in_situ_gis_geometry`""")
-    return
-
-
-@app.cell
-def _(calculate_in_situ_gis_geometry, crs, insitu, locations):
-    insitu_geo = calculate_in_situ_gis_geometry(insitu, locations, crs)
-    insitu_geo.index
-    return (insitu_geo,)
-
-
-@app.cell
-def _(insitu_geo):
-    insitu_geo
+def _(brgi_geodb):
+    brgi_geodb.LonLatHeight.explore(marker_kwds={"radius":5})
     return
 
 
@@ -331,7 +317,7 @@ def _(mo):
         r"""
     ## Saving the GI geospatial database as a GeoPackage (.gpkg)
 
-    Finally, we'll write it to an actual geospatial database file, a GeoPackage, so we can share our GI data with others, for example, to reuse it in other computational notebooks, create dashboards, access the GI data in QGIS or ArcGIS, and more...
+    Finally, we'll write it to an actual geospatial database file, a [GeoPackage](https://www.geopackage.org/), so we can share our GI data with others, for example, to reuse it in other computational notebooks, create dashboards, access the GI data in QGIS or ArcGIS, and more...
 
     A GeoPackage is an <abbr title="Open Geospatial Consortium">OGC-standardized</abbr> extension of SQLite (a relational database in a single file, .sqlite or .db) that allows you to store any type of GIS data (both raster as well as vector data) in a single file that has the .gpkg extension. Therefore, many (open-source) GIS software packages support GeoPackage!
     """
@@ -340,14 +326,14 @@ def _(mo):
 
 
 @app.cell
-def _(brgi_db, check_brgi_database):
-    check_brgi_database(brgi_db)
+def _(brgi_db, check_brgi_geodb):
+    check_brgi_geodb(brgi_db)
     return
 
 
 @app.cell
-def _(brgi_db, write_gi_db_to_gpkg):
-    write_gi_db_to_gpkg(brgi_db, gpkg_path="./output/A2_Maastricht.gpkg")
+def _(Path, brgi_db, write_brgi_db_to_file):
+    write_brgi_db_to_file(brgi_db, path=Path("./output/A2_Maastricht.gpkg"), driver="GPKG")
     return
 
 
@@ -364,23 +350,33 @@ def _():
     import folium
     import mapclassify
     from shapely.geometry import Point, LineString
-    from bedrock_ge.gi.gis_geometry import calculate_in_situ_gis_geometry, calculate_gis_geometry, calculate_location_gis_geometry, create_lon_lat_height_table
-    from bedrock_ge.gi.write import write_gi_db_to_gpkg
-    from bedrock_ge.gi.validate import check_brgi_database
+
+    from bedrock_ge.gi.schemas import BedrockGIDatabase
+    from bedrock_ge.gi.db_operations import merge_dbs
+    from bedrock_ge.gi.geospatial import create_brgi_geodb
+    from bedrock_ge.gi.io_utils import geodf_to_df
+    from bedrock_ge.gi.validate import check_brgi_geodb
+    from bedrock_ge.gi.mapper import map_to_brgi_db
+    from bedrock_ge.gi.write import write_brgi_db_to_file
     from pyproj import CRS
     from typing import Dict, Tuple, Union
     return (
+        BedrockGIDatabase,
         CRS,
         Path,
-        calculate_in_situ_gis_geometry,
-        calculate_location_gis_geometry,
-        check_brgi_database,
-        create_lon_lat_height_table,
+        check_brgi_geodb,
+        create_brgi_geodb,
         mo,
         pd,
         pygef,
-        write_gi_db_to_gpkg,
+        write_brgi_db_to_file,
     )
+
+
+@app.cell
+def _():
+    return
+
 
 if __name__ == "__main__":
     app.run()
