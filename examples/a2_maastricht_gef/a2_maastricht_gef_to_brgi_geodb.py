@@ -53,6 +53,11 @@ def _(mo):
         </p>
     </details>
 
+    ## Ground Investigation Data
+
+    The GI data was downloaded from [Dinoloket](https://www.dinoloket.nl/ondergrondgegevens), a platform for viewing and request data from the Dutch Geological Survey and Basisregistratie Ondergrond about the subsurface of the Netherlands.
+    We are using GEF files that contain borehole data.
+
     ## Context
 
     The Koning Willem-Alexander Tunnel is a double-deck tunnel for motorized traffic in the city Maastricht, the Netherlands. The tunnel has a length of 2.5 kilometers (lower tunnel tubes) and 2.3 kilometers (upper tunnel tubes).
@@ -75,16 +80,18 @@ def _(mo):
 
     Due to the high permeability of the gravel and fissured limestone, groundwater management was a major challenge. Over 500 wells were drilled to depths of up to 32 meters for dewatering, and a reinfiltration system was implemented to return nearly all pumped water to the ground, protecting local buildings and ecosystems.
 
-    #### Sources
+    <details>
+    <summary>
+        Sources
+    </summary>
+    <ul>
+        <li><a href="https://www.tunnel-online.info/en/artikel/tunnel-a2-maastricht-groundwater-management-with-dsi-system-1564115.html">Tunnel A2 Maastricht: Groundwater Management with DSI System]</li>
+        <li><a href="https://www.cob.nl/magazines-brochures-en-nieuws/verdieping/verdieping-sept2012/geotechniek-en-risicos-bij-a2-maastricht">Geotechniek-en-Risicos bij A2 Maastricht]</li>
+        <li><a href="https://onepetro.org/ISRMEUROCK/proceedings-abstract/EUROCK15/All-EUROCK15/ISRM-EUROCK-2015-072/43534">Laboratory Tests on Dutch Limestone (Mergel)</li>
+        <li><a href="https://a2maastricht.nl/application/files/3315/2060/1222/Interview_Eduard_van_Herk_en_Bjorn_Vink.pdf">Interview Eduard van Herk en Bjorn Vink</li>
+    </ul>
+    </details>
 
-    * [Tunnel A2 Maastricht: Groundwater Management with DSI System](https://www.tunnel-online.info/en/artikel/tunnel-a2-maastricht-groundwater-management-with-dsi-system-1564115.html)
-    * [Geotechniek-en-Risicos bij A2 Maastricht](https://www.cob.nl/magazines-brochures-en-nieuws/verdieping/verdieping-sept2012/geotechniek-en-risicos-bij-a2-maastricht/)
-    * [Laboratory Tests on Dutch Limestone (Mergel) ](https://onepetro.org/ISRMEUROCK/proceedings-abstract/EUROCK15/All-EUROCK15/ISRM-EUROCK-2015-072/43534)
-    * [Eduard van Herk en Bjorn Vink](https://a2maastricht.nl/application/files/3315/2060/1222/Interview_Eduard_van_Herk_en_Bjorn_Vink.pdf)
-
-    ## Ground Investigation Data
-
-    The GI data was downloaded from [Dinoloket](https://www.dinoloket.nl/ondergrondgegevens), a platform where you can view and request data and models from the Dutch Geological Survey and Basisregistratie Ondergrond about the subsurface of the Netherlands.
     """
     )
     return
