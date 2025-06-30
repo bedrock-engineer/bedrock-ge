@@ -18,7 +18,9 @@ import marimo
 
 __generated_with = "0.14.7"
 app = marimo.App(width="medium")
-
+app = marimo.App(
+    app_title="Maastricht, GEF boreholes to a Bedrock GI Geospatial Database",
+)
 
 @app.cell(hide_code=True)
 def _(mo):
