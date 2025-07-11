@@ -18435,7 +18435,7 @@
   },
   {
     "group_name": "RESD",
-    "group_description": "Resonant Column Test \u2013 Data",
+    "group_description": "Resonant Column Test - Data",
     "headings": [
       {
         "status": "*",
@@ -18681,7 +18681,7 @@
   },
   {
     "group_name": "RESG",
-    "group_description": "Resonant Column Test \u2013 General",
+    "group_description": "Resonant Column Test - General",
     "headings": [
       {
         "status": "*",
@@ -19165,7 +19165,7 @@
   },
   {
     "group_name": "RESS",
-    "group_description": "Resonant Column Test \u2013 Saturation",
+    "group_description": "Resonant Column Test - Saturation",
     "headings": [
       {
         "status": "*",
