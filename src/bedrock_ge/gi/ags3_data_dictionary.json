@@ -194,7 +194,7 @@
   },
   {
     "group_name": "CBRG",
-    "group_description": "CBR Test \u2013 General",
+    "group_description": "CBR Test - General",
     "headings": [
       {
         "status": "*",
@@ -2959,7 +2959,7 @@
         "heading": "?HDPH_EXC",
         "unit": null,
         "description": "Plant Used",
-        "example": "JCB \u20133CX"
+        "example": "JCB -3CX"
       },
       {
         "status": null,
