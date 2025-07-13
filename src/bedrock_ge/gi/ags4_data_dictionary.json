@@ -2,6 +2,7 @@
   {
     "group_name": "PROJ",
     "group_description": "Project Information",
+    "group_type": "Other",
     "headings": [
       {
         "status": "*R",
@@ -72,6 +73,7 @@
   {
     "group_name": "ABBR",
     "group_description": "Abbreviation Definitions",
+    "group_type": "Other",
     "headings": [
       {
         "status": "*R",
@@ -126,6 +128,7 @@
   {
     "group_name": "DICT",
     "group_description": "User Defined Groups and Headings",
+    "group_type": "Other",
     "headings": [
       {
         "status": "*R",
@@ -220,6 +223,7 @@
   {
     "group_name": "FILE",
     "group_description": "Associated Files",
+    "group_type": "Other",
     "headings": [
       {
         "status": "*R",
@@ -290,6 +294,7 @@
   {
     "group_name": "TRAN",
     "group_description": "Data File Transmission Information / Data Status",
+    "group_type": "Other",
     "headings": [
       {
         "status": "*R",
@@ -384,6 +389,7 @@
   {
     "group_name": "TYPE",
     "group_description": "Definition of Data Types",
+    "group_type": "Other",
     "headings": [
       {
         "status": "*R",
@@ -414,6 +420,7 @@
   {
     "group_name": "UNIT",
     "group_description": "Definition of Units",
+    "group_type": "Other",
     "headings": [
       {
         "status": "*R",
@@ -452,6 +459,7 @@
   {
     "group_name": "AAVT",
     "group_description": "Aggregate Abrasion Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -602,6 +610,7 @@
   {
     "group_name": "ACVT",
     "group_description": "Aggregate Crushing Value Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -760,6 +769,7 @@
   {
     "group_name": "AELO",
     "group_description": "Aggregate Elongation Index Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -910,6 +920,7 @@
   {
     "group_name": "AFLK",
     "group_description": "Aggregate Flakiness Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -1068,6 +1079,7 @@
   {
     "group_name": "AIVT",
     "group_description": "Aggregate Impact Value Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -1250,6 +1262,7 @@
   {
     "group_name": "ALOS",
     "group_description": "Los Angeles Abrasion Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -1432,6 +1445,7 @@
   {
     "group_name": "APSV",
     "group_description": "Aggregate Polished Stone Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -1582,6 +1596,7 @@
   {
     "group_name": "ARTW",
     "group_description": "Aggregate Determination of the Resistance to Wear (micro-Deval)",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -1780,6 +1795,7 @@
   {
     "group_name": "ASDI",
     "group_description": "Slake Durability Index Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -1962,6 +1978,7 @@
   {
     "group_name": "ASNS",
     "group_description": "Aggregate Soundness Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -2120,6 +2137,7 @@
   {
     "group_name": "AWAD",
     "group_description": "Aggregate Water Absorption Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -2270,6 +2288,7 @@
   {
     "group_name": "BKFL",
     "group_description": "Exploratory Hole Backfill Details",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -2340,6 +2359,7 @@
   {
     "group_name": "CBRG",
     "group_description": "California Bearing Ratio Tests - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -2522,6 +2542,7 @@
   {
     "group_name": "CBRT",
     "group_description": "California Bearing Ratio Tests - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -2688,6 +2709,7 @@
   {
     "group_name": "CDIA",
     "group_description": "Casing Diameter by Depth",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -2734,6 +2756,7 @@
   {
     "group_name": "CHIS",
     "group_description": "Chiselling Details",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -2804,6 +2827,7 @@
   {
     "group_name": "CHOC",
     "group_description": "Chain of Custody Information",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -2914,6 +2938,7 @@
   {
     "group_name": "CMPG",
     "group_description": "Compaction Tests - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -3136,6 +3161,7 @@
   {
     "group_name": "CMPT",
     "group_description": "Compaction Tests - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -3246,6 +3272,7 @@
   {
     "group_name": "CONG",
     "group_description": "Consolidation Tests - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -3508,6 +3535,7 @@
   {
     "group_name": "CONS",
     "group_description": "Consolidation Tests - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -3658,6 +3686,7 @@
   {
     "group_name": "CTRC",
     "group_description": "Cyclic Triaxial Tests - Consolidation",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -4000,6 +4029,7 @@
   {
     "group_name": "CTRD",
     "group_description": "Cyclic Triaxial Tests - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -4302,6 +4332,7 @@
   {
     "group_name": "CTRG",
     "group_description": "Cyclic Triaxial Test - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -4588,6 +4619,7 @@
   {
     "group_name": "CTRP",
     "group_description": "Cyclic Triaxial Test - Derived Parameters",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -4866,6 +4898,7 @@
   {
     "group_name": "CTRS",
     "group_description": "Cyclic Triaxial Test - Saturation",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -5008,6 +5041,7 @@
   {
     "group_name": "CORE",
     "group_description": "Coring Information",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -5094,6 +5128,7 @@
   {
     "group_name": "DCPG",
     "group_description": "Dynamic Cone Penetrometer Tests - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -5204,6 +5239,7 @@
   {
     "group_name": "DCPT",
     "group_description": "Dynamic Cone Penetrometer Tests - Data",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -5274,6 +5310,7 @@
   {
     "group_name": "DETL",
     "group_description": "Stratum Detail Descriptions",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -5328,6 +5365,7 @@
   {
     "group_name": "DISC",
     "group_description": "Discontinuity Data",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -5534,6 +5572,7 @@
   {
     "group_name": "DLOG",
     "group_description": "Driller Geological Description",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -5588,6 +5627,7 @@
   {
     "group_name": "DOBS",
     "group_description": "Drilling/Advancement Observations & Parameters",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -5786,6 +5826,7 @@
   {
     "group_name": "DPRG",
     "group_description": "Dynamic Probe Tests - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -5992,6 +6033,7 @@
   {
     "group_name": "DPRB",
     "group_description": "Dynamic Probe Tests - Data",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -6078,6 +6120,7 @@
   {
     "group_name": "DREM",
     "group_description": "Depth Related Remarks",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -6124,6 +6167,7 @@
   {
     "group_name": "ECTN",
     "group_description": "Sample Container Details",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -6202,6 +6246,7 @@
   {
     "group_name": "ELRG",
     "group_description": "Environmental Laboratory Reporting",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -6672,6 +6717,7 @@
   {
     "group_name": "ERES",
     "group_description": "Environmental Contaminant Testing",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -7070,6 +7116,7 @@
   {
     "group_name": "ESCG",
     "group_description": "Effective Stress Consolidation Tests - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -7460,6 +7507,7 @@
   {
     "group_name": "ESCT",
     "group_description": "Effective Stress Consolidation Tests - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -7674,6 +7722,7 @@
   {
     "group_name": "FGHG",
     "group_description": "Field Geohydraulic Testing - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -7912,6 +7961,7 @@
   {
     "group_name": "FGHI",
     "group_description": "Field Geohydraulic Testing - Instrumentation Details",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -7998,6 +8048,7 @@
   {
     "group_name": "FGHS",
     "group_description": "Field Geohydraulic Testing - Test Results (per stage)",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -8108,6 +8159,7 @@
   {
     "group_name": "FGHT",
     "group_description": "Field Geohydraulic Testing - Data",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -8218,6 +8270,7 @@
   {
     "group_name": "FLSH",
     "group_description": "Drilling Flush Details",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -8296,6 +8349,7 @@
   {
     "group_name": "FRAC",
     "group_description": "Fracture Spacing",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -8382,6 +8436,7 @@
   {
     "group_name": "FRST",
     "group_description": "Frost Susceptibility Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -8596,6 +8651,7 @@
   {
     "group_name": "GCHM",
     "group_description": "Geotechnical Chemistry Testing",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -8874,6 +8930,7 @@
   {
     "group_name": "GEOL",
     "group_description": "Field Geological Descriptions",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -8976,6 +9033,7 @@
   {
     "group_name": "GRAG",
     "group_description": "Particle Size Distribution Analysis - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -9214,6 +9272,7 @@
   {
     "group_name": "GRAT",
     "group_description": "Particle Size Distribution Analysis - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -9316,6 +9375,7 @@
   {
     "group_name": "HDIA",
     "group_description": "Hole Diameter by Depth",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -9362,6 +9422,7 @@
   {
     "group_name": "HDPH",
     "group_description": "Depth Related Exploratory Hole Information",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -9552,6 +9613,7 @@
   {
     "group_name": "HORN",
     "group_description": "Exploratory Hole Orientation and Inclination",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -9614,6 +9676,7 @@
   {
     "group_name": "ICBR",
     "group_description": "In Situ California Bearing Ratio Tests",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -9764,6 +9827,7 @@
   {
     "group_name": "IDEN",
     "group_description": "In Situ Density Tests",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -9906,6 +9970,7 @@
   {
     "group_name": "IFID",
     "group_description": "On Site Volatile Headspace Testing Using Flame Ionisation Detector",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -10016,6 +10081,7 @@
   {
     "group_name": "IPEN",
     "group_description": "In Situ Hand Penetrometer Tests",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -10126,6 +10192,7 @@
   {
     "group_name": "IPID",
     "group_description": "On Site Volatile Headspace Testing by Photo Ionisation Detector",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -10244,6 +10311,7 @@
   {
     "group_name": "IPRG",
     "group_description": "In Situ Permeability Tests - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -10426,6 +10494,7 @@
   {
     "group_name": "IPRT",
     "group_description": "In Situ Permeability Tests - Data",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -10504,6 +10573,7 @@
   {
     "group_name": "IRDX",
     "group_description": "In Situ Redox Tests",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -10630,6 +10700,7 @@
   {
     "group_name": "IRES",
     "group_description": "In Situ Resistivity Tests",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -10772,6 +10843,7 @@
   {
     "group_name": "ISAG",
     "group_description": "Soakaway Tests - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -10938,6 +11010,7 @@
   {
     "group_name": "ISAT",
     "group_description": "Soakaway Tests - Data",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -10992,6 +11065,7 @@
   {
     "group_name": "ISPT",
     "group_description": "Standard Penetration Test Results",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -11262,6 +11336,7 @@
   {
     "group_name": "IVAN",
     "group_description": "In Situ Vane Tests",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -11388,6 +11463,7 @@
   {
     "group_name": "LBSG",
     "group_description": "Testing Schedule",
+    "group_type": "Other",
     "headings": [
       {
         "status": "*",
@@ -11458,6 +11534,7 @@
   {
     "group_name": "LBST",
     "group_description": "Testing Schedule Details",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -11608,6 +11685,7 @@
   {
     "group_name": "LDEN",
     "group_description": "Density Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -11798,6 +11876,7 @@
   {
     "group_name": "LDYN",
     "group_description": "Dynamic Testing",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -11972,6 +12051,7 @@
   {
     "group_name": "LFCN",
     "group_description": "Laboratory Fall Cone Test",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -12210,6 +12290,7 @@
   {
     "group_name": "LLIN",
     "group_description": "Linear Shrinkage Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -12376,6 +12457,7 @@
   {
     "group_name": "LLPL",
     "group_description": "Liquid and Plastic Limit Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -12638,6 +12720,7 @@
   {
     "group_name": "LNMC",
     "group_description": "Water/moisture Content Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -12828,6 +12911,7 @@
   {
     "group_name": "LOCA",
     "group_description": "Location Details",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -13170,6 +13254,7 @@
   {
     "group_name": "LPDN",
     "group_description": "Particle Density Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -13344,6 +13429,7 @@
   {
     "group_name": "LPEN",
     "group_description": "Laboratory Hand Penetrometer Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -13502,6 +13588,7 @@
   {
     "group_name": "LRES",
     "group_description": "Laboratory Resistivity Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -13764,6 +13851,7 @@
   {
     "group_name": "LSLT",
     "group_description": "Shrinkage Limit Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -13946,6 +14034,7 @@
   {
     "group_name": "LSTG",
     "group_description": "Initial Consumption of Lime Tests - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -14128,6 +14217,7 @@
   {
     "group_name": "LSTT",
     "group_description": "Initial Consumption of Lime Tests - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -14230,6 +14320,7 @@
   {
     "group_name": "LSWL",
     "group_description": "Swelling Index Testing",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -14428,6 +14519,7 @@
   {
     "group_name": "LTCH",
     "group_description": "Laboratory Thermal Conductivity",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -14666,6 +14758,7 @@
   {
     "group_name": "LUCT",
     "group_description": "Laboratory Unconfined Compression Test",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -14888,6 +14981,7 @@
   {
     "group_name": "LVAN",
     "group_description": "Laboratory Vane Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -15078,6 +15172,7 @@
   {
     "group_name": "MCVG",
     "group_description": "MCV Tests - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -15252,6 +15347,7 @@
   {
     "group_name": "MCVT",
     "group_description": "MCV Tests - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -15386,6 +15482,7 @@
   {
     "group_name": "MOND",
     "group_description": "Monitoring Readings",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -15528,6 +15625,7 @@
   {
     "group_name": "MONG",
     "group_description": "Monitoring Installations and Instruments",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -15702,6 +15800,7 @@
   {
     "group_name": "PIPE",
     "group_description": "Monitoring Installation Pipe Work",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -15780,6 +15879,7 @@
   {
     "group_name": "PLTG",
     "group_description": "Plate Loading Tests - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -15978,6 +16078,7 @@
   {
     "group_name": "PLTT",
     "group_description": "Plate Loading Tests - Data",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -16088,6 +16189,7 @@
   {
     "group_name": "PMTG",
     "group_description": "Pressuremeter Test Results - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -16302,6 +16404,7 @@
   {
     "group_name": "PMTD",
     "group_description": "Pressuremeter Test Data",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -16492,6 +16595,7 @@
   {
     "group_name": "PMTL",
     "group_description": "Pressuremeter Test Results - Individual Loops",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -16610,6 +16714,7 @@
   {
     "group_name": "PREM",
     "group_description": "Project Specific Time Related Remarks",
+    "group_type": "Other",
     "headings": [
       {
         "status": "*",
@@ -16664,6 +16769,7 @@
   {
     "group_name": "PTIM",
     "group_description": "Boring/Drilling Progress by Time",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -16726,6 +16832,7 @@
   {
     "group_name": "PTST",
     "group_description": "Laboratory Permeability Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -17100,6 +17207,7 @@
   {
     "group_name": "PUMG",
     "group_description": "Pumping Tests - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -17178,6 +17286,7 @@
   {
     "group_name": "PUMT",
     "group_description": "Pumping Tests - Data",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -17240,6 +17349,7 @@
   {
     "group_name": "RCAG",
     "group_description": "Rock Abrasiveness Tests - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -17454,6 +17564,7 @@
   {
     "group_name": "RCAT",
     "group_description": "Rock Abrasiveness Tests - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -17588,6 +17699,7 @@
   {
     "group_name": "RCCV",
     "group_description": "Chalk Crushing Value Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -17762,6 +17874,7 @@
   {
     "group_name": "RDEN",
     "group_description": "Rock Porosity and Density Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -17968,6 +18081,7 @@
   {
     "group_name": "RELD",
     "group_description": "Relative Density Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -18150,6 +18264,7 @@
   {
     "group_name": "RESC",
     "group_description": "Resonant Column Test - Consolidation",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -18436,6 +18551,7 @@
   {
     "group_name": "RESD",
     "group_description": "Resonant Column Test - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -18682,6 +18798,7 @@
   {
     "group_name": "RESG",
     "group_description": "Resonant Column Test - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -18960,6 +19077,7 @@
   {
     "group_name": "RESP",
     "group_description": "Resonant Column Test - Derived Parameters",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -19166,6 +19284,7 @@
   {
     "group_name": "RESS",
     "group_description": "Resonant Column Test - Saturation",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -19340,6 +19459,7 @@
   {
     "group_name": "RPLT",
     "group_description": "Point Load Testing",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -19514,6 +19634,7 @@
   {
     "group_name": "RSCH",
     "group_description": "Schmidt Rebound Hardness Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -19784,6 +19905,7 @@
   {
     "group_name": "RSHR",
     "group_description": "Shore Scleroscope Hardness Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -19950,6 +20072,7 @@
   {
     "group_name": "RTEN",
     "group_description": "Tensile Strength Testing",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -20164,6 +20287,7 @@
   {
     "group_name": "RUCS",
     "group_description": "Rock Uniaxial Compressive Strength and Deformability Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -20482,6 +20606,7 @@
   {
     "group_name": "RWCO",
     "group_description": "Water Content of Rock Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -20640,6 +20765,7 @@
   {
     "group_name": "SAMP",
     "group_description": "Sample Information",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -20926,6 +21052,7 @@
   {
     "group_name": "SCDG",
     "group_description": "Static Cone Dissipation Tests - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -21044,6 +21171,7 @@
   {
     "group_name": "SCDT",
     "group_description": "Static Cone Dissipation Tests - Data",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -21130,6 +21258,7 @@
   {
     "group_name": "SCPG",
     "group_description": "Static Cone Penetration Tests - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -21280,6 +21409,7 @@
   {
     "group_name": "SCPP",
     "group_description": "Static Cone Penetration Tests - Derived Parameters",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -21390,6 +21520,7 @@
   {
     "group_name": "SCPT",
     "group_description": "Static Cone Penetration Tests - Data",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -21684,6 +21815,7 @@
   {
     "group_name": "SHBG",
     "group_description": "Shear Box Testing - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -21890,6 +22022,7 @@
   {
     "group_name": "SHBT",
     "group_description": "Shear Box Testing - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -22152,6 +22285,7 @@
   {
     "group_name": "STND",
     "group_description": "Standards / Specifications",
+    "group_type": "Other",
     "headings": [
       {
         "status": "*",
@@ -22198,6 +22332,7 @@
   {
     "group_name": "SUCT",
     "group_description": "Suction Tests",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -22396,6 +22531,7 @@
   {
     "group_name": "TNPC",
     "group_description": "Ten Per Cent Fines",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -22562,6 +22698,7 @@
   {
     "group_name": "TREG",
     "group_description": "Triaxial Tests - Effective Stress - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -22744,6 +22881,7 @@
   {
     "group_name": "TRET",
     "group_description": "Triaxial Tests - Effective Stress - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -23094,6 +23232,7 @@
   {
     "group_name": "TREM",
     "group_description": "Location Specific Time Related Remarks",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -23156,6 +23295,7 @@
   {
     "group_name": "TRIG",
     "group_description": "Triaxial Tests - Total Stress - General",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -23314,6 +23454,7 @@
   {
     "group_name": "TRIT",
     "group_description": "Triaxial Tests - Total Stress - Data",
+    "group_type": "Lab",
     "headings": [
       {
         "status": "*",
@@ -23504,6 +23645,7 @@
   {
     "group_name": "WADD",
     "group_description": "Water Added Records",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -23566,6 +23708,7 @@
   {
     "group_name": "WETH",
     "group_description": "Weathering",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -23636,6 +23779,7 @@
   {
     "group_name": "WGPG",
     "group_description": "Wireline Geophysics - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -23794,6 +23938,7 @@
   {
     "group_name": "WGPT",
     "group_description": "Wireline Geophysics - Readings",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -23880,6 +24025,7 @@
   {
     "group_name": "WINS",
     "group_description": "Window or Windowless Sampling Run Details",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -23958,6 +24104,7 @@
   {
     "group_name": "WSTG",
     "group_description": "Water Strike - General",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
@@ -24020,6 +24167,7 @@
   {
     "group_name": "WSTD",
     "group_description": "Water Strike - Details",
+    "group_type": "In-Situ",
     "headings": [
       {
         "status": "*",
