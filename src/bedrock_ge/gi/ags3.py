@@ -26,14 +26,13 @@ def ags3_to_dfs(
     make the rest of the code more generic.
 
     Args:
-        source (str | Path | IO[str] | IO[bytes] | bytes): The AGS 3 file (str or Path)
-            or a file-like object that represents the AGS 3 file.
-        encoding (str):  Encoding of file or object.
+        source: The AGS 3 file (str or Path) or a file-like object that represents the AGS 3 file.
+        encoding: Encoding of the text file or bytes stream.
 
     Returns:
-        dict[str, pd.DataFrame]: A dictionary of pandas DataFrames, i.e. a database,
-            where each key is an AGS 3 group, and the corresponding value is
-            a pandas DataFrame containing the data for that group.
+        A dictionary of pandas DataFrames, i.e. a database, where each key is
+            an AGS 3 group, and the corresponding value is a pandas DataFrame
+            containing the data for that group.
     """
     # Initialize dictionary and variables used in the AGS 3 read loop
     ags3_dfs = {}
@@ -134,16 +133,18 @@ def ags3_to_brgi_db_mapping(
     """Map AGS 3 data to the Bedrock GI data model.
 
     Args:
-        ags3_db (dict[str, pd.DataFrame]): A dictionary of pandas DataFrames, i.e. database,
-            where each key is an AGS 3 group, and the corresponding value is
-            a pandas DataFrame containing the data for that group.
-        projected_crs (CRS): Projected coordinate reference system (CRS).
-        vertical_crs (CRS, optional): Vertical CRS. Defaults to EGM2008 height, EPSG:3855
+        source: The AGS 3 file (str or Path) or a file-like object that represents the AGS 3 file.
+        projected_crs: Projected Coordinate Reference System (CRS). For example:
+            - OSGB36 / British National Grid: `pyproj.CRS("EPSG:27700")`
+            - Hong Kong 1980 Grid System: `pyproj.CRS("EPSG:2326")`
+        vertical_crs: Vertical CRS. Defaults to EGM2008 height, EPSG:3855,
             which measures the orthometric height w.r.t. the Earth Gravitational Model 2008.
-        encoding (str): Encoding of the text file or bytes stream.
+            - Ordnance Datum Newlyn (ODN) Height: `pyproj.CRS("EPSG:5701")`
+            - Hong Kong Principle Datum (HKPD) Height: `pyproj.CRS("EPSG:5738")`
+        encoding: Encoding of the text file or bytes stream.
 
     Returns:
-        BedrockGIDatabaseMapping: Object that maps AGS 3 data to Bedrock GI data model.
+        Object that maps AGS 3 data to Bedrock GI data model.
     """
     ags3_dfs = ags3_to_dfs(source, encoding)
 
