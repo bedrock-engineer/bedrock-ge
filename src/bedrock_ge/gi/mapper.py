@@ -24,7 +24,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
     table, validates them against their respective schemas, and constructs the final
     BedrockGIDatabase object.
 
-    Examples:
+    Example:
         ```python
         from pyproj import CRS
         from bedrock_ge.gi.mapping_models import BedrockGIMapping
@@ -69,12 +69,10 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
         ```
 
     Args:
-        brgi_db_mapping (BedrockGIDatabaseMapping): The mapping object containing GI
-            data and metadata for mapping to Bedrock's schema.
+        brgi_db_mapping: The mapping object containing GI data and metadata for mapping to Bedrock's schema.
 
     Returns:
-        BedrockGIDatabase: The transformed Bedrock GI database containing validated
-            DataFrames for each table type.
+        The transformed Bedrock GI database containing validated DataFrames for each table type.
     """
     # Create a base64 hash from the project data, such that a project Unique ID
     # can be created from the project_id and the hash of the project data.
