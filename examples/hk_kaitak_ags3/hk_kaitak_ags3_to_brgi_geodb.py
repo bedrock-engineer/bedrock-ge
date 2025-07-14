@@ -1,7 +1,7 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "bedrock-ge==0.3.1",
+#     "bedrock-ge==0.3.2",
 #     "folium==0.20.0",
 #     "geopandas==1.1.0",
 #     "mapclassify==2.9.0",

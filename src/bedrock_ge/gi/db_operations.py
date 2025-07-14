@@ -28,7 +28,7 @@ def merge_dbs(
         brgi_dbs: The Bedrock GI databases containing the data to be merged.
 
     Returns:
-        BedrockGIDatabase: Merged Bedrock GI database.
+        Merged Bedrock GI database.
     """
     dbs = list(brgi_dbs)
 

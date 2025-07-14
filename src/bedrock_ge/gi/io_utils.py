@@ -19,14 +19,14 @@ def detect_encoding(source: str | Path | IO[str] | IO[bytes] | bytes) -> str:
     """Detect the character encoding of various input types.
 
     Args:
-        source (str | Path | IO[str] | IO[bytes] | bytes): The source to detect encoding from.
+        source: The source to detect encoding from.
             - str or Path: File path.
             - IO[str]: Already decoded text stream (returns `DEFAULT_ENCODING`)
             - IO[bytes]: Binary stream to detect encoding from
             - bytes: Binary data to detect encoding from
 
     Returns:
-        str: The detected encoding name (e.g., 'utf-8', 'iso-8859-1', 'ascii', etc.)
+        The detected encoding name (e.g., 'utf-8', 'iso-8859-1', 'ascii', etc.)
 
     Raises:
         TypeError: If the source type is unsupported
@@ -122,7 +122,7 @@ def open_text_data_source(
     """Opens or wraps a given source for reading AGS (text-based) data.
 
     Args:
-        source (str | Path | IO[str] | IO[bytes] | bytes): The source to read from.
+        source: The source to read from.
             - str or Path: File path or direct string content.
             - IO[str]: A file-like text stream.
             - IO[bytes]: Byte stream
@@ -130,7 +130,7 @@ def open_text_data_source(
         encoding (str | None): Encoding to use for decoding bytes. Default is None.
 
     Returns:
-        ContextManager[TextIOBase]: A context manager yielding a text stream.
+        A context manager yielding a text stream.
 
     Raises:
         TypeError: If the source type is unsupported or binary streams are not decoded.
@@ -177,15 +177,14 @@ def coerce_string(string: str) -> None | bool | float | str:
     """Converts a string to an appropriate Python data type.
 
     Args:
-        string (str): The input string to be converted.
+        string: The input string to be converted.
 
     Returns:
-        None: If the string is 'none', 'null', or empty.
-        bool: If the string is 'true' or 'false' (case insensitive).
-        int: If the string can be converted to a float and has no decimal part.
-        float: If the string can be converted to a float with a decimal part.
-        str: If the string cannot be converted to any of the above types.
-
+        None if the string is 'none', 'null', or empty.
+        bool if the string is 'true' or 'false' (case insensitive).
+        int if the string can be converted to a float and has no decimal part.
+        float if the string can be converted to a float with a decimal part.
+        str if the string cannot be converted to any of the above types.
     """
     if string.lower() in {"none", "null", ""}:
         return None
@@ -210,12 +209,11 @@ def brgi_db_to_dfs(
     """Converts a Bedrock GI (geospatial) database to a dictionary of DataFrames.
 
     Args:
-        brgi_db (BedrockGIDatabase | BedrockGIGeospatialDatabase): The Bedrock GI (geospatial) database.
+        brgi_db: The Bedrock GI (geospatial) database.
 
     Returns:
-        dict[str, pd.DataFrame | gpd.GeoDataFrame]: A dictionary where the keys are
-            the Bedrock GI table names and the values are the DataFrames that contain
-            the data for each table.
+        A dictionary where the keys are the Bedrock GI table names and the values are
+        the DataFrames that contain the data for each table.
     """
     dict_of_dfs = {
         "Project": brgi_db.Project,
@@ -254,8 +252,7 @@ def convert_object_col_content_to_string(
         in_place: Whether to modify the DataFrame in-place (default) or return a new DataFrame.
 
     Returns:
-        pd.DataFrame: The modified DataFrame with object dtypes converted to string dtypes.
-
+        The modified DataFrame with object dtypes converted to string dtypes.
     """
     if not in_place:
         df = df.copy()
