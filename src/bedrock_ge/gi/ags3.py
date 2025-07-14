@@ -269,7 +269,7 @@ def _get_depth_columns(group: str, headers: list[str]) -> tuple[str | None, str 
         base_depth = None
     if not top_depth and not base_depth:
         raise ValueError(
-            'The in-situ test group "{group}" group in this AGS 3 file does not contain a top or base depth heading!'
+            f'The in-situ test group "{group}" group in this AGS 3 file does not contain a top or base depth heading!'
         )
 
     return top_depth, base_depth
