@@ -2,7 +2,14 @@
   <img src="https://bedrock.engineer/public/Bedrock_TextRight.png" alt="Bedrock logo" width="75%"/>
 </figure>
 
-<h3 style="margin-inline: block;">Bedrock, the Open Source Foundation for Geotechnical Engineering</h3>
+<h3 style="margin-inline: block;">Bedrock, the Open-Source Foundation for Geotechnical Engineering</h3>
+
+---
+
+[![Tests](https://github.com/bedrock-engineer/bedrock-ge/actions/workflows/tests.yml/badge.svg?event=push&branch=main)](https://github.com/bedrock-engineer/bedrock-ge/actions/workflows/tests.yml?query=event%3Apush+branch%3Amain)
+[![PyPI](https://img.shields.io/pypi/v/bedrock-ge)](https://pypi.org/project/bedrock-ge/)
+[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](https://www.python.org/downloads/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16270261.svg)](https://doi.org/10.5281/zenodo.16270261)
 
 ---
 
