@@ -1,5 +1,5 @@
-<figure style="margin-inline: block;">
-  <img src="https://bedrock.engineer/public/Bedrock_TextRight.png" alt="Bedrock logo" width="75%"/>
+<figure style="margin-inline: block; max-width:350px;">
+  <img src="https://bedrock.engineer/bedrock.svg" alt="Bedrock logo" width="75%"/>
 </figure>
 
 <h3 style="margin-inline: block;">Bedrock, the Open-Source Foundation for Geotechnical Engineering</h3>
