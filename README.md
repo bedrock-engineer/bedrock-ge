@@ -1,6 +1,4 @@
-<figure style="margin-inline: block; max-width:350px;">
-  <img src="https://bedrock.engineer/bedrock.svg" alt="Bedrock logo" width="75%"/>
-</figure>
+<img src="https://bedrock.engineer/bedrock.svg" alt="Bedrock logo" width="25%"/>
 
 <h3 style="margin-inline: block;">Bedrock, the Open-Source Foundation for Geotechnical Engineering</h3>
 
@@ -46,7 +44,7 @@ This standardization lets you bridge the gap between raw geotechnical data, the 
 This gives geotechnical engineers greater flexibility in visualization, modeling, and integration across different software environments while avoiding vendor lock-in.
 For example, this enables connecting your GI data with GIS as well as BIM environments through [platforms like Speckle](#-put-your-gi-data-into-speckle).
 
-The purpose of Bedrock is NOT to become THE standard for geotechnical data, because [we don't need 15 instead of 14 competing standards](https://xkcd.com/927/). 
+The purpose of Bedrock is NOT to become THE standard for geotechnical data, because [we don't need 15 instead of 14 competing standards](https://xkcd.com/927/).
 
 ## Highlights
 
