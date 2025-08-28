@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+title: >-
+  Bedrock, the open-source foundation for geotechnical
+  engineering.
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Joost
+    family-names: Gevaert
+    email: joost.gevaert@bedrock.engineer
+    affiliation: Bedrock
+    orcid: 'https://orcid.org/0000-0002-6267-6888'
+  - given-names: Jules
+    family-names: Blom
+    email: jules.blom@bedrock.engineer
+    affiliation: Bedrock
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.16270261
+    description: >-
+      The concept DOI of bedrock-ge. This DOI represents all
+      versions of bedrock-ge, and will always resolve to the
+      latest one.
+repository-code: 'https://github.com/bedrock-engineer/bedrock-ge'
+url: 'https://bedrock.engineer/'
+keywords:
+  - ground investigation
+  - geotechnical engineering
+  - ground engineering
+  - geospatial
+  - gis
+  - bim
+  - ags
+  - gef
+license: Apache-2.0

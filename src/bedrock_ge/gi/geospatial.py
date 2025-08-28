@@ -32,10 +32,10 @@ def create_brgi_geodb(
     5. Returns a BedrockGIGeospatialDatabase object.
 
     Args:
-        brgi_db (BedrockGIDatabase): The Bedrock GI database to be converted.
+        brgi_db: The Bedrock GI database to be converted.
 
     Returns:
-        BedrockGIGeospatialDatabase: The resulting Bedrock GI geospatial database.
+        The resulting Bedrock GI geospatial database.
     """
     location_geodf = create_location_geodf(brgi_db)
     lon_lat_height_geodf = create_lon_lat_height_geodf(brgi_db)
@@ -72,13 +72,12 @@ def create_location_geodf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
     project data.
 
     Args:
-        brgi_db (BedrockGIDatabase): The Bedrock GI database containing location
+        brgi_db: The Bedrock GI database containing location
             data and project CRS information.
 
     Returns:
-        gpd.GeoDataFrame: A GeoDataFrame with LineString geometries representing
-            vertical boreholes, using the compound CRS derived from the project's
-            horizontal and vertical CRS.
+        A GeoDataFrame with LineString geometries representing vertical boreholes,
+            using the compound CRS derived from the project's horizontal and vertical CRS.
     """
     # TODO: Implement logic to handle multiple CRS'es in the input GI data:
     #       1. Create WKT geometry for each location in original CRS
@@ -130,13 +129,11 @@ def create_lon_lat_height_geodf(brgi_db: BedrockGIDatabase) -> gpd.GeoDataFrame:
     EGM2008 ground level height, along with the corresponding point geometries in EPSG:9518.
 
     Args:
-        brgi_db (BedrockGIDatabase): The source Bedrock Ground Investigation database
-            containing location and project information.
+        brgi_db: The source Bedrock Ground Investigation database containing location and project information.
 
     Returns:
-        gpd.GeoDataFrame: A GeoDataFrame with the transformed longitude, latitude,
-            and EGM2008 ground level height, along with the corresponding point
-            geometries in EPSG:9518.
+        A GeoDataFrame with the transformed longitude, latitude, and EGM2008 ground level height,
+            along with the corresponding point geometries in EPSG:9518.
     """
     wgs84_egm2008_crs = CRS("EPSG:9518")
     crs_lookup = brgi_db.Project.set_index("project_uid")
@@ -198,8 +195,7 @@ def interpolate_gi_geometry(
         location_geodf: The location GeoDataFrame containing the location LineStrings to be used for interpolation.
 
     Returns:
-        gpd.GeoDataFrame: A GeoDataFrame containing the interpolated geospatial geometry
-            for the In-Situ test DataFrame.
+        A GeoDataFrame containing the interpolated geospatial geometry for the In-Situ test DataFrame.
     """
     # TODO: implement a warning when interpolating GI geospatial geometry when
     # TODO: a single GI location has waaay too many rows in a certain In-Situ test.
@@ -271,7 +267,7 @@ def interpolate_3d(linestring: LineString, distance: float) -> Point:
         distance: Distance along the line in 3D space
 
     Returns:
-        Point: The interpolated 3D point
+        The interpolated 3D point
     """
     if distance <= 0:
         return Point(linestring.coords[0])
@@ -312,7 +308,7 @@ def substring_3d(
         end_dist: End distance along the line in 3D space
 
     Returns:
-        LineString: The extracted 3D LineString segment
+        The extracted 3D LineString segment
     """
     # Ensure start_dist <= end_dist
     if start_dist > end_dist:

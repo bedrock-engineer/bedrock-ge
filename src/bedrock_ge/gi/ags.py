@@ -17,23 +17,22 @@ def ags_to_brgi_db_mapping(
     """Map AGS 3 or AGS 4 data to the Bedrock GI data model.
 
     Args:
-        source (str | Path | IO[str] | IO[bytes] | bytes): The AGS file (str or Path)
-            or a file-like object that represents the AGS file.
-        projected_crs (CRS): Projected Coordinate Reference System (CRS). For example:
+        source: The AGS file (str or Path) or a file-like object that represents the AGS file.
+        projected_crs: Projected Coordinate Reference System (CRS). For example:
             - OSGB36 / British National Grid: `pyproj.CRS("EPSG:27700")`
             - Hong Kong 1980 Grid System: `pyproj.CRS("EPSG:2326")`
-        vertical_crs (CRS, optional): Vertical CRS. Defaults to EGM2008 height, EPSG:3855
+        vertical_crs: Vertical CRS. Defaults to EGM2008 height, EPSG:3855,
             which measures the orthometric height w.r.t. the Earth Gravitational Model 2008.
             - Ordnance Datum Newlyn (ODN) Height: `pyproj.CRS("EPSG:5701")`
             - Hong Kong Principle Datum (HKPD) Height: `pyproj.CRS("EPSG:5738")`
-        encoding (str | None, optional): Encoding of the text file or bytes stream.
-            Defaults to None. An attempt at detecting the encoding will be made if None.
+        encoding: Encoding of the text file or bytes stream. Defaults to None.
+            An attempt at detecting the encoding will be made if None.
 
     Raises:
         ValueError: If the data does not match AGS 3 or AGS 4 format.
 
     Returns:
-        BedrockGIDatabaseMapping: Object that maps AGS 3 or AGS 4 data to Bedrock GI data model.
+        Object that maps AGS 3 or AGS 4 data to Bedrock GI data model.
     """
     if not encoding:
         encoding = detect_encoding(source)

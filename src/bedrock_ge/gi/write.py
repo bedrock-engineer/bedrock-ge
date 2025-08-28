@@ -20,9 +20,9 @@ def write_brgi_db_to_file(
     determined by the `driver` argument. Possible values are "GPKG" and "EXCEL".
 
     Args:
-        brgi_db (BedrockGIDatabase | BedrockGIGeospatialDatabase): The Bedrock GI (geospatial) database.
-        path (str | Path): The path of the output file.
-        driver (str): The type of the output file. Possible values are "GPKG" and "EXCEL".
+        brgi_db: The Bedrock GI (geospatial) database.
+        path: The path of the output file.
+        driver: The type of the output file. Possible values are "GPKG" and "EXCEL".
 
     Returns:
         None
@@ -47,10 +47,9 @@ def write_gi_db_to_gpkg(
     separate table named by the keys of the dictionary.
 
     Args:
-        dict_of_dfs (dict[str, pd.DataFrame | gpd.GeoDataFrame]): A dictionary where
-            keys are brgi table names and values are pandas DataFrames or GeoDataFrames
-            with brgi data.
-        gpkg_path (str | Path): The name of the output GeoPackage file.
+        dict_of_dfs: A dictionary where keys are brgi table names and values are pandas
+            DataFrames or GeoDataFrames with brgi data.
+        gpkg_path: The name of the output GeoPackage file.
 
     Returns:
         None
@@ -77,10 +76,8 @@ def write_gi_db_to_excel(
     AGS, Bedrock, or another format.
 
     Args:
-        dict_of_dfs (dict[str, pd.DataFrame | gpd.GeoDataFrame]): A dictionary where
-            keys are GI table names and values are DataFrames with GI data.
-        excel_path (str | Path): Path to the output Excel file. Can be provided as a
-            string or Path object.
+        dict_of_dfs: A dictionary where keys are GI table names and values are DataFrames with GI data.
+        excel_path: Path to the output Excel file. Can be provided as a string or Path object.
 
     Returns:
         None
@@ -103,10 +100,10 @@ def sanitize_table_name(sheet_name):
     replacing invalid characters and spaces with underscores.
 
     Args:
-        sheet_name (str): The original sheet name.
+        sheet_name: The original sheet name.
 
     Returns:
-        sanitized_name (str): A sanitized sheet name with invalid characters and spaces replaced.
+        A sanitized sheet name with invalid characters and spaces replaced.
     """
     invalid_chars = [":", "/", "\\", "?", "*", "[", "]"]
     sanitized_name = sheet_name.strip()
