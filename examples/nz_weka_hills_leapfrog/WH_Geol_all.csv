@@ -1,0 +1,253 @@
+HoleID,from,to,Description,Simple_Lith
+WH_009,0,6.085,Weak thinly bedded brown fine-med grained sandy ALLUVIUM,Alluvium
+WH_009,6.085,50,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_009A,0,7.018,Weak thinly bedded brown fine-med grained sandy ALLUVIUM,Alluvium
+WH_009A,7.018,50,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_010,0,5.984,Stratified gravelly sand ALLUVIUM,Alluvium
+WH_010,5.984,50,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_010A,0,0.126,,
+WH_010A,0.126,9.303,Stratified gravelly sand ALLUVIUM,Alluvium
+WH_010A,9.303,50,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_011,0,0.228,,
+WH_011,0.228,28.894,Stratified gravelly sand ALLUVIUM,Alluvium
+WH_011,28.894,50,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_011A,0,1.141,,
+WH_011A,1.141,27.509,Stratified gravelly sand ALLUVIUM,Alluvium
+WH_011A,27.509,50,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_012,0,32.841,Very weak thinly bedded brown medium grained sand to gravel ALLUVIUM with fractures,Alluvium
+WH_012,32.841,43.847,Very weak thinly bedded clay-fine sand ALLUVIUM with fractures,Alluvium
+WH_012,43.847,173.552,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_012,173.552,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_012A,0,34.007,Very weak thinly bedded clay-fine sand ALLUVIUM with fractures,Alluvium
+WH_012A,34.007,43.894,Very weak thinly bedded clay-fine sand ALLUVIUM with fractures,Alluvium
+WH_012A,43.894,173.646,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_012A,173.646,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_014,0,0.738,,
+WH_014,0.738,2.328,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_014,2.328,82.569,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_014,82.569,145.128,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_014,145.128,189.121,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_014,189.121,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_014A,0,0.235,,
+WH_014A,0.235,80.619,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_014A,80.619,139.305,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_014A,139.305,187.495,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_014A,187.495,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_015,0,0.622,,
+WH_015,0.622,21.583,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_015,21.583,65.14,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_015,65.14,190.392,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_015,190.392,300,Very strong massive pale crystalline micro-GRANODIORITE,Granodiorite
+WH_015A,0,0.116,,
+WH_015A,0.116,17.101,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_015A,17.101,62.305,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_015A,62.305,189.578,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_015A,189.578,300,Very strong massive pale crystalline micro-GRANODIORITE,Granodiorite
+WH_016,0,41.868,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_016,41.868,70.691,Med-strong very thinly bedded brown slightly calcareous SILTSTONE,Siltstone
+WH_016,70.691,300,Very strong massive pale crystalline micro-GRANODIORITE,Granodiorite
+WH_016A,0,38.426,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_016A,38.426,65.337,Med-strong very thinly bedded brown slightly calcareous SILTSTONE,Siltstone
+WH_016A,65.337,300,Very strong massive pale crystalline micro-GRANODIORITE,Granodiorite
+WH_017,0,3.982,,
+WH_017,3.982,50,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_017A,0,50,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_018,0,0.136,,
+WH_018,0.136,16.208,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_018,16.208,50,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_018A,0,4.112,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_018A,4.112,50,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_019,0,12.379,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_019,12.379,34.535,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_019,34.535,118.554,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_019,118.554,272.31,Very strong massive pale crystalline micro-GRANODIORITE,Granodiorite
+WH_019,272.31,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_019A,0,0.146,,
+WH_019A,0.146,4.744,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_019A,4.744,26.899,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_019A,26.899,118.724,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_019A,118.724,269.863,Very strong massive pale crystalline micro-GRANODIORITE,Granodiorite
+WH_019A,269.863,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_020,0,0.097,,
+WH_020,0.097,40.016,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_020,40.016,69.438,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_020,69.438,91.594,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_020,91.594,126.86,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_020,126.86,141.202,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_020,141.202,300,Very strong massive pale crystalline micro-GRANODIORITE,Granodiorite
+WH_020A,0,0.36,,
+WH_020A,0.36,37.028,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_020A,37.028,64.455,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_020A,64.455,86.611,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_020A,86.611,126.931,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_020A,126.931,139.263,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_020A,139.263,300,Very strong massive pale crystalline micro-GRANODIORITE,Granodiorite
+WH_021,0,96.148,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_021,96.148,118.304,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_021,118.304,124.778,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_021,124.778,134.969,Medium strong medium bedded grey crystalline LIMESTONE with fractures,Limestone
+WH_021,134.969,239.067,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_021,239.067,300,Very strong massive pale crystalline micro-GRANODIORITE,Granodiorite
+WH_021A,0,0.052,,
+WH_021A,0.052,90.876,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_021A,90.876,113.032,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_021A,113.032,121.372,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_021A,121.372,134.657,Medium strong medium bedded grey crystalline LIMESTONE with fractures,Limestone
+WH_021A,134.657,236.118,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_021A,236.118,300,Very strong massive pale crystalline micro-GRANODIORITE,Granodiorite
+WH_022,0,0.446,,
+WH_022,0.446,86.328,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_022,86.328,108.483,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_022,108.483,139.804,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_022,139.804,171.361,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_022,171.361,186.445,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_022,186.445,253.451,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_022,253.451,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_022A,0,77.532,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_022A,77.532,99.688,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_022A,99.688,137.827,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_022A,137.827,168.799,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_022A,168.799,179.007,Very strong folliated green schistose undifferentiated volcanic BASEMENT with fractures,Basement
+WH_022A,179.007,250.847,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_022A,250.847,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_023,0,0.526,,
+WH_023,0.526,50.19,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_023,50.19,72.345,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_023,72.345,144.691,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_023,144.691,181.594,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_023,181.594,231.221,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_023,231.221,254.726,Med-strong medium bedded brown sandy SILTSTONE with intense fracturing,Siltstone
+WH_023,254.726,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_023A,0,42.948,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_023A,42.948,65.104,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_023A,65.104,142.672,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_023A,142.672,179.177,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_023A,179.177,223.254,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_023A,223.254,252.334,Med-strong medium bedded brown sandy SILTSTONE with intense fracturing,Siltstone
+WH_023A,252.334,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_024,0,0.012,,
+WH_024,0.012,26.058,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_024,26.058,48.214,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_024,48.214,152.252,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_024,152.252,197.247,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_024,197.247,289.256,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_024,289.256,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT with fractures,Basement
+WH_024A,0,18.223,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_024A,18.223,40.378,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_024A,40.378,150.665,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_024A,150.665,196.394,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_024A,196.394,280.502,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_024A,280.502,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT with fractures,Basement
+WH_025,0,0.915,,
+WH_025,0.915,22.473,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_025,22.473,44.629,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_025,44.629,157.901,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_025,157.901,197.494,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_025,197.494,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_025A,0,0.625,,
+WH_025A,0.625,16.629,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_025A,16.629,38.785,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_025A,38.785,156.77,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_025A,156.77,196.19,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_025A,196.19,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_026,0,21.046,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_026,21.046,43.202,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_026,43.202,50,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_026A,0,0.282,,
+WH_026A,0.282,17.451,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_026A,17.451,39.607,Strong white crystalline calcite VEIN with some open space and euhedral crystal faces in openings,Vein 2
+WH_026A,39.607,50,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_027,0,50,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_027A,0,50,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_028,0,50,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_028A,0,0.22,,
+WH_028A,0.22,50,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_029,0,138.977,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_029,138.977,182.513,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_029,182.513,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_029A,0,140.947,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_029A,140.947,184.365,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_029A,184.365,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_030,0,0.131,,
+WH_030,0.131,97.341,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_030,97.341,119.497,Strong white crystalline calcite VEIN with blocky to elongate crystals,Vein 1
+WH_030,119.497,120.808,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_030,120.808,166.398,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_030,166.398,286.427,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_030,286.427,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT with fractures,Basement
+WH_030A,0,101.495,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_030A,101.495,122.037,Strong white crystalline calcite VEIN with blocky to elongate crystals,Vein 1
+WH_030A,122.037,167.557,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_030A,167.557,285.117,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_030A,285.117,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT with fractures,Basement
+WH_031,0,0.096,,
+WH_031,0.096,10.518,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_031,10.518,32.674,Strong white crystalline calcite VEIN with blocky to elongate crystals,Vein 1
+WH_031,32.674,97.405,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_031,97.405,146.52,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_031,146.52,200.132,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_031,200.132,224.721,Med-strong medium bedded brown sandy SILTSTONE with intense fracturing,Siltstone
+WH_031,224.721,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_031A,0,0.405,,
+WH_031A,0.405,12.203,Very weak medium bedded light grey LIMESTONE,Limestone
+WH_031A,12.203,34.359,Strong white crystalline calcite VEIN with blocky to elongate crystals,Vein 1
+WH_031A,34.359,98.508,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_031A,98.508,147.748,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_031A,147.748,197.42,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_031A,197.42,225.821,Med-strong medium bedded brown sandy SILTSTONE with intense fracturing,Siltstone
+WH_031A,225.821,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_032,0,84.858,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_032,84.858,136.422,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_032,136.422,166.101,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_032,166.101,209.721,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_032,209.721,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_032A,0,82.6,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_032A,82.6,134.332,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_032A,134.332,159.38,Very strong folliated green schistose undifferentiated volcanic BASEMENT with fractures,Basement
+WH_032A,159.38,207.461,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_032A,207.461,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_033,0,64.821,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_033,64.821,117.775,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_033,117.775,120.842,Very strong folliated green schistose undifferentiated volcanic BASEMENT with fractures,Basement
+WH_033,120.842,186.324,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_033,186.324,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_033A,0,65.761,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_033A,65.761,116.501,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_033A,116.501,187.357,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_033A,187.357,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_034,0,0.281,,
+WH_034,0.281,57.497,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_034,57.497,66.298,Medium strong medium bedded grey crystalline LIMESTONE with fractures,Limestone
+WH_034,66.298,185.043,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_034,185.043,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_034A,0,45.492,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_034A,45.492,59.783,Medium strong medium bedded grey crystalline LIMESTONE with fractures,Limestone
+WH_034A,59.783,178.937,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_034A,178.937,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_035,0,57.044,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_035,57.044,172.357,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_035,172.357,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_035A,0,54.792,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_035A,54.792,170.409,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH_035A,170.409,300,Very strong folliated green schistose undifferentiated volcanic BASEMENT,Basement
+WH_036,0,45.012,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_036,45.012,50,Med-strong very thinly bedded brown slightly calcareous SILTSTONE,Siltstone
+WH_036A,0,0.96,,
+WH_036A,0.96,46.53,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH_036A,46.53,50,Med-strong very thinly bedded brown slightly calcareous SILTSTONE,Siltstone
+WH101,0,29.994,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH101,29.994,60,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH102,0,93.645,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH102,93.645,150,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH103,0,89.525,Very weak medium bedded light grey LIMESTONE,Limestone
+WH103,89.525,111.681,Strong white crystalline calcite VEIN with blocky to elongate crystals,Vein 1
+WH103,111.681,152.824,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH103,152.824,200,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH104,0,12.28,Very weak medium bedded light grey LIMESTONE,Limestone
+WH104,12.28,200.105,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH104,200.105,210,Med-strong medium bedded brown sandy SILTSTONE with occasional subangular to subrounded pebbles,Siltstone
+WH105,0,30.3,Very weak medium bedded light grey LIMESTONE,Limestone
+WH105,30.3,150,Very strong medium bedded light grey crystalline LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH106,0,120,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
+WH107,0,80,Very weak medium bedded light grey LIMESTONE,Limestone
+WH108,0,40,Weak medium bedded light grey LIMESTONE with rare interbeds of dark grey argillaceous LIMESTONE,Limestone
