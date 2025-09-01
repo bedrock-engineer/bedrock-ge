@@ -13,15 +13,15 @@
 
 ---
 
-🌐 **Website:** <https://bedrock.engineer/>
+🌐 **Website:** <https://bedrock.engineer>
 
-📃 **Documentation:** <https://bedrock.engineer/docs>
+📖 **Documentation:** <https://bedrock.engineer/docs>
 
-📃 **API Reference:** <https://bedrock.engineer/reference/>
+📑 **API Reference:** <https://bedrock.engineer/reference>
 
 🖥️ **Source Code:** <https://github.com/bedrock-engineer/bedrock-ge>
 
-🐍 **`bedrock-ge` on PyPI:** <https://pypi.org/project/bedrock-ge/>
+🐍 **`bedrock-ge` on PyPI:** <https://pypi.org/project/bedrock-ge>
 
 🔗 **LinkedIn:** <https://www.linkedin.com/company/bedrock-engineer>
 
