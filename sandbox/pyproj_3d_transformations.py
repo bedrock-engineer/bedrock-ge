@@ -7,8 +7,14 @@ app = marimo.App(width="medium")
 @app.cell
 def _():
     import marimo as mo
+    import pyproj
     from pyproj import CRS, Transformer
     from pyproj.crs.crs import CompoundCRS
+
+    print(f"pyproj version: {pyproj.__version__}")
+    print(f"PROJ version:   {pyproj.proj_version_str}")
+    pyproj.network.set_network_enabled(active=True)
+    print(f"PROJ network enabled for geoid grid streaming? {pyproj.network.is_network_enabled()}")
     return CRS, CompoundCRS, Transformer, mo
 
 
