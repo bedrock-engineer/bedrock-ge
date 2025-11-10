@@ -45,7 +45,7 @@
       }
 
       #legend {
-        top: 10px;
+        bottom: 10px;
         right: 10px;
         max-width: 250px;
         max-height: 90svh;
@@ -96,8 +96,6 @@
         cursor: pointer;
         user-select: none;
       }
-
-      
     </style>
   </head>
   <body>
@@ -113,7 +111,12 @@
 
       <div class="checkbox-item">
         <input type="checkbox" id="buildings-toggle" checked />
-        <label for="buildings-toggle">3D Buildings</label>
+        <label for="buildings-toggle">3D BAG</label>
+      </div>
+
+      <div class="checkbox-item">
+        <input type="checkbox" id="geotop-toggle" checked />
+        <label for="geotop-toggle">GeoTOP</label>
       </div>
 
       <label>
@@ -127,6 +130,8 @@
           value="0.7"
         />
       </label>
+
+      
     </div>
 
     <div id="legend" class="panel">

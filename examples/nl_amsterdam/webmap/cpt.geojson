@@ -8,9 +8,10 @@
                 "date": "2022-09-21",
                 "depth_to_base": 6.494,
                 "ground_level_elevation": 0.44,
-                "elevation_at_base": 3.4,
+                "elevation_at_base": 6.494,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198149"
+                "location_source_id": "CPT000000198149",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -35,9 +36,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.549,
                 "ground_level_elevation": 0.6,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.549,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198175"
+                "location_source_id": "CPT000000198175",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -62,9 +64,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.509,
                 "ground_level_elevation": 1.82,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.509,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198161"
+                "location_source_id": "CPT000000198161",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -89,9 +92,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.92,
                 "ground_level_elevation": 1.3,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.92,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204246"
+                "location_source_id": "CPT000000204246",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -116,9 +120,10 @@
                 "date": "2011-05-12",
                 "depth_to_base": 25.5,
                 "ground_level_elevation": 1.44,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 25.5,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000205986"
+                "location_source_id": "CPT000000205986",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -143,9 +148,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.527,
                 "ground_level_elevation": 2.26,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.527,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198160"
+                "location_source_id": "CPT000000198160",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -170,9 +176,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.548,
                 "ground_level_elevation": 0.77,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.548,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198174"
+                "location_source_id": "CPT000000198174",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -197,9 +204,10 @@
                 "date": "2008-07-01",
                 "depth_to_base": 13.98,
                 "ground_level_elevation": 0.86,
-                "elevation_at_base": 2.0,
+                "elevation_at_base": 13.98,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000037783"
+                "location_source_id": "CPT000000037783",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -224,9 +232,10 @@
                 "date": "2022-09-21",
                 "depth_to_base": 6.996,
                 "ground_level_elevation": 0.81,
-                "elevation_at_base": 3.8,
+                "elevation_at_base": 6.996,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198148"
+                "location_source_id": "CPT000000198148",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -251,9 +260,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.569,
                 "ground_level_elevation": 1.5,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.569,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198162"
+                "location_source_id": "CPT000000198162",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -278,9 +288,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.532,
                 "ground_level_elevation": 0.49,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.532,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198176"
+                "location_source_id": "CPT000000198176",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -305,9 +316,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 28.95,
                 "ground_level_elevation": 0.86,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 28.95,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206335"
+                "location_source_id": "CPT000000206335",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -332,9 +344,10 @@
                 "date": "2017-06-21",
                 "depth_to_base": 34.937,
                 "ground_level_elevation": 1.4,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 34.937,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000203502"
+                "location_source_id": "CPT000000203502",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -359,9 +372,10 @@
                 "date": "2009-04-15",
                 "depth_to_base": 19.998,
                 "ground_level_elevation": 0.39,
-                "elevation_at_base": 2.0,
+                "elevation_at_base": 19.998,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000060419"
+                "location_source_id": "CPT000000060419",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -386,9 +400,10 @@
                 "date": "2011-05-12",
                 "depth_to_base": 22.5,
                 "ground_level_elevation": 1.53,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 22.5,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000205985"
+                "location_source_id": "CPT000000205985",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -413,9 +428,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.577,
                 "ground_level_elevation": 1.33,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.577,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198177"
+                "location_source_id": "CPT000000198177",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -440,9 +456,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.542,
                 "ground_level_elevation": 3.07,
-                "elevation_at_base": 0.15,
+                "elevation_at_base": 30.542,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198163"
+                "location_source_id": "CPT000000198163",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -467,9 +484,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.363,
                 "ground_level_elevation": 1.77,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.363,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198167"
+                "location_source_id": "CPT000000198167",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -494,9 +512,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.426,
                 "ground_level_elevation": 0.72,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.426,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198173"
+                "location_source_id": "CPT000000198173",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -521,9 +540,10 @@
                 "date": "1998-10-07",
                 "depth_to_base": 36.95,
                 "ground_level_elevation": 1.83,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 36.95,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000251863"
+                "location_source_id": "CPT000000251863",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -548,9 +568,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 30.97,
                 "ground_level_elevation": 1.64,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.97,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204240"
+                "location_source_id": "CPT000000204240",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -575,9 +596,10 @@
                 "date": "2015-02-23",
                 "depth_to_base": 28.01,
                 "ground_level_elevation": 0.88,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 28.01,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206331"
+                "location_source_id": "CPT000000206331",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -602,9 +624,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 31.849,
                 "ground_level_elevation": 2.37,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 31.849,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198166"
+                "location_source_id": "CPT000000198166",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -629,9 +652,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.546,
                 "ground_level_elevation": 1.89,
-                "elevation_at_base": 0.65,
+                "elevation_at_base": 30.546,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198164"
+                "location_source_id": "CPT000000198164",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -656,9 +680,10 @@
                 "date": "2022-09-21",
                 "depth_to_base": 31.279,
                 "ground_level_elevation": 0.78,
-                "elevation_at_base": 3.26,
+                "elevation_at_base": 31.279,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198158"
+                "location_source_id": "CPT000000198158",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -683,9 +708,10 @@
                 "date": "2011-05-12",
                 "depth_to_base": 25.5,
                 "ground_level_elevation": 0.96,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 25.5,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000205835"
+                "location_source_id": "CPT000000205835",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -710,9 +736,10 @@
                 "date": "1998-10-09",
                 "depth_to_base": 37.62,
                 "ground_level_elevation": 2.36,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 37.62,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000251519"
+                "location_source_id": "CPT000000251519",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -737,9 +764,10 @@
                 "date": "2015-02-23",
                 "depth_to_base": 28.05,
                 "ground_level_elevation": 0.77,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 28.05,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206252"
+                "location_source_id": "CPT000000206252",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -764,9 +792,10 @@
                 "date": "2022-09-21",
                 "depth_to_base": 6.58,
                 "ground_level_elevation": 0.53,
-                "elevation_at_base": 2.9,
+                "elevation_at_base": 6.58,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198159"
+                "location_source_id": "CPT000000198159",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -791,9 +820,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.455,
                 "ground_level_elevation": 1.74,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.455,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198165"
+                "location_source_id": "CPT000000198165",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -818,9 +848,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.96,
                 "ground_level_elevation": 1.56,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.96,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206209"
+                "location_source_id": "CPT000000206209",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -845,9 +876,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.97,
                 "ground_level_elevation": 1.65,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.97,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206221"
+                "location_source_id": "CPT000000206221",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -872,9 +904,10 @@
                 "date": "2017-06-21",
                 "depth_to_base": 34.975,
                 "ground_level_elevation": 0.51,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 34.975,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000202286"
+                "location_source_id": "CPT000000202286",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -899,9 +932,10 @@
                 "date": "2014-02-18",
                 "depth_to_base": 27.68,
                 "ground_level_elevation": -2.74,
-                "elevation_at_base": 2.47,
+                "elevation_at_base": 27.68,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000061389"
+                "location_source_id": "CPT000000061389",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -926,9 +960,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.0,
                 "ground_level_elevation": 0.7,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.0,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204225"
+                "location_source_id": "CPT000000204225",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -953,9 +988,10 @@
                 "date": "2014-02-17",
                 "depth_to_base": 32.1,
                 "ground_level_elevation": 0.89,
-                "elevation_at_base": 2.0,
+                "elevation_at_base": 32.1,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000061388"
+                "location_source_id": "CPT000000061388",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -980,9 +1016,10 @@
                 "date": "2017-06-21",
                 "depth_to_base": 34.958,
                 "ground_level_elevation": 0.63,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 34.958,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000202087"
+                "location_source_id": "CPT000000202087",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -1007,9 +1044,10 @@
                 "date": "2017-06-21",
                 "depth_to_base": 34.981,
                 "ground_level_elevation": 0.85,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 34.981,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000202327"
+                "location_source_id": "CPT000000202327",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -1034,9 +1072,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.9,
                 "ground_level_elevation": 1.47,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.9,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204395"
+                "location_source_id": "CPT000000204395",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1061,9 +1100,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.94,
                 "ground_level_elevation": 1.09,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.94,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206353"
+                "location_source_id": "CPT000000206353",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1088,9 +1128,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 30.93,
                 "ground_level_elevation": 1.63,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.93,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206226"
+                "location_source_id": "CPT000000206226",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1115,9 +1156,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.95,
                 "ground_level_elevation": 1.65,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.95,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204357"
+                "location_source_id": "CPT000000204357",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1142,9 +1184,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 28.99,
                 "ground_level_elevation": 1.06,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 28.99,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204382"
+                "location_source_id": "CPT000000204382",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1169,9 +1212,10 @@
                 "date": "2014-02-17",
                 "depth_to_base": 31.74,
                 "ground_level_elevation": 0.82,
-                "elevation_at_base": 2.0,
+                "elevation_at_base": 31.74,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000061549"
+                "location_source_id": "CPT000000061549",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1196,9 +1240,10 @@
                 "date": "2017-06-21",
                 "depth_to_base": 34.985,
                 "ground_level_elevation": 1.06,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 34.985,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000202240"
+                "location_source_id": "CPT000000202240",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -1223,9 +1268,10 @@
                 "date": "2011-05-12",
                 "depth_to_base": 25.5,
                 "ground_level_elevation": 1.28,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 25.5,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000205856"
+                "location_source_id": "CPT000000205856",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1250,9 +1296,10 @@
                 "date": "2014-02-17",
                 "depth_to_base": 32.05,
                 "ground_level_elevation": 1.34,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 32.05,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000061398"
+                "location_source_id": "CPT000000061398",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1277,9 +1324,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 28.96,
                 "ground_level_elevation": 0.81,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 28.96,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206344"
+                "location_source_id": "CPT000000206344",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1304,9 +1352,10 @@
                 "date": "1998-11-02",
                 "depth_to_base": 37.67,
                 "ground_level_elevation": 1.81,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 37.67,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000251552"
+                "location_source_id": "CPT000000251552",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1331,9 +1380,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 30.94,
                 "ground_level_elevation": 1.66,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.94,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204208"
+                "location_source_id": "CPT000000204208",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1358,9 +1408,10 @@
                 "date": "2011-05-12",
                 "depth_to_base": 25.5,
                 "ground_level_elevation": 1.3,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 25.5,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000205857"
+                "location_source_id": "CPT000000205857",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1385,9 +1436,10 @@
                 "date": "2017-06-21",
                 "depth_to_base": 34.986,
                 "ground_level_elevation": 2.2,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 34.986,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000202241"
+                "location_source_id": "CPT000000202241",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -1412,9 +1464,10 @@
                 "date": "2014-02-17",
                 "depth_to_base": 32.31,
                 "ground_level_elevation": 1.4,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 32.31,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000061548"
+                "location_source_id": "CPT000000061548",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1439,9 +1492,10 @@
                 "date": "2011-05-12",
                 "depth_to_base": 25.52,
                 "ground_level_elevation": 1.19,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 25.52,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000205937"
+                "location_source_id": "CPT000000205937",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1466,9 +1520,10 @@
                 "date": "1998-11-02",
                 "depth_to_base": 39.645,
                 "ground_level_elevation": 1.44,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 39.645,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000251774"
+                "location_source_id": "CPT000000251774",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1493,9 +1548,10 @@
                 "date": "2011-05-12",
                 "depth_to_base": 25.5,
                 "ground_level_elevation": 1.65,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 25.5,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000205873"
+                "location_source_id": "CPT000000205873",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1520,9 +1576,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.89,
                 "ground_level_elevation": 1.6,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.89,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204199"
+                "location_source_id": "CPT000000204199",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1547,9 +1604,10 @@
                 "date": "1998-12-02",
                 "depth_to_base": 36.995,
                 "ground_level_elevation": 1.08,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 36.995,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000251617"
+                "location_source_id": "CPT000000251617",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1574,9 +1632,10 @@
                 "date": "2014-02-18",
                 "depth_to_base": 27.8,
                 "ground_level_elevation": -2.69,
-                "elevation_at_base": 2.6,
+                "elevation_at_base": 27.8,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000061397"
+                "location_source_id": "CPT000000061397",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1601,9 +1660,10 @@
                 "date": "2015-02-23",
                 "depth_to_base": 28.02,
                 "ground_level_elevation": 0.96,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 28.02,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206148"
+                "location_source_id": "CPT000000206148",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1628,9 +1688,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 30.32,
                 "ground_level_elevation": 1.6,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.32,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204388"
+                "location_source_id": "CPT000000204388",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1655,9 +1716,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 30.81,
                 "ground_level_elevation": 1.57,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.81,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206206"
+                "location_source_id": "CPT000000206206",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1682,9 +1744,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 30.9,
                 "ground_level_elevation": 1.64,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.9,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204377"
+                "location_source_id": "CPT000000204377",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1709,9 +1772,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.97,
                 "ground_level_elevation": 1.46,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.97,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204363"
+                "location_source_id": "CPT000000204363",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1736,9 +1800,10 @@
                 "date": "2014-02-18",
                 "depth_to_base": 29.25,
                 "ground_level_elevation": -2.87,
-                "elevation_at_base": 2.25,
+                "elevation_at_base": 29.25,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000061390"
+                "location_source_id": "CPT000000061390",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1763,9 +1828,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.98,
                 "ground_level_elevation": 1.62,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.98,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206238"
+                "location_source_id": "CPT000000206238",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1790,9 +1856,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.459,
                 "ground_level_elevation": 1.77,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.459,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198168"
+                "location_source_id": "CPT000000198168",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -1817,9 +1884,10 @@
                 "date": "2022-09-21",
                 "depth_to_base": 30.952,
                 "ground_level_elevation": 0.98,
-                "elevation_at_base": 2.98,
+                "elevation_at_base": 30.952,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198154"
+                "location_source_id": "CPT000000198154",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -1844,9 +1912,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.94,
                 "ground_level_elevation": 1.57,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.94,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204273"
+                "location_source_id": "CPT000000204273",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1871,9 +1940,10 @@
                 "date": "2022-09-21",
                 "depth_to_base": 6.998,
                 "ground_level_elevation": 0.65,
-                "elevation_at_base": 2.75,
+                "elevation_at_base": 6.998,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198155"
+                "location_source_id": "CPT000000198155",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -1898,9 +1968,10 @@
                 "date": "2022-08-24",
                 "depth_to_base": 30.557,
                 "ground_level_elevation": 1.72,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.557,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198169"
+                "location_source_id": "CPT000000198169",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -1925,9 +1996,10 @@
                 "date": "2022-09-21",
                 "depth_to_base": 6.599,
                 "ground_level_elevation": 0.77,
-                "elevation_at_base": 3.3,
+                "elevation_at_base": 6.599,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198157"
+                "location_source_id": "CPT000000198157",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -1952,9 +2024,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 28.87,
                 "ground_level_elevation": 1.47,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 28.87,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206248"
+                "location_source_id": "CPT000000206248",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -1979,9 +2052,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.9,
                 "ground_level_elevation": 1.63,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.9,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206260"
+                "location_source_id": "CPT000000206260",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2006,9 +2080,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 31.81,
                 "ground_level_elevation": 1.48,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 31.81,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204310"
+                "location_source_id": "CPT000000204310",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2033,9 +2108,10 @@
                 "date": "2017-06-21",
                 "depth_to_base": 34.945,
                 "ground_level_elevation": 1.41,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 34.945,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000203457"
+                "location_source_id": "CPT000000203457",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -2060,9 +2136,10 @@
                 "date": "2014-02-18",
                 "depth_to_base": 27.9,
                 "ground_level_elevation": -2.65,
-                "elevation_at_base": 2.58,
+                "elevation_at_base": 27.9,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000061518"
+                "location_source_id": "CPT000000061518",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2087,9 +2164,10 @@
                 "date": "2022-09-21",
                 "depth_to_base": 31.301,
                 "ground_level_elevation": 0.75,
-                "elevation_at_base": 3.3,
+                "elevation_at_base": 31.301,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198156"
+                "location_source_id": "CPT000000198156",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -2114,9 +2192,10 @@
                 "date": "2015-02-23",
                 "depth_to_base": 28.17,
                 "ground_level_elevation": 0.75,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 28.17,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000205973"
+                "location_source_id": "CPT000000205973",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2141,9 +2220,10 @@
                 "date": "2015-02-23",
                 "depth_to_base": 29.54,
                 "ground_level_elevation": 0.69,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.54,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206113"
+                "location_source_id": "CPT000000206113",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2168,9 +2248,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 30.95,
                 "ground_level_elevation": 1.6,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.95,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000205817"
+                "location_source_id": "CPT000000205817",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2195,9 +2276,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 3.44,
                 "ground_level_elevation": 1.62,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 3.44,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204248"
+                "location_source_id": "CPT000000204248",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2222,9 +2304,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 30.46,
                 "ground_level_elevation": 1.64,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.46,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000204513"
+                "location_source_id": "CPT000000204513",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2249,9 +2332,10 @@
                 "date": "2015-02-23",
                 "depth_to_base": 29.57,
                 "ground_level_elevation": 0.63,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.57,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206112"
+                "location_source_id": "CPT000000206112",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2276,9 +2360,10 @@
                 "date": "1999-01-12",
                 "depth_to_base": 69.68,
                 "ground_level_elevation": 2.51,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 69.68,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000251670"
+                "location_source_id": "CPT000000251670",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2303,9 +2388,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 29.97,
                 "ground_level_elevation": 1.54,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 29.97,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206072"
+                "location_source_id": "CPT000000206072",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2330,9 +2416,10 @@
                 "date": "2017-06-21",
                 "depth_to_base": 34.983,
                 "ground_level_elevation": 1.72,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 34.983,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000203491"
+                "location_source_id": "CPT000000203491",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -2357,9 +2444,10 @@
                 "date": "2022-09-21",
                 "depth_to_base": 6.959,
                 "ground_level_elevation": 0.64,
-                "elevation_at_base": 3.45,
+                "elevation_at_base": 6.959,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000198147"
+                "location_source_id": "CPT000000198147",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -2384,9 +2472,10 @@
                 "date": "2011-05-12",
                 "depth_to_base": 25.5,
                 "ground_level_elevation": 1.45,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 25.5,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000205801"
+                "location_source_id": "CPT000000205801",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
@@ -2411,9 +2500,10 @@
                 "date": "2017-06-21",
                 "depth_to_base": 34.978,
                 "ground_level_elevation": 1.46,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 34.978,
                 "standard": "ISO22476D1",
-                "location_source_id": "CPT000000203445"
+                "location_source_id": "CPT000000203445",
+                "color": "#DC143C"
             },
             "geometry": {
                 "type": "LineString",
@@ -2438,9 +2528,10 @@
                 "date": "2013-07-09",
                 "depth_to_base": 30.88,
                 "ground_level_elevation": 1.83,
-                "elevation_at_base": 0.0,
+                "elevation_at_base": 30.88,
                 "standard": "NEN5140",
-                "location_source_id": "CPT000000206273"
+                "location_source_id": "CPT000000206273",
+                "color": "#0000CD"
             },
             "geometry": {
                 "type": "LineString",
