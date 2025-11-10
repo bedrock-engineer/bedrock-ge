@@ -66,7 +66,7 @@ def _(mo):
 @app.cell
 def _(cwd, gpd):
     site_plot = gpd.read_file(cwd / "context.gpkg")
-    return
+    return (site_plot,)
 
 
 @app.cell
@@ -86,24 +86,15 @@ def _():
 
 
 @app.cell
-def _():
-    west = 104371.2927
-    south = 473538.1690
-    east = 137341.8722
-    north = 501017.7614
+def _(site_plot):
+    bbox = site_plot.total_bounds
+    west, south, east, north = bbox
+    buffer = 1000
+    west = west - buffer
+    south = south - buffer
+    east = east + buffer
+    north = north + buffer
     return east, north, south, west
-
-
-@app.cell
-def _():
-    # bbox = site_plot.total_bounds
-    # west, south, east, north = bbox
-    # buffer = 1000
-    # west = west - buffer
-    # south = south - buffer
-    # east = east + buffer
-    # north = north + buffer
-    return
 
 
 @app.cell
@@ -127,31 +118,6 @@ def _(ds):
 
 
 @app.cell
-def _():
-    # geotop_nl = xr.open_dataset("geotop_nl.nc", chunks={"z": 50, "y": 200, "x": 200}) # auto
-    return
-
-
-@app.cell
-def _():
-    # dsg = geotop_nl.sortby("z", ascending=False)
-    # dsg = (
-    #     ds.sortby("z", ascending=False)
-    #       .transpose("z", "y", "x")
-    #       .dropna("z", how="all", subset=["lithok", "strat"])
-    #       .sortby("y", ascending=False)
-    # )
-    # dsg.to_netcdf("geotop_nl_transposed.nc", compute=True)
-    return
-
-
-@app.cell
-def _(ds):
-    ds.to_netcdf("amsterdam.nc")
-    return
-
-
-@app.cell
 def _(ds, mo):
     slider = mo.ui.slider(1, ds.dims["z"]-1)
     slider
@@ -171,28 +137,28 @@ def _(ds):
 
 
 @app.cell
-def _():
-    # _link = {
-    #     "lithok": (bromodels.GeoTop.geotop_lithology_class(), "LITHO_CLASS_CD"),
-    #     "strat": (bromodels.GeoTop.geotop_stratigraphic_unit(), "STR_UNIT_CD"),
-    # }
+def _(bromodels, ds, np):
+    _link = {
+        "lithok": (bromodels.GeoTop.geotop_lithology_class(), "LITHO_CLASS_CD"),
+        "strat": (bromodels.GeoTop.geotop_stratigraphic_unit(), "STR_UNIT_CD"),
+    }
 
-    # mz, mx, my = np.meshgrid(ds.z.values, ds.x.values, ds.y.values, indexing="ij")
-    # point_cloud = list(zip(mx.flatten(), my.flatten(), mz.flatten() + 0.25))
+    mz, mx, my = np.meshgrid(ds.z.values, ds.x.values, ds.y.values, indexing="ij")
+    point_cloud = list(zip(mx.flatten(), my.flatten(), mz.flatten() + 0.25))
 
-    # # create pyvista object
-    # var = "lithok"  # lithok/ strat
+    # create pyvista object
+    var = "lithok"  # lithok/ strat
 
-    # # color
-    # df_pv, CD = _link[var]
-    # colormap = []
-    # label = []
-    # for i, row in df_pv.loc[df_pv["VOXEL_NR"].isin(ds[var].values.flatten())].iterrows():
-    #     colormap.append(
-    #         np.array([row.RED_DEC / 255, row.GREEN_DEC / 255, row.BLUE_DEC / 255])
-    #     )
-    #     label.append(row[CD])
-    return
+    # color
+    df_pv, CD = _link[var]
+    colormap = []
+    label = []
+    for i, row in df_pv.loc[df_pv["VOXEL_NR"].isin(ds[var].values.flatten())].iterrows():
+        colormap.append(
+            np.array([row.RED_DEC / 255, row.GREEN_DEC / 255, row.BLUE_DEC / 255])
+        )
+        label.append(row[CD])
+    return (colormap,)
 
 
 @app.cell
@@ -321,9 +287,11 @@ def _(
         components=[projected_crs, vertical_crs],
     )
 
-    transformer_compound = Transformer.from_crs(compound_crs, cesium_crs)
+    # Use always_xy=True to get (lon, lat) order instead of (lat, lon)
+    # This matches GeoJSON standard and traditional GIS coordinate order
+    transformer_compound = Transformer.from_crs(compound_crs, cesium_crs, always_xy=True)
     # This is crucial for proper height transformation! See https://proj.org/en/stable/usage/network.html
-    network.set_network_enabled(active=True) 
+    network.set_network_enabled(active=True)
     return (transformer_compound,)
 
 
@@ -419,33 +387,26 @@ def _():
 
 
 @app.cell
-def _(add_interpretation, cpts):
-    layert = merge_layers(add_interpretation(cpts[0].data))
-    type(layert)
-    return
+def _(add_interpretation, cpts, pl, project_uid):
+    layers = []
+    soil_columns = []
+    for cpt in cpts:
+        # standardized_location
+        try:
+            interpreted = pl.from_pandas(merge_layers(add_interpretation(cpt.data)))
+            df = interpreted.with_columns([
+                pl.lit(f"{cpt.bro_id} {project_uid}").alias("location_uid"),
+                pl.lit(project_uid).alias("project_uid")
+            ])
+            layers.append(df)
+            soil_columns.append(interpreted)
+        except Exception as e:
+            soil_columns.append(None)
+            print(f"Error processing CPT: {e}")
+            continue
 
-
-@app.cell
-def _():
-    # layers = []
-    # soil_columns = []
-    # for cpt in cpts:
-    #     # standardized_location
-    #     try:
-    #         interpreted = pl.from_pandas(merge_layers(add_interpretation(cpt.data)))
-    #         df = interpreted.with_columns([
-    #             pl.lit(f"{cpt.bro_id} {project_uid}").alias("location_uid"),
-    #             pl.lit(project_uid).alias("project_uid")
-    #         ])
-    #         layers.append(df)
-    #         soil_columns.append(interpreted)
-    #     except Exception as e:
-    #         soil_columns.append(None)
-    #         print(f"Error processing CPT: {e}")
-    #         continue
-
-    # insitu = pl.concat(layers).to_pandas()
-    return
+    insitu = pl.concat(layers).to_pandas()
+    return (insitu,)
 
 
 @app.cell
@@ -504,7 +465,7 @@ def _(plt):
         ax.set_title('Soil Profile')
 
         return fig
-    return (plot_column,)
+    return
 
 
 @app.cell
@@ -523,8 +484,8 @@ def _(dropdown):
 
 
 @app.cell
-def _(cpt_index, plot_column, soil_columns):
-    plot_column(soil_columns[cpt_index])
+def _():
+    # plot_column(soil_columns[cpt_index])
     return
 
 
@@ -689,11 +650,6 @@ def _(brgi_geodb):
 
 
 @app.cell
-def _():
-    return
-
-
-@app.cell
 def _(brgi_geodb):
     brgi_geodb.Location
     return
@@ -724,22 +680,24 @@ def _(LineString, Point, transformer_compound):
 
         if geom.geom_type == 'Point':
             if geom.has_z:
-                x, y, z = transformer_compound.transform(geom.x, geom.y, geom.z)
-                return Point(x, y, z)
+                # With always_xy=True, transformer returns (lon, lat, height)
+                lon, lat, z = transformer_compound.transform(geom.x, geom.y, geom.z)
+                return Point(lon, lat, z)
             else:
-                x, y = transformer_compound.transform(geom.x, geom.y)
-                return Point(x, y)
+                lon, lat = transformer_compound.transform(geom.x, geom.y)
+                return Point(lon, lat)
 
         elif geom.geom_type == 'LineString':
             coords = list(geom.coords)
             if len(coords[0]) == 3:  # Has Z
                 x_list, y_list, z_list = zip(*coords)
-                x_new, y_new, z_new = transformer_compound.transform(x_list, y_list, z_list)
-                return LineString(list(zip(x_new, y_new, z_new)))
+                # With always_xy=True, transformer returns (lon, lat, height)
+                lon_new, lat_new, z_new = transformer_compound.transform(x_list, y_list, z_list)
+                return LineString(list(zip(lon_new, lat_new, z_new)))
             else:  # 2D
                 x_list, y_list = zip(*coords)
-                x_new, y_new = transformer_compound.transform(x_list, y_list)
-                return LineString(list(zip(x_new, y_new)))
+                lon_new, lat_new = transformer_compound.transform(x_list, y_list)
+                return LineString(list(zip(lon_new, lat_new)))
         else:
             raise ValueError(f"Unsupported geometry type: {geom.geom_type}")
     return (transform_geometry,)
@@ -752,8 +710,20 @@ def _():
 
 
 @app.cell
+def _(brgi_geodb, columns):
+    brgi_geodb.Location[columns]
+    return
+
+
+@app.cell
 def _(brgi_geodb, columns, to_epsg_4979_3d):
-    locations_geojson = to_epsg_4979_3d(brgi_geodb.Location[columns]).to_json(to_wgs84=True)
+    type(to_epsg_4979_3d(brgi_geodb.Location[columns]))
+    return
+
+
+@app.cell
+def _(brgi_geodb, columns, to_epsg_4979_3d):
+    locations_geojson = to_epsg_4979_3d(brgi_geodb.Location[columns]).to_json()
 
     with open("cpt.geojson", "w") as file:
         file.write(locations_geojson)
@@ -812,11 +782,6 @@ def _():
         plt,
         read_cpt,
     )
-
-
-@app.cell
-def _():
-    return
 
 
 if __name__ == "__main__":

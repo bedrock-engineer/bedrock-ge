@@ -27,6 +27,11 @@ const viewer = new Cesium.Viewer(mapElementId, {
   homeButton: false,
 });
 
+const terrainProvider = await Cesium.CesiumTerrainProvider.fromUrl(
+  "https://api.pdok.nl/kadaster/3d-basisvoorziening/ogc/v1_0/collections/digitaalterreinmodel/quantized-mesh"
+);
+viewer.scene.terrainProvider = terrainProvider;
+
 const soil_colors = {
   Unknown: "#FFFFFF",
   "Gravelly sand to dense sand": "#FF8C00",
@@ -80,83 +85,93 @@ const imageryProvider = new Cesium.UrlTemplateImageryProvider({
 });
 const imageryLayer = viewer.imageryLayers.addImageryProvider(imageryProvider);
 
-function onLoadLocations(dataSource) {
+async function onLoadLocations(dataSource) {
   console.log("Loaded location data", dataSource.entities.values.length);
 
-  for (const entity of dataSource.entities.values) {
-    // const holeType = entity.properties.HOLE_TYPE.getValue();
-    const holeId = entity.properties.location_source_id.getValue();
+  // Clear existing entities to avoid conflicts
+  dataSource.entities.removeAll();
 
-    const coordinates =
-      entity.polyline && entity.polyline.positions
-        ? entity.polyline.positions.getValue()
-        : null;
+  // Load GeoJSON directly to get proper coordinates
+  console.log("Loading GeoJSON directly for cylinder rendering...");
+  const response = await fetch("cpt.geojson");
+  const geojson = await response.json();
 
-    // Remove the default polyline rendering
-    if (entity.polyline) {
-      entity.polyline = undefined;
+  for (const feature of geojson.features) {
+    const { properties, geometry } = feature;
+
+    if (geometry.type !== "LineString" || geometry.coordinates.length < 2) {
+      console.warn(`Invalid geometry for ${properties.location_source_id}`);
+      continue;
     }
 
-    // Remove the default point rendering
-    if (entity.marker) {
-      entity.marker = undefined;
-    }
+    const [topCoord, bottomCoord] = geometry.coordinates;
+    const [lon, lat, topElev] = topCoord;
+    const [, , bottomElev] = bottomCoord;
 
-    if (!coordinates || coordinates.length < 2) {
-      console.warn(`No valid coordinates for hole ${holeId}`);
-      return;
-    }
+    const length = Math.abs(topElev - bottomElev);
+    const centerElevation = (topElev + bottomElev) / 2;
 
-    const [top, bottom] = coordinates;
-    const topCartographic = Cesium.Cartographic.fromCartesian(top);
-    const bottomCartographic = Cesium.Cartographic.fromCartesian(bottom);
+    const color = Cesium.Color.fromCssColorString(
+      cptStandardColorScale(properties.standard)
+    );
 
-    const lon = topCartographic.longitude * Cesium.Math.DEGREES_PER_RADIAN;
-    const lat = topCartographic.latitude * Cesium.Math.DEGREES_PER_RADIAN;
-    const topElevation = topCartographic.height;
-    const bottomElevation = bottomCartographic.height;
-
-    const length = Math.abs(topElevation - bottomElevation);
-    const centerElevation = (topElevation + bottomElevation) / 2;
-
-    const color = Cesium.Color.fromCssColorString("#000000");
-
+    // Heights should already be ellipsoidal (transformed from NAP in Python)
     dataSource.entities.add({
       position: Cesium.Cartesian3.fromDegrees(lon, lat, centerElevation),
-      cylinder: new Cesium.CylinderGraphics({
-        topRadius: 3,
-        bottomRadius: 3,
+      cylinder: {
+        topRadius: 1,
+        bottomRadius: 1,
         length: length,
-        fill: false,
+        material: color.withAlpha(0.8),
+        fill: true,
         outline: true,
         outlineColor: color,
-        outlineWidth: 1,
-        outlineOpacity: 0.5,
-      }),
-      properties: entity.properties,
-      name: holeId,
+        outlineWidth: 2,
+      },
+      properties: properties,
+      name: properties.location_source_id,
     });
   }
 }
+
+// https://observablehq.com/@d3/d3-scaleordinal
+const cptStandardColorScale = scaleOrdinal()
+  .domain(["ISO22476D1", "NEN5140"])
+  .range(["#DC143C", "#0000CD"])
+  .unknown("#999999");
 
 const datasets = [
   {
     id: "cpt",
     label: "CPT Locations",
-    enabled: false,
+    enabled: true,
     dataSource: null,
-    // legendElement: createOrdinalLegend({
-    //   scale: holeTypeColorScale,
-    //   title: "Hole Types",
-    //   config: agsHoleTypes,
-    // }),
+    legendElement: createOrdinalLegend({
+      scale: cptStandardColorScale,
+      title: "CPT Standards",
+      // config: agsHoleTypes,
+    }),
     onLoad: onLoadLocations,
   },
+  // {
+  //   id: "cpt_interpretated",
+  //   label: "CPT Interpreted",
+  //   enabled: false,
+  //   dataSource: null,
+  //   // legendElement: createOrdinalLegend({
+  //   //   scale: holeTypeColorScale,
+  //   //   title: "Hole Types",
+  //   //   config: agsHoleTypes,
+  //   // }),
+  //   onLoad: onLoadLocations,
+  // },
 ];
 
 function loadDataset(dataset) {
   return Cesium.GeoJsonDataSource.load(`${dataset.id}.geojson`, {
     clampToGround: false,
+    stroke: Cesium.Color.YELLOW,
+    strokeWidth: 3,
   })
     .then((dataSource) => {
       // Store reference to the loaded data source for later access (visibility toggling, styling)
