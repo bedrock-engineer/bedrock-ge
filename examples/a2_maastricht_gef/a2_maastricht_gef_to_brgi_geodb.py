@@ -1,40 +1,44 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "bedrock-ge==0.3.1",
+#     "bedrock-ge==0.3.2",
 #     "folium==0.20.0",
-#     "geopandas==1.1.0",
-#     "mapclassify==2.9.0",
-#     "marimo",
-#     "matplotlib==3.10.1",
+#     "geopandas==1.1.1",
+#     "mapclassify==2.8.1",
+#     "marimo[mcp]",
+#     "matplotlib==3.10.7",
 #     "pyproj==3.7.1",
 #     "requests==2.32.3",
-#     "shapely==2.1.1",
-#     "pygef"==0.11.1"
+#     "shapely==2.1.2",
+#     "pygef==0.13.0",
+#     "pandas==2.3.3",
+#     "pyarrow==21.0.0",
 # ]
 # ///
 
 import marimo
 
-__generated_with = "0.14.7"
-app = marimo.App(width="medium")
+__generated_with = "0.17.6"
 app = marimo.App(
-    app_title="Maastricht, GEF boreholes to a Bedrock GI Geospatial Database",
+    width="medium",
+    app_title="Maastricht A2 Tunnel GEF-BORE data to a Bedrock GI Geospatial Database",
 )
+
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        """
+    mo.md("""
     # GEF Data for A2 Tunnel Maastricht
+
+    <img src="https://bedrock.engineer/Bedrock_TextRight.png" alt="Bedrock logo" width="180" />
 
     This notebook demonstrates how to
 
-    1. Read in Ground Investigation (GI) data from [GEF files]() using the [pygef](https://cemsbv.github.io/pygef/) library.
-    1. Use `bedrock-ge` to convert that data into a standardized GI database.
+    1. Read in Ground Investigation (GI) data from [GEF files](https://bedrock.engineer/reference/formats/gef/gef/) using the [pygef](https://cemsbv.github.io/pygef/) library.
+    1. Use [`bedrock-ge`](https://github.com/bedrock-engineer/bedrock-ge) to convert that data into a standardized GI database.
     1. Transform the GI data into 3D spatial features with proper coordinates and geometry ([OGC Simple Feature](https://en.wikipedia.org/wiki/Simple_Features))
     1. Explore and analyze the GI data using interactive filtering with Pandas DataFrames and interactive visualization on a map using GeoPandas.
-    1. Export the processed GI database to a GeoPackage file for use in GIS software.
+    1. Export the processed GI database to a GeoPackage file for use in GIS software, like QGIS or ArcGIS.
 
     <details>
         <summary>What are GEF files?</summary>
@@ -43,7 +47,7 @@ def _(mo):
             text-based format designed to facilitate the reliable exchange and archiving
             of geotechnical investigation data, particularly CPT results, across
             different organizations and software platforms. GEF can also be used for
-            other types of soil tests and borehole data. It is widely used in the
+            other types of soil tests, like <a href="https://bedrock.engineer/reference/formats/gef/gef-cpt/">CPTs</a>. It is widely used in the
             Netherlands in ground investigation.
         </p>
     </details>
@@ -58,11 +62,11 @@ def _(mo):
     ## Ground Investigation Data
 
     The GI data was downloaded from [Dinoloket](https://www.dinoloket.nl/ondergrondgegevens), a platform for viewing and request data from the Dutch Geological Survey and Basisregistratie Ondergrond about the subsurface of the Netherlands.
-    We are using GEF files that contain borehole data.
+    We are using [GEF files](https://bedrock.engineer/reference/formats/gef/gef/) that contain borehole data, [GEF-BORE](https://bedrock.engineer/reference/formats/gef/gef-bore/).
 
     ## Context
 
-    The Koning Willem-Alexander Tunnel is a double-deck tunnel for motorized traffic in the city Maastricht, the Netherlands. The tunnel has a length of 2.5 kilometers (lower tunnel tubes) and 2.3 kilometers (upper tunnel tubes).
+    The [Koning Willem-Alexander Tunnel](https://www.rijkswaterstaat.nl/wegen/wegenoverzicht/a2/koning-willem-alexandertunnel-a2-n2) is a double-deck tunnel for motorized traffic in the city Maastricht, the Netherlands. The tunnel has a length of 2.5 kilometers (lower tunnel tubes) and 2.3 kilometers (upper tunnel tubes).
 
     The tunnel has moved the old A2 highway underground. This highway previously formed a barrier for the city and slowed traffic.
 
@@ -76,11 +80,13 @@ def _(mo):
 
     The limestone is relatively young and shallow, resulting in low compaction and cementation. Its mechanical strength is highly variable and generally low, especially when saturated with groundwater.
 
+    ## Ground Investigation & Operations
+
     Extensive geophysical surveys and borehole investigations were conducted to map the subsurface, identify faults, flint layers, and assess the risk of cavities within the limestone. While faults were detected, no significant cavities were found.
 
     The stability of the excavation pit was monitored in real-time, with groundwater levels and pressures carefully controlled to prevent collapse or excessive deformation of the pit walls.
 
-    Due to the high permeability of the gravel and fissured limestone, groundwater management was a major challenge. Over 500 wells were drilled to depths of up to 32 meters for dewatering, and a reinfiltration system was implemented to return nearly all pumped water to the ground, protecting local buildings and ecosystems.
+    Due to the high permeability of the gravel and fissured limestone, groundwater management was a major challenge. Over 500 wells were drilled to depths of up to 32 m for dewatering, and a reinfiltration system was implemented to return nearly all pumped water to the ground, protecting local buildings and ecosystems.
 
     <details>
     <summary>
@@ -93,9 +99,7 @@ def _(mo):
         <li><a href="https://a2maastricht.nl/application/files/3315/2060/1222/Interview_Eduard_van_Herk_en_Bjorn_Vink.pdf">Interview Eduard van Herk en Bjorn Vink</li>
     </ul>
     </details>
-
-    """
-    )
+    """)
     return
 
 
@@ -134,15 +138,14 @@ def _(boreholes, index):
 
 
 @app.cell
-def _(boreholes, index, pygef):
-    pygef.plotting.plot_bore(boreholes[index])
+def _(boreholes, index, plot_bore):
+    plot_bore(boreholes[index])
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Converting multiple GEF files to a relational database
 
     Rather than dealing with a folder of files in a format that very few software can handle, we would like to combine all of these files into a single database with spatial information. This is where `bedrock-ge` comes in.
@@ -156,30 +159,26 @@ def _(mo):
     ### Coordinated Reference System (CRS)
 
     First, let's check in which projected coordinate system the provided data was recorded.
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(CRS, boreholes):
     code = {bore.delivered_location.srs_name for bore in boreholes}.pop()
-    orig_epsg_code = code.split("EPSG::")[-1]
-    orig_crs = CRS(f"EPSG:{orig_epsg_code}")
+    orig_crs = CRS(code)
     orig_crs
     return (orig_crs,)
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     The data is in EPSG:28992, which is the [Rijksdriehoekscoördinaten (NL)](https://nl.wikipedia.org/wiki/Rijksdriehoeksco%C3%B6rdinaten) system, also called "Amersfoort / RD New". This reference system does not include elevation.
 
     To represent GI data spatially in 3D geometry we need a CRS **with elevation**. That's why we will use
     EPSG:5709 NAP height as the vertical CS.
-    """
-    )
+    """)
     return
 
 
@@ -213,13 +212,11 @@ def _(orig_crs, pd, project_uid, vertical_crs):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
-    Here, we create a new DataFrame for locations and remap the GEF keys to follow Bedrock's conventions. 
+    mo.md(r"""
+    Here, we create a new DataFrame for locations and remap the GEF keys to follow Bedrock's conventions.
     We need to map `alias` to `location_source_id` and `delivered_vertical_position_offset` to `ground_level_elevation` for example.
     We also need to create a **unique identifier** and add `project_uid` as a key to relate it the project.
-    """
-    )
+    """)
     return
 
 
@@ -245,8 +242,16 @@ def _(boreholes, pd, project_uid):
 
 
 @app.cell
+def _(locations_df):
+    locations_df
+    return
+
+
+@app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""Here we create a DataFrame for the In-Situ data of all locations. To relate the in-situ data to locations and the project, we add foreign keys.""")
+    mo.md(r"""
+    Here we create a DataFrame for the In-Situ data of all GI locations. To relate the in-situ data to locations and the project, we add foreign keys.
+    """)
     return
 
 
@@ -284,6 +289,12 @@ def _(brgi_db, create_brgi_geodb):
     return (brgi_geodb,)
 
 
+@app.cell
+def _(brgi_geodb):
+    brgi_geodb.InSituTests["interpretation"]
+    return
+
+
 @app.function
 def process_data(bore):
     df = bore.data.to_pandas().dropna(axis=1, how='all').rename(columns=
@@ -299,38 +310,41 @@ def process_data(bore):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Displaying the GI locations on a map
 
     Rather than multiple tables (DataFrames) and soil profiles, we would like see an overview of what this ground investigation covers. It's **spatial** data after all, let's view it in a spatial context.
 
-    `create_brgi_geodb` creates a `LonLatHeight` table which contains the GI locations at ground level in WGS84 - World Geodetic System 1984 - EPSG:4326 coordinates (Longitude, Latitude, Ellipsoidal Height).
+    `create_brgi_geodb` creates a `LonLatHeight` table which contains the GI locations at ground level as points in WGS84 - World Geodetic System 1984 - EPSG:4326 coordinates (Longitude, Latitude, Ellipsoidal Height).
 
 
     The reason for creating the `LonLatHeight` table is that vertical lines in projected Coordinate Reference Systems (CRS) are often not rendered nicely by default in all web-mapping software. Vertical lines are often not visible when looking at a map from above, and not all web-mapping software is capable of handling geometry in non-WGS84, i.e. (Lon, Lat) coordinates.
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(brgi_geodb):
-    brgi_geodb.LonLatHeight.explore(marker_kwds={"radius":5})
+    brgi_geodb.LonLatHeight
+    return
+
+
+@app.cell
+def _(brgi_geodb):
+    map = brgi_geodb.LonLatHeight.explore(marker_kwds={"radius":5})
+    map
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Saving the GI geospatial database as a GeoPackage (.gpkg)
 
     Finally, we'll write it to an actual geospatial database file, a [GeoPackage](https://www.geopackage.org/), so we can share our GI data with others, for example, to reuse it in other computational notebooks, create dashboards, access the GI data in QGIS or ArcGIS, and more...
 
     A GeoPackage is an <abbr title="Open Geospatial Consortium">OGC-standardized</abbr> extension of SQLite (a relational database in a single file, .sqlite or .db) that allows you to store any type of GIS data (both raster as well as vector data) in a single file that has the .gpkg extension. Therefore, many (open-source) GIS software packages support GeoPackage!
-    """
-    )
+    """)
     return
 
 
@@ -341,8 +355,27 @@ def _(brgi_db, check_brgi_geodb):
 
 
 @app.cell
-def _(Path, brgi_db, write_brgi_db_to_file):
-    write_brgi_db_to_file(brgi_db, path=Path("./output/A2_Maastricht.gpkg"), driver="GPKG")
+def _(brgi_db, write_brgi_db_to_file):
+    write_brgi_db_to_file(brgi_db, path="./output/A2_Maastricht.gpkg", driver="GPKG")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""
+    ## Visualising the Data in a 3D Webmap
+
+    As standardized geospatial data, we can visualize our GI in a wealth of ways.
+
+    View one of the Bedrock guides to see what you can do with your data.
+
+    * [Viewing Geotechnical Data in QGIS](https://bedrock.engineer/guides/viewing-qgis/)
+    * [Viewing Geotechnical Data on a Web Map](https://bedrock.engineer/guides/viewing-webmap/)
+
+    ### 3D Webmap with Cesium.js
+
+    View the data from this example interactively in a 3D webmap.
+    """)
     return
 
 
@@ -350,6 +383,7 @@ def _(Path, brgi_db, write_brgi_db_to_file):
 def _():
     import marimo as mo
     import pygef
+    from pygef.plotting import plot_bore
     import os
     from pathlib import Path
     import pandas as pd
@@ -377,14 +411,10 @@ def _():
         create_brgi_geodb,
         mo,
         pd,
+        plot_bore,
         pygef,
         write_brgi_db_to_file,
     )
-
-
-@app.cell
-def _():
-    return
 
 
 if __name__ == "__main__":
