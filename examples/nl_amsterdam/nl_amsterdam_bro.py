@@ -1,65 +1,42 @@
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
-#     "bromodels",
+#     "anthropic==0.72.0",
+#     "anymap==0.7.0",
+#     "bedrock-ge==0.3.2",
+#     "bromodels==0.0.1",
+#     "dask==2025.10.0",
 #     "folium==0.20.0",
+#     "geojson==3.2.0",
 #     "geopandas==1.1.1",
+#     "groundhog==0.15.0",
 #     "mapclassify==2.8.1",
+#     "mapwidget==0.2.0",
 #     "marimo",
 #     "matplotlib==3.10.7",
+#     "numpy==2.3.4",
+#     "pandas==2.3.3",
+#     "plotly==6.3.1",
+#     "polars==1.34.0",
 #     "pyarrow==21.0.0",
 #     "pygef==0.13.0",
-#     "pyobsplot",
-#     "xarray",
+#     "pyobsplot==0.5.4",
+#     "pyproj==3.7.2",
+#     "pyvista==0.46.3",
+#     "shapely==2.1.2",
+#     "xarray==2025.10.1",
 # ]
 # ///
 
 import marimo
 
-__generated_with = "0.17.0"
+__generated_with = "0.17.7"
 app = marimo.App(width="medium")
 
 
 @app.cell
-def _():
-    import datetime
-    import json
-    import xml.dom.minidom as minidom
-    from io import BytesIO
-    from urllib.request import Request, urlopen
-
-    import folium
-    import geopandas as gpd
-    import marimo as mo
-    import xmltodict
-    from folium.plugins import Draw
-    from lxml import etree
-    from pygef import read_cpt
-    from pygef.plotting import plot_cpt
-
-    cwd = mo.notebook_location()
-    return (
-        BytesIO,
-        Draw,
-        Request,
-        datetime,
-        etree,
-        folium,
-        gpd,
-        json,
-        minidom,
-        mo,
-        plot_cpt,
-        read_cpt,
-        urlopen,
-        xmltodict,
-    )
-
-
-@app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     How to access BRO data: [Handreiking Afname BRO Gegevens](https://www.bro-productomgeving.nl/bpo/latest/handreiking-afname-bro-gegevens)
 
     1. [BROloket](https://www.broloket.nl/ondergrondgegevens)
@@ -67,276 +44,729 @@ def _(mo):
       1. SOAP - impractical, because requires a digital "PKI" certificate.
       2. [REST](https://www.bro-productomgeving.nl/bpo/latest/url-s-publieke-rest-services)
         1. CPT: <https://publiek.broservices.nl/sr/cpt/v1>
-        2. Goetechnical boreholes: <https://publiek.broservices.nl/sr/bhrgt/v2>
-    3. [PDOK](https://app.pdok.nl/viewer)
-      1. WMS - This is useful for quickly viewing the location of historic CPTs or geotechnical boreholes.
-      2. ATOM feed - For downloading the whole dataset, i.e. to download all CPTs or all geotechnical boreholes in BRO.
-    """
-    )
-    return
-
-
-@app.cell(hide_code=True)
-def _(Draw, buffer, folium, geojson_text_area, gpd, json, site_geojson):
-    geojson = geojson_text_area.value if geojson_text_area.value else site_geojson
-    # Create a folium interactive map (leaflet.js maps)
-    site = gpd.GeoDataFrame.from_features(
-        {
-            "type": "FeatureCollection",
-            "name": "site",
-            "features": [json.loads(geojson)],
-        },
-        crs=4326,
-    ).to_crs(28992)
-    buffered_site = site.geometry.buffer(buffer.value)
-    bounds = buffered_site.to_crs(4326).bounds.to_numpy()[0]
-    folium_map = buffered_site.explore(
-        tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
-        style_kwds={"fillOpacity": 0.1},
-        attr=("Esri.WorldStreetMap"),
-    )
-    site.explore(m=folium_map, color="red", style_kwds={"fill": False})
-    folium.Rectangle(
-        bounds=[[bounds[1], bounds[0]], [bounds[3], bounds[2]]],
-        color="black",
-        weight=0.5,
-    ).add_to(folium_map)
-
-    # Add PDOK's CPT WMS layer
-    folium.WmsTileLayer(
-        url="https://service.pdok.nl/bzk/geologie/bro-geotechnisch-sondeeronderzoek/wms/v1_0?request=GetCapabilities&service=WMS",
-        name="BRO CPT",
-        fmt="image/png",
-        layers="GE.conePenetrationTest",
-        transparent=True,
-    ).add_to(folium_map)
-
-    # Add PDOK's geotechnical borehole WMS layer
-    folium.WmsTileLayer(
-        url="https://service.pdok.nl/bzk/geologie/bro-geotechnisch-booronderzoek/wms/v1_0?request=getcapabilities&service=wms",
-        name="BRO BHR-GT",
-        fmt="image/png",
-        layers="GE.Borehole",
-        transparent=True,
-    ).add_to(folium_map)
-
-    # Add drawing widget
-    draw = Draw(
-        export=True,
-        filename="site.geojson",
-        position="topleft",
-        draw_options={
-            "polyline": True,
-            "polygon": True,
-            "circle": False,
-            "rectangle": False,
-            "marker": True,
-            "circlemarker": False,
-        },
-    ).add_to(folium_map)
-
-    folium_map
-    return (bounds,)
-
-
-@app.cell
-def _(mo):
-    site_geojson = '{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[4.902889698063478,52.385435257999404],[4.902923632305726,52.385509906165986],[4.902901716440955,52.385619936470341],[4.903006347021203,52.38569026942325],[4.90389499998988,52.385854235381281],[4.904091535809526,52.385902562073795],[4.904285950739031,52.385988859607401],[4.904484607448818,52.38602683046868],[4.904532680958658,52.386042363993511],[4.904790722592364,52.386094573856099],[4.904799206152918,52.386073862513044],[4.904974533071164,52.386108812898868],[4.904999276789463,52.386100183176488],[4.905287541107636,52.385853480276289],[4.903576336246269,52.385074312916224],[4.903554420381488,52.385093082996256],[4.903498923756159,52.38509416173622],[4.903484784488561,52.385100202679702],[4.903473119592793,52.385110990076754],[4.903287895187223,52.385027927051986],[4.903256788798504,52.38504302943177],[4.903150390809821,52.38513472234078],[4.903119637902792,52.385127171167227],[4.903098782483085,52.38514421524286],[4.903084996697174,52.385139037296511],[4.90302349088312,52.385198152147602],[4.902889698063478,52.385435257999404]]]}}'
-    geojson_text_area = mo.ui.text_area(
-        placeholder="1. Draw a shape on the map.\n2. Click it.\n3. Copy the GeoJSON from the pop-up.\n4. Paste GeoJSON here.",
-        debounce=5,
-        full_width=True,
-    )
-    buffer = mo.ui.slider(start=0, stop=200, label="Buffer", value=100, step=10)
-    mo.hstack(
-        [geojson_text_area, buffer],
-        widths=[1, 0],
-    )
-    return buffer, geojson_text_area, site_geojson
-
-
-@app.cell
-def _(buffer):
-    # EPSG:4258 is the European Terrestrial Reference System 1989 (ETR)
-    # ETR89 coordinates are in [Longitude (x), Latitude (y)]
-    lonlat_bounds = buffer.to_crs(4258).bounds
-    lonlat_bounds
-    return
-
-
-@app.cell
-def _(Request, bounds, datetime, json, minidom, mo, urlopen, xmltodict):
-    cpt_search_url = "https://publiek.broservices.nl/sr/cpt/v1/characteristics/searches"
-    api_request_data = json.dumps(
-        {
-            "registrationPeriod": {
-                "beginDate": "2017-01-01",
-                "endDate": datetime.date.today().isoformat(),
-            },
-            "area": {
-                "boundingBox": {
-                    "lowerCorner": {
-                        "lon": bounds[0],
-                        "lat": bounds[1],
-                    },
-                    "upperCorner": {
-                        "lon": bounds[2],
-                        "lat": bounds[3],
-                    },
-                }
-            },
-        }
-    ).encode("utf-8")
-
-    cpt_search_req = Request(
-        cpt_search_url,
-        data=api_request_data,
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-    with urlopen(cpt_search_req, timeout=30) as cpt_search_resp:
-        xml = cpt_search_resp.read()
-
-    cpt_search = xmltodict.parse(
-        xml,
-        xml_attribs=False,
-        process_namespaces=True,
-        namespaces={
-            "http://www.broservices.nl/xsd/dscpt/1.1": None,
-            "http://www.broservices.nl/xsd/brocommon/3.0": None,
-        },
-    )
-
-    tabs = mo.ui.tabs(
-        {
-            "XML": mo.md(
-                f"```xml\n{minidom.parseString(xml).toprettyxml(indent='  ')}\n```"
-            ),
-            "JSON": xmltodict.parse(xml),
-            "JSON, no XML attributes": cpt_search,
-        }
-    )
-
-    tabs
-    return
-
-
-app._unparsable_cell(
-    r"""
-    for cpt in cpt_search
-    """,
-    name="_",
-)
-
-
-@app.cell
-def _(Request, etree, urlopen):
-    cpt_get_url = "https://publiek.broservices.nl/sr/cpt/v1/objects/CPT000000198164"
-    cpt_get_req = Request(cpt_get_url, method="GET")
-    with urlopen(cpt_get_req, timeout=30) as resp:
-        cpt_str = resp.read()
-        cpt_xml = etree.fromstring(cpt_str)
-
-    print(etree.tostring(cpt_xml, pretty_print=True, encoding="unicode"))
-    return (cpt_str,)
-
-
-@app.cell
-def _(cpt_str):
-    cpt_str
-    return
-
-
-@app.cell
-def _(BytesIO, cpt_str, read_cpt):
-    cpt_data = read_cpt(BytesIO(cpt_str))
-    cpt_data.__dict__
-    return (cpt_data,)
-
-
-@app.cell
-def _(cpt_data):
-    cpt_data.data
-    return
-
-
-@app.cell
-def _(cpt_data):
-    type(cpt_data.data)
-    return
-
-
-@app.cell
-def _(pl):
-    data = pl.DataFrame(
-        {
-            "x": [1, 5, 2, 4, 6, 2, 4],
-            "y": [2, 1, 3, 4, 5, 1, 2],
-            "type": ["T1", "T2", "T1", "T2", "T1", "T1", "T2"],
-        }
-    )
-    return (data,)
-
-
-@app.cell
-def _(data):
-    type(data)
-    return
-
-
-@app.cell
-def _(Plot, data):
-    Plot.plot(
-        {
-            "grid": True,
-            "marks": [Plot.dot(data, {"x": "x", "y": "y", "fill": "type", "r": 5})],
-        }
-    )
-    return
-
-
-@app.cell
-def _(cpt_data):
-    cpt_data.data
-    return
-
-
-@app.cell
-def _(Plot, cpt_data):
-    Plot.plot({
-        "height": 580, "width": 300, 
-        "x": {
-          "label": "Conus [MPa]",
-          "grid": True
-        },
-        "y":{
-          "grid": True,
-          "reverse": True,
-          "label": "Depth [m]"
-        },
-        "marks": [
-          Plot.frame(),
-          Plot.lineX(cpt_data.data, {
-            "x": "coneResistance",
-            "y": "depth"
-          }),
-          Plot.crosshair(cpt_data.data, {
-            "x": "coneResistance",
-            "y": "depth"
-          })
-        ]
-    })
-    return
-
-
-@app.cell
-def _(cpt_data, plot_cpt):
-    plot_cpt(cpt_data)
+        2. Geotechnical boreholes: <https://publiek.broservices.nl/sr/bhrgt/v2>
+    3. [PDOK](https://app.pdok.nl/viewer) - WMS
+    """)
     return
 
 
 @app.cell
 def _():
+    project_uid = "amsterdam_noord"
+    project_uid
+    return (project_uid,)
+
+
+@app.cell
+def _(mo):
+    cwd = mo.notebook_location()
+    return (cwd,)
+
+
+@app.cell
+def _(cwd, gpd):
+    site_plot = gpd.read_file(cwd / "context.gpkg")
+    return
+
+
+@app.cell
+def _(ds):
+    ds
+    return
+
+
+@app.cell
+def _():
+    # # hollands + utrecht 
+    # west = 46725.2094
+    # east = 207280.9520
+    # south = 422093.3169
+    # north = 577907.6341
+    return
+
+
+@app.cell
+def _():
+    west = 104371.2927
+    south = 473538.1690
+    east = 137341.8722
+    north = 501017.7614
+    return east, north, south, west
+
+
+@app.cell
+def _():
+    # bbox = site_plot.total_bounds
+    # west, south, east, north = bbox
+    # buffer = 1000
+    # west = west - buffer
+    # south = south - buffer
+    # east = east + buffer
+    # north = north + buffer
+    return
+
+
+@app.cell
+def _(east, north, south, west):
+    (west, south, east, north)
+    return
+
+
+@app.cell
+def _(bromodels, east, north, south, west):
+    ds = bromodels.GeoTopDomain(
+        west=west, south=south, east=east, north=north, bottom=-60
+    )
+    return (ds,)
+
+
+@app.cell
+def _(ds):
+    ds
+    return
+
+
+@app.cell
+def _():
+    # geotop_nl = xr.open_dataset("geotop_nl.nc", chunks={"z": 50, "y": 200, "x": 200}) # auto
+    return
+
+
+@app.cell
+def _():
+    # dsg = geotop_nl.sortby("z", ascending=False)
+    # dsg = (
+    #     ds.sortby("z", ascending=False)
+    #       .transpose("z", "y", "x")
+    #       .dropna("z", how="all", subset=["lithok", "strat"])
+    #       .sortby("y", ascending=False)
+    # )
+    # dsg.to_netcdf("geotop_nl_transposed.nc", compute=True)
+    return
+
+
+@app.cell
+def _(ds):
+    ds.to_netcdf("amsterdam.nc")
+    return
+
+
+@app.cell
+def _(ds, mo):
+    slider = mo.ui.slider(1, ds.dims["z"]-1)
+    slider
+    return (slider,)
+
+
+@app.cell
+def _(ds, slider):
+    ds["strat"].isel(z=slider.value).plot() #cmap=ListedColormap(colormap))
+    return
+
+
+@app.cell
+def _(ds):
+    ds["lithok"].isel(x=1).plot() #cmap=ListedColormap(colormap))
+    return
+
+
+@app.cell
+def _():
+    # _link = {
+    #     "lithok": (bromodels.GeoTop.geotop_lithology_class(), "LITHO_CLASS_CD"),
+    #     "strat": (bromodels.GeoTop.geotop_stratigraphic_unit(), "STR_UNIT_CD"),
+    # }
+
+    # mz, mx, my = np.meshgrid(ds.z.values, ds.x.values, ds.y.values, indexing="ij")
+    # point_cloud = list(zip(mx.flatten(), my.flatten(), mz.flatten() + 0.25))
+
+    # # create pyvista object
+    # var = "lithok"  # lithok/ strat
+
+    # # color
+    # df_pv, CD = _link[var]
+    # colormap = []
+    # label = []
+    # for i, row in df_pv.loc[df_pv["VOXEL_NR"].isin(ds[var].values.flatten())].iterrows():
+    #     colormap.append(
+    #         np.array([row.RED_DEC / 255, row.GREEN_DEC / 255, row.BLUE_DEC / 255])
+    #     )
+    #     label.append(row[CD])
+    return
+
+
+@app.cell
+def _(ListedColormap, colormap):
+    ListedColormap(colormap)
+    return
+
+
+@app.cell
+def _():
+    # pdata = pyvista.PolyData(point_cloud)
+
+    # create many cubes from the point cloud
+    # cube = pyvista.Cube(x_length=100, y_length=100, z_length=0.5)
+
+    # pdata[var] = ds[var].values.flatten()
+    # pc = pdata.glyph(scale=False, geom=cube, orient=False)
+    # p = pyvista.Plotter()
+    # p.add_mesh(pc, scalars=var, cmap=ListedColormap(colormap), show_edges=False)
+    # p.set_scale(zscale=20)
+    # p.show_grid()
+    # p.show()
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## CPT
+    """)
+    return
+
+
+@app.cell
+def _(points):
+
+    from anymap import MapLibreMap
+
+    amsterdam_noord = [4.90367686119672, 52.38548804691893]
+
+    def handle_click(event):
+        lat, lng = event['lngLat']
+        print(f"Clicked at: {lat:.4f}, {lng:.4f}")
+
+    def handle_point_click(event):
+        feature = event.get("features", [None])[0]
+        if feature:
+            props = feature["properties"]
+            coords = feature["geometry"]["coordinates"]
+            print(f"Clicked on: {props.get('name')} at {coords}")
+        else:
+            print("No feature clicked")
+
+
+    m = MapLibreMap(
+        center=amsterdam_noord,  
+        zoom=14,
+        height="400px",
+    )
+
+    m.add_geojson_layer(
+        layer_id="cpt",
+        geojson_data=points,
+        layer_type="circle",
+        paint={
+            "circle-radius": 2,
+            "circle-color": "#fff"
+        }
+    )
+
+    m.enable_feature_popup("cpt", fields=["bro_id"], title_field="id")
+
+    m
+    return
+
+
+@app.cell
+def _(cwd):
+    cpt_folder = cwd / "data" 
+    return (cpt_folder,)
+
+
+@app.cell
+def _(cpt_folder):
+    xml_files = list(cpt_folder.rglob("*xml"))
+    f"{len(xml_files)} XML files in {cpt_folder}"
+    return (xml_files,)
+
+
+@app.cell
+def _(CRS, cpts):
+    srs = { cpt.delivered_location.srs_name for cpt in cpts }.pop()
+    projected_crs = CRS(srs)
+    return (projected_crs,)
+
+
+@app.cell
+def _(projected_crs):
+    projected_crs
+    return
+
+
+@app.cell
+def _(cpts):
+    cpts[0].delivered_vertical_position_datum
+    return
+
+
+@app.cell
+def _(CRS):
+    vertical_crs = CRS("EPSG:5709")
+    return (vertical_crs,)
+
+
+@app.cell
+def _(
+    CompoundCRS,
+    Transformer,
+    cesium_crs,
+    network,
+    projected_crs,
+    vertical_crs,
+):
+    compound_crs = CompoundCRS(
+        name=f"{projected_crs.name} + {vertical_crs.name}",
+        components=[projected_crs, vertical_crs],
+    )
+
+    transformer_compound = Transformer.from_crs(compound_crs, cesium_crs)
+    # This is crucial for proper height transformation! See https://proj.org/en/stable/usage/network.html
+    network.set_network_enabled(active=True) 
+    return (transformer_compound,)
+
+
+@app.cell
+def _(read_cpt, xml_files):
+    cpts = [read_cpt(file) for file in xml_files]
+    return (cpts,)
+
+
+@app.cell
+def _(pd, project_uid, projected_crs, vertical_crs):
+    project = pd.DataFrame({
+        "project_uid": [project_uid], # primary key
+        "horizontal_crs_wkt": projected_crs.to_wkt(),
+        "vertical_crs_wkt": vertical_crs.to_wkt(),
+    })
+    return (project,)
+
+
+@app.cell
+def _(cpts, pd, project_uid):
+    locations_df = pd.DataFrame([
+        {
+            "location_uid": f"{cpt.bro_id} {project_uid}", # primary key
+            "project_uid": project_uid, # foreign key
+            # "data": process_data(cpt),
+            "location_source_id": cpt.bro_id,
+            "date": str(cpt.research_report_date),
+            "location_type": "CPT",
+            "easting": cpt.delivered_location.x,
+            "northing": cpt.delivered_location.y,
+            "depth_to_base": cpt.final_depth,
+            "standard": cpt.cpt_standard,
+            "ground_level_elevation": cpt.delivered_vertical_position_offset,
+            "elevation_at_base": cpt.predrilled_depth,
+            # "elevation_at_base": cpt.delivered_vertical_position_offset - min(cpt.data["lowerBoundaryOffset"]),
+        }
+        for cpt in cpts
+    ])
+
+    # pd.DataFrame([
+    #     {
+    #         "location_uid": f"{cpt.bro_id} {project_uid}", # primary key
+    #         "project_uid": project_uid, # foreign key
+    #         "location_source_id": cpt.bro_id,
+    #         "date": cpt.research_report_date,
+    #         "location_type": "CPT",
+    #         "easting": cpt.delivered_location.x,
+    #         "northing": cpt.delivered_location.y,
+    #         "depth_to_base": cpt.final_depth,
+    #         "standard": cpt.cpt_standard,
+    #     }])
+    return (locations_df,)
+
+
+@app.cell
+def _(locations_df):
+    locations_df
+    return
+
+
+@app.cell(hide_code=True)
+def _(cpts, make_cpt_point):
+    # TODO just use geopandas
+    points =  {
+        "type": "FeatureCollection",
+        "features": [make_cpt_point(cpt) for cpt in cpts]
+    }
+    return (points,)
+
+
+@app.cell(hide_code=True)
+def _():
+    import geojson
+
+    def make_cpt_point(cpt_hmm):
+        coords = [cpt_hmm.standardized_location.y, cpt_hmm.standardized_location.x]
+
+        props = {
+            "bro_id": cpt_hmm.bro_id,
+            "standard": cpt_hmm.cpt_standard,
+            "description": cpt_hmm.cpt_description,
+            "type": cpt_hmm.cpt_type
+        }
+
+        point_feature = geojson.Feature(
+            geometry=geojson.Point(coords),
+            properties=props
+        )
+
+        return point_feature
+    return (make_cpt_point,)
+
+
+@app.cell
+def _(add_interpretation, cpts):
+    layert = merge_layers(add_interpretation(cpts[0].data))
+    type(layert)
+    return
+
+
+@app.cell
+def _():
+    # layers = []
+    # soil_columns = []
+    # for cpt in cpts:
+    #     # standardized_location
+    #     try:
+    #         interpreted = pl.from_pandas(merge_layers(add_interpretation(cpt.data)))
+    #         df = interpreted.with_columns([
+    #             pl.lit(f"{cpt.bro_id} {project_uid}").alias("location_uid"),
+    #             pl.lit(project_uid).alias("project_uid")
+    #         ])
+    #         layers.append(df)
+    #         soil_columns.append(interpreted)
+    #     except Exception as e:
+    #         soil_columns.append(None)
+    #         print(f"Error processing CPT: {e}")
+    #         continue
+
+    # insitu = pl.concat(layers).to_pandas()
+    return
+
+
+@app.cell
+def _(insitu):
+    insitu
+    return
+
+
+@app.cell
+def _(cpts):
+    locations = [[cpt.delivered_location.x,cpt.delivered_location.y] for cpt in cpts]
+    len(locations)
+    return
+
+
+@app.cell
+def _(plt):
+    soil_colors = {
+        'Unknown': '#FFFFFF',  # White
+        'Gravelly sand to dense sand': '#FF8C00',  # Dark orange
+        'Sands: clean sand to silty sand': '#FFD700',  # Gold
+        'Sand mixtures: silty sand to sandy silt': '#F4E4A6',  # Pale yellow
+        'Silt mixtures: clayey silt to silty clay': '#90EE90',  # Light green
+        'Clays: silty clay to clay': '#8B4513',  # Saddle brown
+        'Organic soils / Very soft clay': '#2F4F2F',  # Dark olive green
+
+        # Legacy names
+        'Clay': '#8B4513',
+        'Silt': '#90EE90', 
+        'Silty sand': '#F4E4A6',
+        'Sand': '#FFD700',
+        'Dense sand': '#FF8C00'
+    }
+
+    def plot_column(df):
+        fig, ax = plt.subplots(figsize=(2, 8))
+
+
+        colors = [soil_colors.get(st, 'gray') for st in df['Soil type']]
+
+        # Plot as horizontal bars
+        ax.barh(
+          df['depth_to_top'],
+          1,
+          height=df['Thickness [m]'],
+          color=colors,
+          edgecolor='black',
+          linewidth=0.5
+        )
+
+        ax.set_ylabel('Depth [m]')
+        ax.set_xlim(0, 1)
+        ax.set_xticks([])
+        ax.invert_yaxis()
+        ax.set_ylim(df['depth_to_top'].max() + df['Thickness [m]'].iloc[-1], 0)
+        ax.set_title('Soil Profile')
+
+        return fig
+    return (plot_column,)
+
+
+@app.cell
+def _(cpts, mo):
+    options = {d.bro_id: i for i, d in enumerate(cpts)}
+    dropdown = mo.ui.dropdown(options, label="Select CPT")
+    dropdown
+    return (dropdown,)
+
+
+@app.cell
+def _(dropdown):
+    cpt_index = dropdown.value or 0
+    cpt_index
+    return (cpt_index,)
+
+
+@app.cell
+def _(cpt_index, plot_column, soil_columns):
+    plot_column(soil_columns[cpt_index])
+    return
+
+
+@app.cell
+def _(PCPTProcessing, classify_soil, np, pl):
+    def add_interpretation(cpt_df):
+        u_2 = np.zeros_like(cpt_df["frictionRatio"])
+        cpt_pd = cpt_df.with_columns(porePressure=u_2).with_columns((pl.col('frictionRatio')).alias('Rf [%]') ).to_pandas()
+
+        cpt = PCPTProcessing("ams", waterunitweight=10)
+        cpt.load_pandas(cpt_pd, z_key="depthOffset", qc_key="coneResistance", fs_key="localFriction", u2_key="porePressure", add_zero_row=False)
+        cpt.data = cpt.data[cpt.data['qc [MPa]'] != 0]
+
+        cpt.apply_correlation(name="Isbt Robertson (2010)", outputs={'Isbt [-]': 'Ic [-]'})
+
+        cpt.data['Soil type'] = cpt.data['Ic [-]'].apply(classify_soil)
+
+        return cpt.data
+    return (add_interpretation,)
+
+
+@app.function
+def merge_layers(interpreted_df): 
+    # Identify consecutive groups of the same soil type
+    interpreted_df['soil_group'] = (interpreted_df['Soil type'] != interpreted_df['Soil type'].shift()).cumsum()
+
+    # Define aggregations based on available columns
+    agg_dict = {'z [m]': ['min', 'max']}
+
+    # Add optional columns if they exist
+    if 'qc [MPa]' in interpreted_df.columns:
+        agg_dict['qc [MPa]'] = 'mean'
+    if 'fs [kPa]' in interpreted_df.columns:
+        agg_dict['fs [kPa]'] = 'mean'
+    if 'Rf [%]' in interpreted_df.columns:
+        agg_dict['Rf [%]'] = 'mean'
+    if 'Ic [-]' in interpreted_df.columns:
+        agg_dict['Ic [-]'] = 'mean'
+
+    # Merge rows by soil group
+    merged_layers = interpreted_df.groupby(['soil_group', 'Soil type']).agg(agg_dict).reset_index()
+
+    # Flatten column names
+    merged_layers.columns = ['_'.join(col).strip('_') for col in merged_layers.columns]
+
+    # Rename depth columns
+    merged_layers = merged_layers.rename(columns={
+        'z [m]_min': "depth_to_top", # 'Top depth [m]',
+        'z [m]_max': "depth_to_bottom" # 'Bottom depth [m]'
+    })
+
+    # Calculate layer thickness
+    merged_layers['Thickness [m]'] = merged_layers['depth_to_bottom'] - merged_layers['depth_to_top']
+
+    merged_layers = merged_layers[merged_layers['Thickness [m]'] > 0]
+
+
+    return merged_layers
+
+
+@app.cell
+def _(pd):
+    def classify_soil(ic):
+        if pd.isna(ic):
+            return "Unknown"
+        elif ic < 1.31:
+            return "Gravelly sand to dense sand"
+        elif ic < 2.05:
+            return "Sands: clean sand to silty sand"
+        elif ic < 2.60:
+            return "Sand mixtures: silty sand to sandy silt"
+        elif ic < 2.95:
+            return "Silt mixtures: clayey silt to silty clay"
+        elif ic < 3.60:
+            return "Clays: silty clay to clay"
+        else:
+            return "Organic soils / Very soft clay"
+    return (classify_soil,)
+
+
+@app.cell
+def _(cpt_index, cpts):
+    cpts[cpt_index].data.columns
+    return
+
+
+@app.cell
+def _(mo):
+    plot_options = {"coneResistance", "frictionRatio", "frictionRatioComputed", "porePressureU2"}
+    prop = mo.ui.dropdown(plot_options, label="Select property to plot", value="coneResistance")
+    prop
+    return (prop,)
+
+
+@app.cell(hide_code=True)
+def _(Plot, cpt_index, cpts, prop):
+    Plot.plot(
+        {
+            "height": 580,
+            "width": 300,
+            "x": {"label": "Conus [MPa]", "grid": True},
+            "y": {"grid": True, "reverse": True, "label": "Depth [m]"},
+            "marks": [
+                Plot.frame(),
+                Plot.lineX(
+                    cpts[cpt_index].data,
+                    {
+                        "x": prop.value,
+                        "y": "depth",
+                        "style": {"stroke": "blue"},
+                    },
+                ),
+                Plot.lineX(cpts[cpt_index].data, {"x": prop.value, "y": "depth"}),
+                Plot.crosshair(
+                    cpts[cpt_index].data, {"x": prop.value, "y": "depth"}
+                ),
+            ],
+        }
+    )
+    return
+
+
+@app.cell
+def _(cpt_index, cpts, plot_cpt):
+    plot_cpt(cpts[cpt_index])
+    return
+
+
+@app.cell
+def _(BedrockGIDatabase, insitu, locations_df, project):
+    brgi_db = BedrockGIDatabase(
+            Project=project,
+            Location=locations_df,
+            InSituTests={"interpretation":insitu},
+        )
+    brgi_db
+    return (brgi_db,)
+
+
+@app.cell
+def _(insitu):
+    insitu
+    return
+
+
+@app.cell
+def _(brgi_db, create_brgi_geodb):
+    brgi_geodb = create_brgi_geodb(brgi_db)
+    return (brgi_geodb,)
+
+
+@app.cell
+def _(brgi_db, check_brgi_geodb):
+    check_brgi_geodb(brgi_db)
+    return
+
+
+@app.cell
+def _(brgi_geodb):
+    type(brgi_geodb.Location)
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _(brgi_geodb):
+    brgi_geodb.Location
+    return
+
+
+@app.cell
+def _(CRS):
+    cesium_crs = CRS("EPSG:4979").to_3d()
+    cesium_crs
+    return (cesium_crs,)
+
+
+@app.cell
+def _(cesium_crs, gpd, transform_geometry):
+    def to_epsg_4979_3d(gdf) -> gpd.GeoDataFrame: 
+        result = gdf.copy()
+        result.geometry = gdf.geometry.apply(transform_geometry)
+        result.crs = cesium_crs
+        return result
+    return (to_epsg_4979_3d,)
+
+
+@app.cell
+def _(LineString, Point, transformer_compound):
+    def transform_geometry(geom):
+        if geom is None:
+            return None
+
+        if geom.geom_type == 'Point':
+            if geom.has_z:
+                x, y, z = transformer_compound.transform(geom.x, geom.y, geom.z)
+                return Point(x, y, z)
+            else:
+                x, y = transformer_compound.transform(geom.x, geom.y)
+                return Point(x, y)
+
+        elif geom.geom_type == 'LineString':
+            coords = list(geom.coords)
+            if len(coords[0]) == 3:  # Has Z
+                x_list, y_list, z_list = zip(*coords)
+                x_new, y_new, z_new = transformer_compound.transform(x_list, y_list, z_list)
+                return LineString(list(zip(x_new, y_new, z_new)))
+            else:  # 2D
+                x_list, y_list = zip(*coords)
+                x_new, y_new = transformer_compound.transform(x_list, y_list)
+                return LineString(list(zip(x_new, y_new)))
+        else:
+            raise ValueError(f"Unsupported geometry type: {geom.geom_type}")
+    return (transform_geometry,)
+
+
+@app.cell
+def _():
+    columns = ["date", "depth_to_base", "ground_level_elevation", "elevation_at_base", "geometry", "standard", "location_source_id"]
+    return (columns,)
+
+
+@app.cell
+def _(brgi_geodb, columns, to_epsg_4979_3d):
+    locations_geojson = to_epsg_4979_3d(brgi_geodb.Location[columns]).to_json(to_wgs84=True)
+
+    with open("cpt.geojson", "w") as file:
+        file.write(locations_geojson)
+    return
+
+
+@app.cell
+def _():
+    import xarray as xr
+    import dask
+    from pyproj import CRS, Transformer, network
+    from pyproj.crs.crs import CompoundCRS
+    from shapely.geometry import Point, LineString
     import geopandas as gpd
     import marimo as mo
     from pygef import read_cpt
@@ -348,7 +778,40 @@ def _():
     from matplotlib.colors import ListedColormap
     import bromodels
     import polars as pl
-    return Plot, gpd, mo, pl, plot_cpt, read_cpt
+    import pyvista
+    import mapwidget
+    from groundhog.siteinvestigation.insitutests.pcpt_processing import PCPTProcessing 
+    import pandas as pd
+    from bedrock_ge.gi.schemas import BedrockGIDatabase
+    from bedrock_ge.gi.db_operations import merge_dbs
+    from bedrock_ge.gi.geospatial import create_brgi_geodb
+    from bedrock_ge.gi.io_utils import geodf_to_df
+    from bedrock_ge.gi.validate import check_brgi_geodb
+    from bedrock_ge.gi.mapper import map_to_brgi_db
+    from bedrock_ge.gi.write import write_brgi_db_to_file
+    return (
+        BedrockGIDatabase,
+        CRS,
+        CompoundCRS,
+        LineString,
+        ListedColormap,
+        PCPTProcessing,
+        Plot,
+        Point,
+        Transformer,
+        bromodels,
+        check_brgi_geodb,
+        create_brgi_geodb,
+        gpd,
+        mo,
+        network,
+        np,
+        pd,
+        pl,
+        plot_cpt,
+        plt,
+        read_cpt,
+    )
 
 
 @app.cell

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CesiumJS 3D Geotechnical Data Viewer</title>
+    <!-- Include the CesiumJS JavaScript and CSS files -->
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.133/Build/Cesium/Cesium.js"></script>
+    <link
+      href="https://cesium.com/downloads/cesiumjs/releases/1.133/Build/Cesium/Widgets/widgets.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 12px;
+      }
+
+      .panel {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 2px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+      }
+
+      #map {
+        background: gray;
+        height: 100vh;
+        width: 100%;
+      }
+
+      #datasets {
+        top: 10px;
+        left: 10px;
+        max-width: 200px;
+      }
+
+      #controls {
+        top: 300px;
+        left: 10px;
+        max-width: 200px;
+      }
+
+      #legend {
+        top: 10px;
+        right: 10px;
+        max-width: 250px;
+        max-height: 90svh;
+        overflow-y: auto;
+      }
+
+      #legend section {
+        border-radius: 2px;
+        border: lightgray 1px solid;
+        padding: 4px;
+      }
+
+      #legend h3 {
+        margin-block: 6px;
+      }
+
+      #legend h4 {
+        margin-block: 4px;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 4px;
+      }
+
+      .legend-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 8px;
+        border: 1px solid #878787;
+      }
+
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 6px;
+        cursor: pointer;
+      }
+
+      .checkbox-item input[type="checkbox"] {
+        margin-right: 8px;
+        cursor: pointer;
+      }
+
+      .checkbox-item label {
+        cursor: pointer;
+        user-select: none;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="script.js" type="module"></script>
+
+    <div id="datasets" class="panel">
+      <h2>Datasets</h2>
+    </div>
+
+    <div id="controls" class="panel">
+      <h2>Controls</h2>
+
+      <div class="checkbox-item">
+        <input type="checkbox" id="buildings-toggle" checked />
+        <label for="buildings-toggle">3D Buildings</label>
+      </div>
+
+      <label>
+        <span style="display: block">Basemap opacity</span>
+        <input
+          id="alpha"
+          type="range"
+          min="0.0"
+          max="1.0"
+          step="0.05"
+          value="0.7"
+        />
+      </label>
+    </div>
+
+    <div id="legend" class="panel">
+      <h2>Legend</h2>
+    </div>
+  </body>
+</html>
