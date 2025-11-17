@@ -13,12 +13,14 @@
 #     "pygef==0.13.0",
 #     "pandas==2.3.3",
 #     "pyarrow==21.0.0",
+#     "anthropic==0.73.0",
+#     "numpy==2.3.5",
 # ]
 # ///
 
 import marimo
 
-__generated_with = "0.17.6"
+__generated_with = "0.17.8"
 app = marimo.App(
     width="medium",
     app_title="Maastricht A2 Tunnel GEF-BORE data to a Bedrock GI Geospatial Database",
@@ -30,7 +32,7 @@ def _(mo):
     mo.md("""
     # GEF Data for A2 Tunnel Maastricht
 
-    <img src="https://bedrock.engineer/Bedrock_TextRight.png" alt="Bedrock logo" width="180" />
+    <a href="https://bedrock.engineer"><img src="https://bedrock.engineer/Bedrock_TextRight.png" alt="Bedrock logo" width="180" /></a>
 
     This notebook demonstrates how to
 
@@ -43,12 +45,12 @@ def _(mo):
     <details>
         <summary>What are GEF files?</summary>
         <p>
-            <abbr>Geotechnical Exchange Format (GEF)</abbr> is a standardized,
+            <abbr>[Geotechnical Exchange Format](http://localhost:4321/reference/formats/gef/gef/) (GEF)</abbr> is a standardized,
             text-based format designed to facilitate the reliable exchange and archiving
             of geotechnical investigation data, particularly CPT results, across
             different organizations and software platforms. GEF can also be used for
             other types of soil tests, like <a href="https://bedrock.engineer/reference/formats/gef/gef-cpt/">CPTs</a>. It is widely used in the
-            Netherlands in ground investigation.
+            Netherlands and Belgium in ground investigation.
         </p>
     </details>
 
@@ -113,7 +115,7 @@ def _(Path, pygef):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md("pygef uses [polars](https://pola.rs/) for DataFrames, for consistency we will convert them to [Pandas](http://pandas.pydata.org/) DataFrames in this notebook.").callout("warn")
+    mo.md("pygef uses [polars](https://pola.rs/) for DataFrames, for consistency, we convert them to [Pandas](http://pandas.pydata.org/) DataFrames in this notebook.").callout("warn")
     return
 
 
@@ -128,6 +130,7 @@ def _(boreholes, mo):
 @app.cell(hide_code=True)
 def _(multiselect):
     index = multiselect.value or 0
+    index
     return (index,)
 
 
@@ -148,11 +151,11 @@ def _(mo):
     mo.md(r"""
     ## Converting multiple GEF files to a relational database
 
-    Rather than dealing with a folder of files in a format that very few software can handle, we would like to combine all of these files into a single database with spatial information. This is where `bedrock-ge` comes in.
+    Rather than dealing with a folder of files in a format that not much software can handle, we would like to combine all of these files into a single database with spatial information. This is where `bedrock-ge` comes in.
 
     ### Relational Databases
 
-    A [relational database](https://observablehq.com/blog/databases-101-basics-data-analysts#what-are-relational-databases) is a database with multiple tables that are linked to each other with relations. This type of database is ideal for storing GI data, given its [hierarchical structure](https://bedrock.engineer/docs/#hierarchical-nature-of-gi-data).
+    A [relational database](https://observablehq.com/blog/databases-101-basics-data-analysts#what-are-relational-databases) is a database with multiple tables that are linked to each other with relations. This type of database is ideal for storing GI data, given its [hierarchical structure](https://bedrock.engineer/explanation/hierarchical-structure/).
 
     In Python it's convenient to represent a relational database as a dictionary of DataFrames.
 
@@ -166,9 +169,9 @@ def _(mo):
 @app.cell
 def _(CRS, boreholes):
     code = {bore.delivered_location.srs_name for bore in boreholes}.pop()
-    orig_crs = CRS(code)
-    orig_crs
-    return (orig_crs,)
+    projected_crs = CRS(code)
+    projected_crs
+    return (projected_crs,)
 
 
 @app.cell(hide_code=True)
@@ -177,7 +180,7 @@ def _(mo):
     The data is in EPSG:28992, which is the [Rijksdriehoekscoördinaten (NL)](https://nl.wikipedia.org/wiki/Rijksdriehoeksco%C3%B6rdinaten) system, also called "Amersfoort / RD New". This reference system does not include elevation.
 
     To represent GI data spatially in 3D geometry we need a CRS **with elevation**. That's why we will use
-    EPSG:5709 NAP height as the vertical CS.
+    [EPSG:5709](https://epsg.org/crs_5709/NAP-height.html) "Normaal Amsterdams Peil (NAP) height" as the vertical reference system.
     """)
     return
 
@@ -201,10 +204,10 @@ def _():
 
 
 @app.cell
-def _(orig_crs, pd, project_uid, vertical_crs):
+def _(pd, project_uid, projected_crs, vertical_crs):
     project = pd.DataFrame({
         "project_uid": [project_uid], # primary key
-        "horizontal_crs_wkt": orig_crs.to_wkt(),
+        "horizontal_crs_wkt": projected_crs.to_wkt(),
         "vertical_crs_wkt": vertical_crs.to_wkt(),
     })
     return (project,)
@@ -250,7 +253,7 @@ def _(locations_df):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    Here we create a DataFrame for the In-Situ data of all GI locations. To relate the in-situ data to locations and the project, we add foreign keys.
+    Here we create a DataFrame for the In-Situ data of all GI locations. To relate the in-situ data to locations and the project, we add foreign keys to each row.
     """)
     return
 
@@ -277,10 +280,18 @@ def _(BedrockGIDatabase, insitu, locations_df, project):
     brgi_db = BedrockGIDatabase(
             Project=project,
             Location=locations_df.drop(columns=["data"]),
-            InSituTests={"interpretation":insitu},
+            InSituTests={"interpretation": insitu},
         )
     brgi_db
     return (brgi_db,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Now let's convert the various tables (`Location`, `LonLatHeight`, `In-SituTests` ) into geospatial DataFrames with interpolated geometry data using `bedrock-ge`'s `create_brgi_geodb`.
+    """)
+    return
 
 
 @app.cell
@@ -319,13 +330,9 @@ def _(mo):
 
 
     The reason for creating the `LonLatHeight` table is that vertical lines in projected Coordinate Reference Systems (CRS) are often not rendered nicely by default in all web-mapping software. Vertical lines are often not visible when looking at a map from above, and not all web-mapping software is capable of handling geometry in non-WGS84, i.e. (Lon, Lat) coordinates.
+
+    `brgi_geodb.LonLatHeight` is a GeoPandas GeoDataFrame, which has an `.explore()` utility method to view the data on a webmap.
     """)
-    return
-
-
-@app.cell
-def _(brgi_geodb):
-    brgi_geodb.LonLatHeight
     return
 
 
@@ -336,34 +343,52 @@ def _(brgi_geodb):
     return
 
 
+@app.cell
+def _(brgi_geodb):
+    brgi_geodb.LonLatHeight
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
     ## Saving the GI geospatial database as a GeoPackage (.gpkg)
 
-    Finally, we'll write it to an actual geospatial database file, a [GeoPackage](https://www.geopackage.org/), so we can share our GI data with others, for example, to reuse it in other computational notebooks, create dashboards, access the GI data in QGIS or ArcGIS, and more...
+    Finally, we'll write it to an actual geospatial database file, a [GeoPackage](https://www.geopackage.org/), so we can share our GI data with others, for example, to reuse it in other computational notebooks, create dashboard apps, access the GI data in QGIS or ArcGIS, and more...
 
-    A GeoPackage is an <abbr title="Open Geospatial Consortium">OGC-standardized</abbr> extension of SQLite (a relational database in a single file, .sqlite or .db) that allows you to store any type of GIS data (both raster as well as vector data) in a single file that has the .gpkg extension. Therefore, many (open-source) GIS software packages support GeoPackage!
+    A GeoPackage is an <abbr title="Open Geospatial Consortium">OGC-standardized</abbr> extension of SQLite, a relational database in a single file. SQLite is the most deployed database in the world, it's probably on every device you own.
+
+    GeoPackage allows you to store any type of GIS data (both raster as well as vector data) in a single file that has the `.gpkg` extension. Therefore, many (open-source) GIS software packages support GeoPackage!
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    `check_brgi_geodb` checks that all tables in the BedrockGI geospatial database conform to their respective schemas and that all foreign key relationships are properly maintained.
     """)
     return
 
 
 @app.cell
-def _(brgi_db, check_brgi_geodb):
-    check_brgi_geodb(brgi_db)
+def _(brgi_geodb, check_brgi_geodb):
+    check_brgi_geodb(brgi_geodb)
     return
 
 
 @app.cell
-def _(brgi_db, write_brgi_db_to_file):
-    write_brgi_db_to_file(brgi_db, path="./output/A2_Maastricht.gpkg", driver="GPKG")
+def _(brgi_geodb, os, write_brgi_db_to_file):
+    os.makedirs('./output', exist_ok=True)
+
+    write_brgi_db_to_file(brgi_geodb, path="./output/A2_Maastricht.gpkg", driver="GPKG")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## Visualising the Data in a 3D Webmap
+    ## Visualising the Data
 
     As standardized geospatial data, we can visualize our GI in a wealth of ways.
 
@@ -374,7 +399,7 @@ def _(mo):
 
     ### 3D Webmap with Cesium.js
 
-    View the data from this example interactively in a 3D webmap.
+    View the data from this example interactively in a [3D webmap using CesiumJS](https://www.bedrock.engineer/maastricht-a2).
     """)
     return
 
@@ -392,6 +417,7 @@ def _():
     import pyarrow
     import folium
     import mapclassify
+    import numpy as np
     from shapely.geometry import Point, LineString
 
     from bedrock_ge.gi.schemas import BedrockGIDatabase
@@ -410,6 +436,7 @@ def _():
         check_brgi_geodb,
         create_brgi_geodb,
         mo,
+        os,
         pd,
         plot_bore,
         pygef,
