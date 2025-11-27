@@ -179,7 +179,7 @@ def _(mo):
 @app.cell
 def _(CRS, ags_to_brgi_db_mapping, map_to_brgi_db, merge_dbs, zip, zipfile):
     projected_crs = CRS("EPSG:2326")
-    vertrical_crs = CRS("EPSG:5738")
+    vertical_crs = CRS("EPSG:5738")
 
     ags3_file_brgi_dbs = []
     with zipfile.ZipFile(zip) as zip_ref:
@@ -196,7 +196,7 @@ def _(CRS, ags_to_brgi_db_mapping, map_to_brgi_db, merge_dbs, zip, zipfile):
                     ags3_file_brgi_dbs.append(
                         map_to_brgi_db(
                             ags_to_brgi_db_mapping(
-                                ags3_file, projected_crs, vertrical_crs
+                                ags3_file, projected_crs, vertical_crs
                             )
                         )
                     )

@@ -1,6 +1,4 @@
-<figure style="margin-inline: block;">
-  <img src="https://bedrock.engineer/public/Bedrock_TextRight.png" alt="Bedrock logo" width="75%"/>
-</figure>
+<img src="https://bedrock.engineer/bedrock.svg" alt="Bedrock logo" width="25%"/>
 
 <h3 style="margin-inline: block;">Bedrock, the Open-Source Foundation for Geotechnical Engineering</h3>
 
@@ -15,7 +13,7 @@
 
 🌐 **Website:** <https://bedrock.engineer>
 
-📖 **Documentation:** <https://bedrock.engineer/docs>
+📖 **Documentation:** <https://bedrock.engineer/getting-started>
 
 📑 **API Reference:** <https://bedrock.engineer/reference>
 
@@ -39,14 +37,14 @@
 >
 > Sources: [[1] Bedrock | Cambridge Dictionary](https://dictionary.cambridge.org/us/dictionary/english/bedrock), [[2] Bedrock | Wikipedia](https://en.wikipedia.org/wiki/Bedrock)
 
-Ground Investigation (GI) data is often trapped in legacy formats that limit analysis and visualization possibilities.
+Ground Investigation (GI) data is often trapped in bespoke or legacy formats that limit analysis and visualization possibilities.
 `bedrock-ge` lets you transform this data from specialized geotechnical formats and common tabular formats (Excel, CSV) into modern, standardized geospatial data.
 
-This standardization lets you bridge the gap between raw geotechnical data, the modern Python (geo)scientific ecosystem and modern geospatial tools.
+This standardization lets you bridge the gap between raw geotechnical data, the modern Python (geo)scientific ecosystem, and modern geospatial tools.
 This gives geotechnical engineers greater flexibility in visualization, modeling, and integration across different software environments while avoiding vendor lock-in.
 For example, this enables connecting your GI data with GIS as well as BIM environments through [platforms like Speckle](#-put-your-gi-data-into-speckle).
 
-The purpose of Bedrock is NOT to become THE standard for geotechnical data, because [we don't need 15 instead of 14 competing standards](https://xkcd.com/927/). 
+The purpose of Bedrock is NOT to become THE standard for geotechnical data, because [we don't need 15 instead of 14 competing standards](https://xkcd.com/927/).
 
 ## Highlights
 
@@ -68,19 +66,19 @@ Also, if you have a project with publicly available GI data, please share that i
 
 ### ✅ Validate your GI data
 
-`bedrock-ge` comes with data validation to make sure that you can combine Ground Investigation data from multiple files into a single geospatial database with consistent relationships between GI locations, samples, in-situ measurements and lab tests.
+`bedrock-ge` comes with data validation to make sure that you can combine Ground Investigation data from multiple files into a single geospatial database with consistent relationships between GI locations, samples, in-situ measurements, and lab tests.
 
 This data validation mechanism (based on [`pandera`](https://pandera.readthedocs.io/en/stable/)) is easily extensible, giving you the power to add your own data validation criteria.
 
 ### 🗺️ Put your GI data from multiple files into a single 3D geospatial database
 
-For example, you can take GI data from 100 AGS files and combine them into a single a [GeoPackage](https://en.wikipedia.org/wiki/GeoPackage) ([like a Shapefile, but then waaay better](http://switchfromshapefile.org/)). Such a GeoPackage can then be loaded into ArcGIS, where you can visualize your GI data in 3D:
+For example, you can take GI data from 100 AGS files and combine them into a single a [GeoPackage](https://en.wikipedia.org/wiki/GeoPackage) ([like a Shapefile, but much better](http://switchfromshapefile.org/)). Such a GeoPackage can then be loaded into ArcGIS, where you can visualize your GI data in 3D:
 
 <figure style="margin-inline: block; display: block;">
-  <img src="https://bedrock.engineer/public/images/KaiTak_BrGI_ArcGIS.webp" alt="Kai Tak, Hong Kong, 3D GI data visualization in ArcGIS" width="90%"/> 
+  <img src="https://bedrock.engineer/_astro/KaiTak_BrGI_ArcGIS.DZCu93_A_Z12arQe.webp" alt="Kai Tak, Hong Kong, 3D GI data visualization in ArcGIS" width="90%"/> 
   <figcaption>
-  GI data in Kai Tak, Hong Kong. <a href="https://arcg.is/0r9DG9">Click here to explore for yourself.</a>
-</figcaption>
+    GI data in Kai Tak, Hong Kong. <a href="https://arcg.is/0r9DG9">Click here to explore for yourself.</a>
+  </figcaption>
 </figure>
 
 ### 🟦 Put your GI data into Speckle
@@ -88,17 +86,17 @@ For example, you can take GI data from 100 AGS files and combine them into a sin
 From ArcGIS or QGIS you can publish your GI data to [Speckle](https://speckle.systems/) and then visualize it together with your ground models and civil engineering designs:
 
 <figure style="margin-inline: block; display: block;">
-  <img src="https://bedrock.engineer/public/images/KaiTak_BrGI_Speckle.png" alt="Kai Tak, Hong Kong, data from many sources in Speckle." width="90%"/> 
+  <img src="https://bedrock.engineer/_astro/KaiTak_BrGI_Speckle.GM-juKsR_ENObc.webp" alt="Kai Tak, Hong Kong, data from many sources in Speckle." width="90%"/> 
   <figcaption>
-  Models from Rhino, Revit, Civil3D + context & GI data from Q/ArcGIS. <a href="https://app.speckle.systems/projects/013aaf06e7/models/0fa0287ba8,1cbe68ed69,44c8d1ecae,7f9d99cae2,9535541c2b,a739490298,ff81bfa02b">Click here to explore for yourself.</a>
-</figcaption>
+    Models from Rhino, Revit, Civil3D + context & GI data from Q/ArcGIS. <a href="https://app.speckle.systems/projects/013aaf06e7/models/0fa0287ba8,1cbe68ed69,44c8d1ecae,7f9d99cae2,9535541c2b,a739490298,ff81bfa02b">Click here to explore for yourself.</a>
+  </figcaption>
 </figure>
 
 <figure style="margin-inline: block; display: block;">
-  <img src="https://bedrock.engineer/public/images/WekaHills_Speckle.webp" alt="GI data, the derived Leapfrog ground model and a tunnel in Speckle." width="90%"/> 
+  <img src="https://bedrock.engineer/_astro/WekaHills_Speckle.CiU5ddWd_Z1R8wkt.webp" alt="GI data, the derived Leapfrog ground model and a tunnel in Speckle." width="90%"/> 
   <figcaption>
-  GI data, the derived Leapfrog ground model and a tunnel in Speckle. <a href="https://app.speckle.systems/projects/7a489ac0d4/models/$epsg:2193-7839%2Fgeo%2Fgeology-model,65b4cf97d5,9069ef2b2b">Click here to explore for yourself.</a>
-</figcaption>
+    GI data, the derived Leapfrog ground model and a tunnel in Speckle. <a href="https://app.speckle.systems/projects/7a489ac0d4/models/$epsg:2193-7839%2Fgeo%2Fgeology-model,65b4cf97d5,9069ef2b2b">Click here to explore for yourself.</a>
+  </figcaption>
 </figure>
 
 Moreover, your GI data becomes available in all the software that [Speckle has connectors for](https://app.speckle.systems/downloads).
@@ -147,12 +145,7 @@ Contributing isn't scary. Contributing isn't just about writing code:
 - Share how you use Bedrock
 - Help each other out, e.g. by replying to questions in the [discussions](https://github.com/orgs/bedrock-engineer/discussions) or [`bedrock-ge` issues](https://github.com/bedrock-engineer/bedrock-ge/issues)
 - Documentation and tutorials
-- Most pages on the [bedrock.engineer](https://bedrock.engineer/) website can be edited, so if you see a spelling mistake or have a suggestion on how to explain something better, click this button to make a contribition.
-
-<figure style="margin-inline: block;">
-  <img src="https://bedrock.engineer/public/images/EditThisPage.png" alt="Edit this page on GitHub button on bedrock.engineer" width="25%"/>
-</figure>
-
+- Most pages on the [bedrock.engineer](https://bedrock.engineer/) website can be edited, so if you see a spelling mistake or have a suggestion on how to explain something better, click the "Edit page" button to make a contribution.
 - If you would like to contribute code, awesome!
   Please create an [issue](https://github.com/bedrock-engineer/bedrock-ge/issues) for what you'd like to contribute. If you don't know how to get started, please indicate this in your issue, and we'll help you out.
 
@@ -179,4 +172,4 @@ Please take a look at the [contributors page](https://github.com/bedrock-enginee
 
 ## Professional Support
 
-While `bedrock-ge` is an Free Open Source Software (FOSS) project, you might be looking for professional support implementing it, contact <info@bedrock.engineer> for more information.
+While `bedrock-ge` is a Free Open Source Software (FOSS) project, you might be looking for professional support implementing it, contact <info@bedrock.engineer> for more information.
