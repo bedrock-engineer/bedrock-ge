@@ -26,9 +26,12 @@ identifiers:
 repository-code: 'https://github.com/bedrock-engineer/bedrock-ge'
 url: 'https://bedrock.engineer/'
 keywords:
-  - ground investigation
-  - geotechnical engineering
-  - ground engineering
+  - "ground investigation"
+  - "geotechnical engineering"
+  - "ground engineering"
+  - geotechnics
+  - "civil engineering"
+  - python
   - geospatial
   - gis
   - bim
