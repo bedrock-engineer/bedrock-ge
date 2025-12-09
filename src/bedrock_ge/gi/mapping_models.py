@@ -63,7 +63,7 @@ class LabTestTableMapping(OtherTable):
 class BedrockGIMapping(BaseModel):
     Project: ProjectTableMapping
     Location: LocationTableMapping
-    InSitu: list[InSituTestTableMapping]
+    InSitu: list[InSituTestTableMapping] = []
     Sample: Union[SampleTableMapping, None] = None
     Lab: list[LabTestTableMapping] = []
     Other: list[OtherTable] = []
