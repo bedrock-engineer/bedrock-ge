@@ -70,7 +70,7 @@ class InSituTestSchema(pa.DataFrameModel):
         # foreign_key="location.location_uid"
     )
     depth_to_top: Optional[Series[float]] = pa.Field(nullable=True, coerce=True, ge=0)
-    depth_to_base: Optional[Series[float]] = pa.Field(nullable=True, coerce=True, gt=0)
+    depth_to_base: Optional[Series[float]] = pa.Field(nullable=True, coerce=True, ge=0)
 
     # https://pandera.readthedocs.io/en/stable/dataframe_models.html#dataframe-checks
     # Check depth column completeness such that either shapely.Point's or
