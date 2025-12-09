@@ -47,6 +47,7 @@ Create a Git tag for the new version:
 
 ```bash
 git checkout main
+git pull
 git tag X.Y.Z
 git push origin X.Y.Z
 ```
