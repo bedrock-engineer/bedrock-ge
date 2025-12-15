@@ -204,7 +204,7 @@ def map_to_brgi_db(brgi_db_mapping: BedrockGIMapping) -> BedrockGIDatabase:
     other_tables = {}
     if brgi_db_mapping.Other:
         for other_table_mapping in brgi_db_mapping.Other:
-            other_table_df = other_table_mapping.data
+            other_table_df = other_table_mapping.data.copy()
             other_table_df.insert(0, "project_uid", project_uid)
             other_tables[other_table_mapping.table_name] = other_table_df
 
